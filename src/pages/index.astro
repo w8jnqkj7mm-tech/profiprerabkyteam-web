@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import TradeMarquee from '../components/TradeMarquee.astro';
+import WhyTeam from '../components/WhyTeam.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Profi Prerábky Team – Kompletné rekonštrukcie s vlastnými remeselníkmi';
+const description = 'Kompletné rekonštrukcie bytov, domov a kancelárií v Bratislave. Elektriká, vodár, stolárstvo – všetko v jednom tíme. Bezplatná konzultácia.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <Hero posterUrl="/hero-poster.webp">
+    <Header slot="header" />
+  </Hero>
+
+  <!-- 1. ROZCESTNÍK: Malá práca / Rekonštrukcia -->
+  <section class="bg-bg-dark py-16 md:py-24 px-clamp-sm">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Malá práca -->
+        <a href="/male-prace" class="group bg-bg-panel border border-text-muted rounded-2xl p-8 md:p-12 hover:border-brand-green hover:bg-bg-panel/50 transition-all duration-350">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <h3 class="text-2xl md:text-3xl font-bold mb-3">Potrebujem malú prácu</h3>
+              <p class="text-text-secondary text-sm mb-6">Hodinový majster, elektrikár, vodár, klimatizácia. Rýchlo a spoľahlivo.</p>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0 text-brand-green opacity-0 group-hover:opacity-100 transition-opacity">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-bg-dark rounded-full text-xs font-medium text-text-secondary">Od 50 € + DPH</span>
+          </div>
+        </a>
+
+        <!-- Rekonštrukcia -->
+        <a href="/rekonstrukcie" class="group bg-bg-panel border border-text-muted rounded-2xl p-8 md:p-12 hover:border-brand-green hover:bg-bg-panel/50 transition-all duration-350">
+          <div class="flex items-start justify-between mb-6">
+            <div>
+              <h3 class="text-2xl md:text-3xl font-bold mb-3">Plánujem rekonštrukciu</h3>
+              <p class="text-text-secondary text-sm mb-6">Byt, dom, kancelária, kúpeľňa. Komplexný projekt od plánu po osadenie.</p>
+            </div>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0 text-brand-green opacity-0 group-hover:opacity-100 transition-opacity">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-bg-dark rounded-full text-xs font-medium text-text-secondary">Bezplatná obhliadka</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. MARQUEE (4 remeslá) -->
+  <TradeMarquee />
+
+  <!-- 3. WHY TEAM (3 piliere) -->
+  <WhyTeam />
+
+  <!-- TODO: 4. TRADE INTERACTIVE (tabs + Pred/Po) -->
+
+  <!-- 5. PROCESS TIMELINE (4 kroky) -->
+  <ProcessTimeline />
+
+  <!-- 6. CONTACT FORM -->
+  <ContactForm title="Napíšte nám" description="Bez predstáv a zbytočných formálov. Čo chcete dosiahnuť?" />
+
+  <!-- Footer -->
+  <Footer />
+</BaseLayout>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .group {
+      transition: none !important;
+    }
+  }
+</style>

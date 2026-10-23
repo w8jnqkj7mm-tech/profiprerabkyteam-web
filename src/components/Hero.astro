@@ -1,0 +1,111 @@
+---
+interface Props {
+  posterUrl?: string;
+  videoUrl?: string;
+}
+
+const { posterUrl = '/hero-poster.webp', videoUrl = '/hero-1080.webm' } = Astro.props;
+---
+
+<section aria-label="Úvod" class="relative min-h-screen flex flex-col overflow-hidden bg-bg-dark">
+  <!-- Background: Ken Burns effect -->
+  <img
+    src={posterUrl}
+    alt=""
+    aria-hidden="true"
+    class="kb absolute inset-0 w-full h-full object-cover"
+  />
+
+  <!-- Gradient overlay -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/90 pointer-events-none"
+  ></div>
+
+  <!-- Header -->
+  <div class="relative z-10">
+    <slot name="header" />
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex-1 flex flex-col justify-end px-clamp-sm pb-clamp-py max-w-7xl">
+    <!-- Breadcrumb/Location -->
+    <div class="fade mb-9 inline-flex items-center gap-2.5 border border-text-muted rounded-lg px-4 py-2 bg-bg-dark/40 w-fit text-xs font-medium tracking-widest uppercase">
+      <span class="w-1.5 h-1.5 bg-brand-green rounded-full"></span>
+      <span class="text-text-secondary">Bratislava a okolie · 4 špecializované remeslá v jednom tíme</span>
+    </div>
+
+    <!-- Main Heading -->
+    <h1 class="mb-11 font-bold text-5xl md:text-6xl leading-tight tracking-tight">
+      <span class="line l1"><span>Kompletné rekonštrukcie</span></span>
+      <span class="line l2"><span>s vlastnými remeselníkmi.</span></span>
+      <span class="line l3">
+        <span class="font-serif italic text-brand-green">Od búrania po nábytok na mieru.</span>
+      </span>
+    </h1>
+
+    <!-- CTA Buttons -->
+    <div class="fade2 flex flex-wrap gap-3.5 mb-16">
+      <a
+        href="#dopyt"
+        class="btn inline-flex items-center gap-3 px-7 py-3 bg-text-primary text-bg-dark font-bold text-sm tracking-wide rounded-lg hover:bg-white transition-all"
+      >
+        Nezáväzný dopyt
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+
+      <a
+        href="https://wa.me/421948536398?text=Ahoj,%20zaujíma%20ma%20viac%20informácií%20o%20vašich%20službách"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn inline-flex items-center gap-3 px-6 py-3 border border-text-muted text-text-primary font-medium text-sm tracking-wide rounded-lg hover:bg-bg-panel/50 transition-all"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-5.031 1.378c-3.055 2.016-5.044 5.09-5.044 8.708 0 3.709 2.324 7.145 6.002 8.622l.961-.31c1.688-.546 3.282-1.203 4.769-2.007l.5-.299 3.909.992c.25.064.544.069.805-.041.261-.108.456-.33.52-.568l.531-2.047a10.657 10.657 0 002.18-6.591c0-5.814-4.795-10.404-10.698-10.404z"/>
+        </svg>
+        WhatsApp
+      </a>
+
+      <a
+        href="tel:+421948536398"
+        class="btn inline-flex items-center gap-3 px-6 py-3 border border-text-muted text-text-primary font-medium text-sm tracking-wide rounded-lg hover:bg-bg-panel/50 transition-all"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path>
+        </svg>
+        +421 948 536 398
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+    <span class="text-xs text-text-secondary uppercase tracking-widest">Posúvaj nadol</span>
+    <svg width="20" height="24" viewBox="0 0 20 24" fill="none" class="cue">
+      <path d="M10 2v16M2 16l8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .kb {
+    animation: kb 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes kb {
+    from {
+      transform: scale(1.04) translate(0, 0);
+    }
+    to {
+      transform: scale(1.14) translate(-2%, -1.5%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kb {
+      animation: none;
+    }
+  }
+</style>

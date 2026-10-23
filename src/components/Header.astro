@@ -1,0 +1,71 @@
+---
+interface Props {
+  transparent?: boolean;
+}
+
+const { transparent = true } = Astro.props;
+---
+
+<header class:list={['relative z-10 w-full', transparent ? 'bg-transparent' : 'bg-bg-panel/80 backdrop-blur']}>
+  <nav class="flex flex-wrap items-center justify-between gap-4 px-clamp-sm py-7">
+    <!-- Logo -->
+    <a href="/" aria-label="Profi Prerábky team – domov" class="flex items-center">
+      <svg class="h-13 w-auto" viewBox="0 0 120 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="8" y="40" font-family="Montserrat" font-size="24" font-weight="600" fill="#EEF0F3">Profi</text>
+        <text x="8" y="52" font-family="Montserrat" font-size="10" font-weight="500" fill="#51AE4B">.team</text>
+      </svg>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav aria-label="Hlavná navigácia" class="hidden md:flex flex-wrap gap-7 text-xs font-medium tracking-wide uppercase">
+      <a href="#remesla" class="text-text-secondary hover:text-text-primary transition-colors">Remeslá</a>
+      <a href="#postup" class="text-text-secondary hover:text-text-primary transition-colors">Postup</a>
+      <a href="#realizacie" class="text-text-secondary hover:text-text-primary transition-colors">Realizácie</a>
+      <a href="#dopyt" class="text-text-secondary hover:text-text-primary transition-colors">Kontakt</a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden p-2 text-text-primary hover:bg-bg-panel rounded-lg transition-colors" aria-label="Otvoriť menu" aria-expanded="false" id="mobile-menu-btn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile Navigation (hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden bg-bg-panel/95 backdrop-blur border-t border-text-muted">
+    <nav class="flex flex-col gap-4 px-clamp-sm py-6 text-sm">
+      <a href="#remesla" class="text-text-secondary hover:text-text-primary transition-colors">Remeslá</a>
+      <a href="#postup" class="text-text-secondary hover:text-text-primary transition-colors">Postup</a>
+      <a href="#realizacie" class="text-text-secondary hover:text-text-primary transition-colors">Realizácie</a>
+      <a href="#dopyt" class="text-text-secondary hover:text-text-primary transition-colors">Kontakt</a>
+      <hr class="border-text-muted my-2" />
+      <a href="/male-prace" class="text-text-primary hover:text-brand-green transition-colors font-medium">Malé práce</a>
+      <a href="/rekonstrukcie" class="text-text-primary hover:text-brand-green transition-colors font-medium">Rekonštrukcie</a>
+      <a href="/cennik" class="text-text-primary hover:text-brand-green transition-colors font-medium">Cenník</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', menuBtn.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');
+    });
+
+    // Close menu on link click
+    const links = mobileMenu.querySelectorAll('a');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn?.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

@@ -1,0 +1,119 @@
+---
+import LogoElektrician from './LogoElektrician.astro';
+import LogoPlumber from './LogoPlumber.astro';
+import LogoCarpentry from './LogoCarpentry.astro';
+
+const trades = [
+  {
+    id: 'prerabky',
+    name: 'Kompletné rekonštrukcie',
+    slug: 'prerabky',
+    icon: '🏗️',
+    color: '#51AE4B',
+  },
+  {
+    id: 'electrician',
+    name: 'Elektrikár',
+    slug: 'elektrikar',
+    icon: '⚡',
+    color: '#E51E25',
+  },
+  {
+    id: 'plumber',
+    name: 'Vodár',
+    slug: 'vodar',
+    icon: '🔧',
+    color: '#4562AD',
+  },
+  {
+    id: 'carpentry',
+    name: 'Stolárstvo',
+    slug: 'stolarstvo',
+    icon: '🔨',
+    color: '#E9E3D8',
+  },
+];
+---
+
+<section id="remesla" class="bg-bg-dark py-16 md:py-24 overflow-hidden">
+  <div class="mb-12 px-clamp-sm">
+    <h2 class="text-center text-3xl md:text-4xl font-bold">Štyri špecializované remeslá</h2>
+    <p class="text-center text-text-secondary text-sm md:text-base mt-4 max-w-2xl mx-auto">
+      Elektrikár, vodár, stolár a majster na všetko – všetci v jednom tíme. Bez koordinácie externe, bez medziinštitúcií.
+    </p>
+  </div>
+
+  <!-- Marquee container -->
+  <div class="relative">
+    <div class="track">
+      {/* First set - visible */}
+      {trades.map((trade) => (
+        <div class="flex-shrink-0 w-64 md:w-72 px-6">
+          <a href={`/${trade.slug}`} class="group block bg-bg-panel border border-text-muted rounded-xl p-8 h-full hover:border-brand-green transition-all duration-350">
+            <div class="flex items-center justify-center h-32 mb-6 bg-bg-dark/50 rounded-lg group-hover:bg-bg-dark transition-colors">
+              {trade.id === 'electrician' && <LogoElektrician size={80} variant="light" />}
+              {trade.id === 'plumber' && <LogoPlumber size={80} variant="light" />}
+              {trade.id === 'carpentry' && <LogoCarpentry size={80} variant="light" />}
+              {trade.id === 'prerabky' && <span class="text-5xl">{trade.icon}</span>}
+            </div>
+            <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition-colors">{trade.name}</h3>
+            <p class="text-text-secondary text-sm">Kvalitné a spoľahlivé služby.</p>
+            <div class="mt-4 flex items-center gap-2 text-xs font-medium text-brand-green opacity-0 group-hover:opacity-100 transition-opacity">
+              Zistiť viac
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+      ))}
+
+      {/* Duplicate set for seamless loop */}
+      {trades.map((trade) => (
+        <div class="flex-shrink-0 w-64 md:w-72 px-6">
+          <a href={`/${trade.slug}`} class="group block bg-bg-panel border border-text-muted rounded-xl p-8 h-full hover:border-brand-green transition-all duration-350">
+            <div class="flex items-center justify-center h-32 mb-6 bg-bg-dark/50 rounded-lg group-hover:bg-bg-dark transition-colors">
+              {trade.id === 'electrician' && <LogoElektrician size={80} variant="light" />}
+              {trade.id === 'plumber' && <LogoPlumber size={80} variant="light" />}
+              {trade.id === 'carpentry' && <LogoCarpentry size={80} variant="light" />}
+              {trade.id === 'prerabky' && <span class="text-5xl">{trade.icon}</span>}
+            </div>
+            <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition-colors">{trade.name}</h3>
+            <p class="text-text-secondary text-sm">Kvalitné a spoľahlivé služby.</p>
+            <div class="mt-4 flex items-center gap-2 text-xs font-medium text-brand-green opacity-0 group-hover:opacity-100 transition-opacity">
+              Zistiť viac
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Gradient fade edges -->
+    <div class="absolute top-0 left-0 bottom-0 w-12 bg-gradient-to-r from-bg-dark to-transparent pointer-events-none"></div>
+    <div class="absolute top-0 right-0 bottom-0 w-12 bg-gradient-to-l from-bg-dark to-transparent pointer-events-none"></div>
+  </div>
+</section>
+
+<style>
+  .track {
+    display: flex;
+    width: max-content;
+    animation: marq 38s linear infinite;
+  }
+
+  @keyframes marq {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .track {
+      animation: none;
+      transform: none;
+    }
+  }
+</style>

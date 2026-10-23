@@ -1,0 +1,71 @@
+---
+interface Props {
+  size?: number;
+  variant?: 'dark' | 'light';
+}
+
+const { size = 64, variant = 'light' } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 120 160"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Stolárstvo Pressburg"
+>
+  <!-- Tools layout -->
+  <g class:list={['carpentry-logo', variant]}>
+    <!-- Hammer top-left -->
+    <rect x="20" y="15" width="8" height="35" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" fill="none" />
+    <rect x="16" y="10" width="16" height="10" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" fill="none" />
+
+    <!-- Measuring tape center-right -->
+    <circle cx="85" cy="25" r="12" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" fill="none" />
+    <line x1="85" y1="13" x2="85" y2="37" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1" />
+
+    <!-- Chisel top-right -->
+    <line x1="100" y1="10" x2="100" y2="45" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" />
+    <polygon points="95,45 105,45 100,55" fill="none" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" />
+
+    <!-- Drill center -->
+    <circle cx="60" cy="50" r="8" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" fill="none" />
+    <line x1="60" y1="42" x2="60" y2="30" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" />
+
+    <!-- Clamp bottom-left -->
+    <path d="M25 75 Q30 75 32 85 Q30 90 25 90" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" fill="none" />
+    <line x1="32" y1="80" x2="40" y2="80" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" />
+
+    <!-- Screwdriver bottom-center -->
+    <line x1="60" y1="65" x2="60" y2="95" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" />
+    <rect x="55" y="95" width="10" height="8" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1" fill="none" />
+
+    <!-- Saw bottom-right -->
+    <line x1="90" y1="70" x2="95" y2="95" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1.5" />
+    <line x1="88" y1="72" x2="97" y2="92" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1" />
+    <line x1="92" y1="72" x2="101" y2="92" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="1" />
+
+    <!-- Text - circular around hammer -->
+    <path id="curve-top" d="M 30 15 A 30 30 0 0 1 90 15" fill="none" stroke="none" />
+    <text font-family="Montserrat" font-size="11" font-weight="600" fill={variant === 'light' ? 'white' : 'currentColor'} letter-spacing="2">
+      <textPath href="#curve-top" startOffset="50%" text-anchor="middle">
+        STOLÁRSTVO
+      </textPath>
+    </text>
+
+    <text x="60" y="130" font-family="Montserrat" font-size="10" font-weight="600" text-anchor="middle" fill={variant === 'light' ? 'white' : 'currentColor'}>
+      PRESSBURG
+    </text>
+  </g>
+</svg>
+
+<style define:vars={{ size: `${size}px` }}>
+  .carpentry-logo.light {
+    color: white;
+  }
+  .carpentry-logo.dark {
+    color: #0d1215;
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+const steps = [
+  {
+    number: 1,
+    title: 'Obhliadka a návrh',
+    description: 'Prídem s mojím tímom, vypočujem si vás a urobím detailný návrh. Bez zbytočného ťahania, do týždňa máte odhad.',
+  },
+  {
+    number: 2,
+    title: 'Rozvody vody & elektriny',
+    description: 'Elektrikár a vodár pracujú spolu. Všetko nafotíme pred zakrytím, aby ste vedeli, kde čo vedie.',
+  },
+  {
+    number: 3,
+    title: 'Stavebné práce',
+    description: 'Murárstvo, zváranie, podlahy, obklady. Všetko správne urobili a skontrolujeme.',
+  },
+  {
+    number: 4,
+    title: 'Nábytok a zariadenie',
+    description: 'Vysoké skrinky sa montujú po tom, čo si stena ustálila. Všetko na mieru a bez chýb.',
+  },
+];
+---
+
+<section id="postup" class="bg-bg-panel py-16 md:py-24 px-clamp-sm">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16">
+      <h2 class="text-center text-3xl md:text-4xl font-bold mb-4">Ako pracujeme v tandeme</h2>
+      <p class="text-center text-text-secondary max-w-2xl mx-auto">
+        Štyri kroky od obhliadky po odovzdanie na kľúč.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      {steps.map((step, idx) => (
+        <div class="relative">
+          {/* Card */}
+          <div class="rvx bg-bg-dark border border-text-muted rounded-xl p-8 h-full flex flex-col">
+            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-green text-bg-dark font-bold text-lg mb-6">
+              {step.number}
+            </div>
+            <h3 class="font-bold text-lg mb-3">{step.title}</h3>
+            <p class="text-text-secondary text-sm flex-grow">{step.description}</p>
+          </div>
+
+          {/* Connector line to next step */}
+          {idx < steps.length - 1 && (
+            <div class="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-brand-green to-transparent transform -translate-y-1/2"></div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Timeline indicator -->
+    <div class="mt-12 flex justify-center gap-2">
+      {steps.map((_, idx) => (
+        <div
+          class={`h-1 w-8 rounded-full transition-all duration-500 ${
+            idx === 0 ? 'bg-brand-green w-16' : 'bg-text-muted'
+          }`}
+          data-step={idx}
+        ></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Simple auto-rotation of timeline indicator (can be expanded with Intersection Observer)
+  const indicators = document.querySelectorAll('[data-step]');
+  let currentStep = 0;
+
+  setInterval(() => {
+    indicators.forEach((indicator, idx) => {
+      if (idx === currentStep) {
+        indicator.classList.add('bg-brand-green', 'w-16');
+        indicator.classList.remove('bg-text-muted', 'w-8');
+      } else {
+        indicator.classList.add('bg-text-muted', 'w-8');
+        indicator.classList.remove('bg-brand-green', 'w-16');
+      }
+    });
+    currentStep = (currentStep + 1) % indicators.length;
+  }, 4000);
+</script>
+
+<style>
+  .rvx {
+    animation: rvx linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+
+  @keyframes rvx {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rvx {
+      animation: none;
+      clip-path: none;
+    }
+  }
+</style>

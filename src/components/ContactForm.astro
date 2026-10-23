@@ -1,0 +1,231 @@
+---
+import { company } from '../config/company';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Bezplatný dopyt', description = 'Napíšte nám, čo vás zaujíma. Ozveme sa do 4 hodín v pracovnom čase.' } = Astro.props;
+---
+
+<section id="dopyt" class="bg-bg-dark py-16 md:py-24 px-clamp-sm">
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+      <p class="text-text-secondary">{description}</p>
+    </div>
+
+    <form id="contact-form" class="space-y-6 bg-bg-panel border border-text-muted rounded-2xl p-8 md:p-12">
+      <!-- Name -->
+      <div>
+        <label for="name" class="block text-sm font-medium mb-2">Meno *</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="fld w-full"
+          placeholder="Vaše meno"
+        />
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label for="phone" class="block text-sm font-medium mb-2">Telefón *</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          class="fld w-full"
+          placeholder="+421 xxx xxx xxx"
+        />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium mb-2">E-mail *</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="fld w-full"
+          placeholder="vase@email.sk"
+        />
+      </div>
+
+      <!-- Address -->
+      <div>
+        <label for="address" class="block text-sm font-medium mb-2">Lokalita stavby</label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          class="fld w-full"
+          placeholder="Mestská časť, ulica alebo obec"
+        />
+      </div>
+
+      <!-- Type of work -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="type" class="block text-sm font-medium mb-2">Typ práce *</label>
+          <select id="type" name="type" required class="fld w-full">
+            <option value="">Vyber typ...</option>
+            <option value="small_work">Malá práca (hodinový majster, elektrikár, vodár)</option>
+            <option value="renovation">Veľká rekonštrukcia</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="trade" class="block text-sm font-medium mb-2">Remeslo</label>
+          <select id="trade" name="trade" class="fld w-full">
+            <option value="">Vyber remeslo...</option>
+            <option value="complete">Kompletná rekonštrukcia</option>
+            <option value="bathroom">Kúpeľňa / WC</option>
+            <option value="electrical">Elektrikár</option>
+            <option value="plumbing">Vodoinštalácia</option>
+            <option value="ac">Klimatizácia</option>
+            <option value="handyman">Hodinový majster</option>
+            <option value="carpentry">Nábytok na mieru</option>
+            <option value="commercial">Komerčný priestor</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label for="description" class="block text-sm font-medium mb-2">Popis práce</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="5"
+          class="fld w-full"
+          placeholder="Čo presne vás zaujíma? Čo by ste chceli zlepšiť?"
+        ></textarea>
+      </div>
+
+      <!-- Photos -->
+      <div>
+        <label for="photos" class="block text-sm font-medium mb-2">Fotky (voliteľne, max 5)</label>
+        <input
+          type="file"
+          id="photos"
+          name="photos"
+          multiple
+          accept="image/*"
+          class="block w-full text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-green file:text-bg-dark hover:file:bg-opacity-80"
+        />
+      </div>
+
+      <!-- Preferred date -->
+      <div>
+        <label for="preferred_date" class="block text-sm font-medium mb-2">Preferovaný termín</label>
+        <input
+          type="date"
+          id="preferred_date"
+          name="preferred_date"
+          class="fld w-full"
+        />
+      </div>
+
+      <!-- Honeypot (spam protection) -->
+      <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off" />
+
+      <!-- GDPR Consent -->
+      <div class="flex gap-3 items-start">
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          required
+          class="mt-1 w-5 h-5 rounded border-text-muted bg-bg-dark cursor-pointer"
+        />
+        <label for="consent" class="text-sm text-text-secondary cursor-pointer">
+          Súhlasím so spracovaním mojich osobných údajov podľa
+          <a href="/gdpr" class="text-brand-green hover:underline">politiky ochrany osobných údajov</a> *
+        </label>
+      </div>
+
+      <!-- Submit button -->
+      <button
+        type="submit"
+        class="btn w-full bg-brand-green hover:bg-opacity-90 text-bg-dark font-bold py-3 rounded-lg transition-all duration-250"
+      >
+        Poslať dopyt
+      </button>
+
+      <!-- Confirmation message (hidden by default) -->
+      <div
+        id="form-success"
+        class="hidden bg-bg-panel border border-brand-green rounded-lg p-4 text-sm text-text-primary"
+      >
+        <p class="font-semibold mb-1">Ďakujeme! 🎉</p>
+        <p class="text-text-secondary">Ozveme sa vám do 4 hodín v pracovnom čase ({company.contact.hoursLabel}).</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMessage = document.getElementById('form-success');
+
+  if (form) {
+    form.addEventListener('submit', async (e: SubmitEvent) => {
+      e.preventDefault();
+
+      // Check honeypot
+      const honeypot = (form.elements.namedItem('website') as HTMLInputElement).value;
+      if (honeypot) {
+        console.log('Spam detected');
+        return;
+      }
+
+      // Collect form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        phone: formData.get('phone'),
+        email: formData.get('email'),
+        address: formData.get('address'),
+        type: formData.get('type'),
+        trade: formData.get('trade'),
+        description: formData.get('description'),
+        preferred_date: formData.get('preferred_date'),
+        consent_at: new Date().toISOString(),
+        source: 'web',
+        status: 'new',
+        // photos would be handled separately with Supabase Storage
+      };
+
+      // TODO: Submit to Supabase
+      // For now, just show success message
+      form.style.display = 'none';
+      successMessage?.classList.remove('hidden');
+    });
+  }
+</script>
+
+<style>
+  textarea.fld {
+    resize: vertical;
+    font-family: inherit;
+    font-size: 16px;
+  }
+
+  select.fld {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23EEF0F3' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1.5em 1.5em;
+  }
+
+  input[type='file']::file-selector-button {
+    cursor: pointer;
+  }
+</style>

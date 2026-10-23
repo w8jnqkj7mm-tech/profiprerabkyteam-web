@@ -1,0 +1,55 @@
+---
+interface Props {
+  size?: number;
+  variant?: 'dark' | 'light';
+}
+
+const { size = 64, variant = 'light' } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 120 140"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Pán Elektrikár"
+>
+  <!-- Outline figure with crossed arms -->
+  <g class:list={['electrician-logo', variant]}>
+    <!-- Head -->
+    <circle cx="60" cy="30" r="16" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" fill="none" />
+    <!-- Red cap -->
+    <path d="M45 28 L75 28 L72 20 L48 20 Q45 25 45 28" fill={variant === 'light' ? '#FF6B70' : '#FF6B70'} />
+    <!-- Body -->
+    <path d="M45 46 L75 46 L72 70 L48 70 Z" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" fill="none" />
+    <!-- Left arm with cable -->
+    <path d="M45 50 L25 55" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" stroke-linecap="round" />
+    <path d="M20 55 L15 65 M18 55 L13 65" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" stroke-linecap="round" />
+    <!-- Right arm with tools -->
+    <path d="M75 50 L95 55" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" stroke-linecap="round" />
+    <path d="M100 55 L105 65 M102 55 L107 65" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" stroke-linecap="round" />
+    <!-- Lightning bolt -->
+    <path d="M60 75 L55 85 L65 85 L60 100" stroke={variant === 'light' ? '#FF6B70' : '#FF6B70'} stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Legs -->
+    <path d="M52 70 L50 100" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" stroke-linecap="round" />
+    <path d="M68 70 L70 100" stroke={variant === 'light' ? 'white' : 'currentColor'} stroke-width="2" stroke-linecap="round" />
+    <!-- Text -->
+    <text x="60" y="125" font-family="Montserrat" font-size="14" font-weight="600" text-anchor="middle" fill={variant === 'light' ? 'white' : 'currentColor'}>
+      pán
+    </text>
+    <text x="60" y="140" font-family="Montserrat" font-size="12" font-weight="500" text-anchor="middle" fill={variant === 'light' ? 'white' : 'currentColor'}>
+      elektrikár
+    </text>
+  </g>
+</svg>
+
+<style define:vars={{ size: `${size}px` }}>
+  .electrician-logo.light {
+    color: white;
+  }
+  .electrician-logo.dark {
+    color: #0d1215;
+  }
+</style>
