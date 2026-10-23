@@ -27,8 +27,9 @@
     @apply text-text-primary hover:text-white transition-colors;
   }
 
-  :focus-visible {
-    @apply outline-2 outline-offset-3 outline-brand-green;
+    :focus-visible {
+    outline: 2px solid #51AE4B;
+    outline-offset: 3px;
   }
 }
 
