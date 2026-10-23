@@ -4,17 +4,21 @@ interface Props {
   videoUrl?: string;
 }
 
-const { posterUrl = '/hero-poster.webp', videoUrl = '/hero-1080.webm' } = Astro.props;
+const { posterUrl = '/hero-1080.mp4', videoUrl = '/hero-1080.mp4' } = Astro.props;
 ---
 
 <section aria-label="Úvod" class="relative min-h-screen flex flex-col overflow-hidden bg-bg-dark">
-  <!-- Background: Ken Burns effect -->
-  <img
-    src={posterUrl}
-    alt=""
+  <!-- Background: Video -->
+  <video
+    src={videoUrl}
+    poster={posterUrl}
+    autoplay
+    muted
+    loop
+    playsinline
     aria-hidden="true"
-    class="kb absolute inset-0 w-full h-full object-cover"
-  />
+    class="absolute inset-0 w-full h-full object-cover"
+  ></video>
 
   <!-- Gradient overlay -->
   <div

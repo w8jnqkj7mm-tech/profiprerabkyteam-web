@@ -1,36 +1,28 @@
 ---
-import LogoElektrician from './LogoElektrician.astro';
-import LogoPlumber from './LogoPlumber.astro';
-import LogoCarpentry from './LogoCarpentry.astro';
-
 const trades = [
   {
     id: 'prerabky',
     name: 'Kompletné rekonštrukcie',
     slug: 'prerabky',
-    icon: '🏗️',
-    color: '#51AE4B',
+    logo: '/profi prerábky@4x.png',
   },
   {
     id: 'electrician',
     name: 'Elektrikár',
     slug: 'elektrikar',
-    icon: '⚡',
-    color: '#E51E25',
+    logo: '/pán elektrikár@4x.png',
   },
   {
     id: 'plumber',
     name: 'Vodár',
     slug: 'vodar',
-    icon: '🔧',
-    color: '#4562AD',
+    logo: '/pán vodár@4x.png',
   },
   {
     id: 'carpentry',
     name: 'Stolárstvo',
     slug: 'stolarstvo',
-    icon: '🔨',
-    color: '#E9E3D8',
+    logo: '/stolárstvo@4x.png',
   },
 ];
 ---
@@ -51,10 +43,7 @@ const trades = [
         <div class="flex-shrink-0 w-64 md:w-72 px-6">
           <a href={`/${trade.slug}`} class="group block bg-bg-panel border border-text-muted rounded-xl p-8 h-full hover:border-brand-green transition-all duration-350">
             <div class="flex items-center justify-center h-32 mb-6 bg-bg-dark/50 rounded-lg group-hover:bg-bg-dark transition-colors">
-              {trade.id === 'electrician' && <LogoElektrician size={80} variant="light" />}
-              {trade.id === 'plumber' && <LogoPlumber size={80} variant="light" />}
-              {trade.id === 'carpentry' && <LogoCarpentry size={80} variant="light" />}
-              {trade.id === 'prerabky' && <span class="text-5xl">{trade.icon}</span>}
+              <img src={trade.logo} alt={trade.name} class="h-24 w-24 object-contain" />
             </div>
             <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition-colors">{trade.name}</h3>
             <p class="text-text-secondary text-sm">Kvalitné a spoľahlivé služby.</p>
@@ -73,10 +62,7 @@ const trades = [
         <div class="flex-shrink-0 w-64 md:w-72 px-6">
           <a href={`/${trade.slug}`} class="group block bg-bg-panel border border-text-muted rounded-xl p-8 h-full hover:border-brand-green transition-all duration-350">
             <div class="flex items-center justify-center h-32 mb-6 bg-bg-dark/50 rounded-lg group-hover:bg-bg-dark transition-colors">
-              {trade.id === 'electrician' && <LogoElektrician size={80} variant="light" />}
-              {trade.id === 'plumber' && <LogoPlumber size={80} variant="light" />}
-              {trade.id === 'carpentry' && <LogoCarpentry size={80} variant="light" />}
-              {trade.id === 'prerabky' && <span class="text-5xl">{trade.icon}</span>}
+              <img src={trade.logo} alt={trade.name} class="h-24 w-24 object-contain" />
             </div>
             <h3 class="font-bold text-lg mb-2 group-hover:text-brand-green transition-colors">{trade.name}</h3>
             <p class="text-text-secondary text-sm">Kvalitné a spoľahlivé služby.</p>
