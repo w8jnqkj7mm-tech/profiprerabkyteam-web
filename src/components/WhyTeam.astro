@@ -3,65 +3,33 @@ const pillars = [
   {
     title: 'Vlastní ľudia',
     description: 'Murári, elektrikári, vodári aj stolári sú z jedného tímu. Žiadne prepojenia na externé spoločnosti a prebery medzitím.',
-    icon: '👥',
   },
   {
     title: 'Jeden zodpovedný majister',
     description: 'Vy volíte jedného člověka. On riešii poradie remesiel, materiál aj termíny. Všetko v jednej ruke.',
-    icon: '👨‍💼',
   },
   {
     title: 'Nadväznosť bez prestojov',
     description: 'Rozvody, povrchy a nábytok – všetko na seba navzájom nadväzuje. Bez čakania a bez zbytočného času.',
-    icon: '⚡',
   },
 ];
 ---
 
-<section id="why" class="bg-bg-dark py-16 md:py-24 px-clamp-sm">
+<section class="bg-bg-dark py-16 md:py-24 px-clamp-sm">
   <div class="max-w-7xl mx-auto">
-    <div class="mb-16">
-      <h2 class="text-center text-3xl md:text-4xl font-bold mb-6">Prečo jeden tím?</h2>
-      <p class="text-center text-text-secondary max-w-2xl mx-auto">
-        Tradičný model rekonštrukcie – každé remeslo externé. My sme iní. Štyri špecializácie, jeden tím, jeden manažér.
-      </p>
+    <div class="mb-12">
+      <p class="text-xs font-bold tracking-widest uppercase text-brand-green mb-4">PREČO JEDEN TÍM</p>
+      <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-8">Jedna zmluva. Jeden harmonogram.</h2>
+      <p class="text-text-secondary italic text-lg max-w-3xl">Štyri remeslá, ktoré sa na staobe necákajú navzájom.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {pillars.map((pillar, index) => (
-        <div class="rv group bg-bg-panel border border-text-muted rounded-xl p-8 hover:border-brand-green hover:bg-bg-panel/50 transition-all duration-350">
-          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-350">{pillar.icon}</div>
-          <h3 class="font-bold text-xl mb-3 group-hover:text-brand-green transition-colors">{pillar.title}</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
+      {pillars.map((pillar) => (
+        <div class="border-b border-text-muted pb-8">
+          <h3 class="font-bold text-xl mb-4">{pillar.title}</h3>
           <p class="text-text-secondary text-sm leading-relaxed">{pillar.description}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
-
-<style>
-  .rv {
-    animation: rv linear both;
-    animation-timeline: view();
-    animation-range: entry 5% cover 28%;
-  }
-
-  @keyframes rv {
-    from {
-      opacity: 0;
-      transform: translateY(48px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .rv {
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-  }
-</style>
