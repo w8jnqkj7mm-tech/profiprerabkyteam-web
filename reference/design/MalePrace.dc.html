@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Malé práce a opravy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Spectral:ital,wght@0,300;0,400;1,300;1,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#101c24}
+a{color:#EEF0F3}a:hover{color:#ffffff}
+*{box-sizing:border-box}
+.dline{font-family:Spectral,Georgia,serif;font-weight:300;font-style:italic;letter-spacing:-0.005em}
+.btn{transition:transform .25s,background .25s,color .25s,box-shadow .25s;border-radius:999px}
+.btn:hover{transform:translateY(-2px)}
+.tab{transition:border-color .35s,color .35s,background .35s,box-shadow .35s;border-radius:12px}
+.tab:hover{color:#EEF0F3 !important}
+.swap{animation:swap .5s cubic-bezier(.2,.7,.1,1)}
+@keyframes swap{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 26%}
+}
+@keyframes rv{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.navlinks{display:flex;flex-wrap:wrap;gap:22px;font-size:13px;font-weight:500;letter-spacing:0.06em}
+:focus-visible{outline:2px solid #51AE4B;outline-offset:3px}
+@media (max-width: 900px){.navlinks{gap:14px;font-size:12px}}
+@media (prefers-reduced-motion: reduce){.rv,.swap{animation:none}}
+</style>
+</helmet>
+
+<div style="font-family: Montserrat, sans-serif; color: #EEF0F3; background: linear-gradient(180deg, #22343f 0%, #1a2a34 18%, #121d25 46%, #0F1920 100%); width: 100%; overflow: hidden">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 18px clamp(20px, 5vw, 64px); border-bottom: 1px solid rgba(238,240,243,0.1)">
+  <a href="Main.dc.html" aria-label="Profi Prerábky team – domov" style="display: flex; align-items: center; text-decoration: none"><img src="/_blob/c4ce37a99a8d85564931491a4ea4ddbf" alt="Profi Prerábky team" style="height: 44px; width: auto; display: block"></a>
+  <nav class="navlinks" aria-label="Hlavná navigácia">
+    <a href="MalePrace.dc.html" style="text-decoration: none; color: #51AE4B">Malé práce</a>
+    <a href="Rekonstrukcie.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Rekonštrukcie</a>
+    <a href="Remeslo.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Remeslá</a>
+    <a href="Cennik.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Cenník</a>
+    <a href="Realizacie.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Realizácie</a>
+    <a href="Kontakt.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Kontakt</a>
+  </nav>
+  <a href="tel:+421948536398" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border: 1px solid rgba(238,240,243,0.3); font-size: 13px; font-weight: 600">+421 948 536 398</a>
+</header>
+
+<!-- HERO -->
+<section style="padding: clamp(56px, 7vw, 96px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 64px); max-width: 1240px; margin: 0 auto">
+  <nav aria-label="Omrvinky" style="font-size: 12px; letter-spacing: 0.1em; color: rgba(238,240,243,0.5); margin-bottom: 28px">
+    <a href="Main.dc.html" style="color: rgba(238,240,243,0.5); text-decoration: none">Úvod</a> · Malé práce
+  </nav>
+  <h1 style="margin: 0; font-weight: 600; font-size: clamp(36px, 5.6vw, 72px); line-height: 1.04; letter-spacing: -0.025em; max-width: 900px">Malé práce a opravy.<br><span class="dline" style="color: {{brand}}">Bez čakania na celú rekonštrukciu.</span></h1>
+  <p style="margin: 28px 0 0; font-size: 17px; line-height: 1.7; color: rgba(238,240,243,0.7); max-width: 620px">Výmena zásuvky, zatekajúca batéria, pár kusov dlažby, montáž klimatizácie. Ak to nie je na celý deň, je to práca pre hodinového majstra — a ten má v tíme aj elektrikára a vodára za chrbtom.</p>
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px">
+    <a href="Kontakt.dc.html" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 28px; background: {{brand}}; color: #0D1215; font-weight: 600; font-size: 14px; letter-spacing: 0.06em">Objednať zásah
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+    <a href="https://wa.me/421948536398" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; background: #25D366; color: #0D1215; font-weight: 600; font-size: 14px">WhatsApp</a>
+    <a href="tel:+421948536398" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border: 1px solid rgba(238,240,243,0.35); font-weight: 500; font-size: 14px">+421 948 536 398</a>
+  </div>
+  <div style="display: flex; flex-wrap: wrap; gap: 28px; margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(238,240,243,0.12); font-size: 14px; color: rgba(238,240,243,0.7)">
+    <span>Odpoveď do 4 hodín v pracovnom čase</span>
+    <span>Po–Pi 8:30–17:00</span>
+    <span>Bratislava a okolie</span>
+  </div>
+</section>
+
+<!-- VÝBER SLUŽBY -->
+<section style="padding: 0 clamp(20px, 5vw, 64px) clamp(72px, 9vw, 120px); max-width: 1240px; margin: 0 auto">
+  <p class="rv" style="margin: 0 0 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; color: {{brand}}">ČO VIEME SPRAVIŤ</p>
+  <div class="rv" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+
+    <div role="group" aria-label="Výber služby" style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{jobs}}" as="j" hint-placeholder-count="4">
+        <button type="button" class="tab" onClick="{{j.pick}}" aria-pressed="{{j.pressed}}" style="{{j.style}}; font-family: Montserrat, sans-serif; text-align: left; border-width: 1px; border-style: solid; padding: 18px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 72px">
+          <span>
+            <span style="display: block; font-size: 18px; font-weight: 600">{{j.name}}</span>
+            <span style="display: block; font-size: 12px; margin-top: 4px; opacity: 0.7">{{j.brand}}</span>
+          </span>
+          <span style="{{j.dot}}; width: 10px; height: 10px; flex: none"></span>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="flex: 999 1 560px; min-width: 0; background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); border-top: 3px solid {{accent}}; padding: clamp(28px, 3.4vw, 44px)">
+      <sc-for list="{{current}}" as="c" hint-placeholder-count="1">
+        <div class="swap" style="display: flex; flex-direction: column; gap: 26px">
+          <div>
+            <h2 class="dline" style="font-style: normal; margin: 0; font-size: clamp(26px, 3vw, 34px); line-height: 1.2">{{c.tagline}}</h2>
+            <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.7)">{{c.lead}}</p>
+          </div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 32px">
+            <sc-for list="{{c.items}}" as="i" hint-placeholder-count="6">
+              <li style="display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2.4" aria-hidden="true" style="flex: none"><path d="M4 12.5l5 5L20 6.5"></path></svg>
+                {{i.label}}
+              </li>
+            </sc-for>
+          </ul>
+          <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between; padding-top: 22px; border-top: 1px solid rgba(238,240,243,0.12)">
+            <div>
+              <span style="display: block; font-size: 28px; font-weight: 600">{{c.price}} <span style="font-size: 14px; font-weight: 500; color: rgba(238,240,243,0.7)">{{c.priceLabel}}</span></span>
+              <span style="display: block; font-size: 12px; line-height: 1.6; color: rgba(238,240,243,0.5); margin-top: 6px; max-width: 460px">{{c.note}}</span>
+            </div>
+            <a href="Kontakt.dc.html" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 24px; background: {{brand}}; color: #0D1215; font-weight: 600; font-size: 14px">Objednať
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- AKO TO PREBIEHA -->
+<section style="background: linear-gradient(180deg, #e7eef2 0%, #d8e2e8 55%, #cbd7de 100%); color: #0D1215; padding: clamp(72px, 9vw, 120px) clamp(20px, 5vw, 64px)">
+  <div style="max-width: 1240px; margin: 0 auto">
+    <p style="margin: 0 0 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; color: #2F4858">AKO TO PREBIEHA</p>
+    <h2 style="margin: 0 0 56px; font-weight: 600; font-size: clamp(30px, 4vw, 52px); letter-spacing: -0.02em; line-height: 1.08">Tri kroky, <span class="dline" style="">žiadne papierovanie.</span></h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px">
+      <div style="border-top: 2px solid #0D1215; padding-top: 20px">
+        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em">01</span>
+        <h3 style="margin: 14px 0 10px; font-size: 20px; font-weight: 600">Napíšete alebo zavoláte</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #2F4858">Stačí vetou opísať, čo sa deje. Fotka pomôže — podľa nej často vieme povedať cenu vopred.</p>
+      </div>
+      <div style="border-top: 2px solid rgba(13,18,21,0.25); padding-top: 20px">
+        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em">02</span>
+        <h3 style="margin: 14px 0 10px; font-size: 20px; font-weight: 600">Dohodneme termín</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #2F4858">Ozveme sa do 4 hodín v pracovnom čase a potvrdíme, kedy prídeme. Zvyčajne do pár dní.</p>
+      </div>
+      <div style="border-top: 2px solid rgba(13,18,21,0.25); padding-top: 20px">
+        <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em">03</span>
+        <h3 style="margin: 14px 0 10px; font-size: 20px; font-weight: 600">Prídeme a spravíme</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #2F4858">Majster má auto, náradie aj bežný materiál. Platíte za odpracovaný čas a použitý materiál.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENNÍK + OBLASŤ -->
+<section style="padding: clamp(72px, 9vw, 120px) clamp(20px, 5vw, 64px); max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+  <div class="rv" style="background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); padding: clamp(28px, 3.4vw, 40px)">
+    <p style="margin: 0 0 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: {{brand}}">CENY</p>
+    <h2 class="dline" style="font-style: normal; margin: 0 0 24px; font-size: 28px; line-height: 1.2">Rovnaké pre všetky štyri značky.</h2>
+    <ul style="list-style: none; margin: 0; padding: 0">
+      <sc-for list="{{prices}}" as="p" hint-placeholder-count="4">
+        <li style="display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 13px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">
+          <span style="font-size: 15px; line-height: 1.5; color: rgba(238,240,243,0.86)">{{p.label}}</span>
+          <span style="text-align: right; flex: none">
+            <span style="display: block; font-size: 19px; font-weight: 600">{{p.main}}</span>
+            <span style="display: block; font-size: 11px; color: rgba(238,240,243,0.5)">{{p.sub}}</span>
+          </span>
+        </li>
+      </sc-for>
+    </ul>
+    <p style="margin: 20px 0 0; font-size: 12px; line-height: 1.7; color: rgba(238,240,243,0.55)">Hlavná cena je bez DPH, pod ňou je cena s DPH (23 %). Materiál sa účtuje zvlášť.</p>
+    <a href="Cennik.dc.html" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; min-height: 44px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: {{brand}}">CELÝ CENNÍK
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+
+  <div class="rv" style="background: linear-gradient(180deg, #3a5768 0%, #2a4150 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.14), 0 24px 60px rgba(0,0,0,0.38); padding: clamp(28px, 3.4vw, 40px); display: flex; flex-direction: column; gap: 22px">
+    <div>
+      <p style="margin: 0 0 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: rgba(238,240,243,0.75)">KAM CHODÍME</p>
+      <h2 class="dline" style="font-style: normal; margin: 0; font-size: 28px; line-height: 1.2">Bratislava a okolie.</h2>
+    </div>
+    <p style="margin: 0; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.85)">Celá Bratislava vrátane Devína a Devínskej Novej Vsi, ďalej Pezinok, Ivanka pri Dunaji, Zálesie a okolité obce. [DOPLNIŤ ĎALŠIE OBCE]</p>
+    <div style="font-size: 13px; line-height: 1.7; color: rgba(238,240,243,0.7); background: rgba(13,18,21,0.3); padding: 14px 16px">Mimo Bratislavy je výjazd od 80 € — základ, podľa vzdialenosti alebo dohody aj viac. Doprava je v tej cene už zarátaná.</div>
+    <div style="margin-top: auto; height: 180px; border: 1px dashed rgba(238,240,243,0.25); display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: 0.2em; color: rgba(238,240,243,0.5)">[MAPA PÔSOBNOSTI]</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding: 0 clamp(20px, 5vw, 64px) clamp(72px, 9vw, 120px); max-width: 1240px; margin: 0 auto">
+  <div style="background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); border-left: 3px solid {{brand}}; padding: clamp(32px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+    <div>
+      <h2 style="margin: 0; font-weight: 600; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.02em; line-height: 1.1">Máte to rozbité už týždeň?<br><span class="dline" style="color: {{brand}}">Napíšte nám dnes.</span></h2>
+      <p style="margin: 16px 0 0; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.7); max-width: 480px">Ozveme sa do 4 hodín v pracovnom čase a dohodneme termín.</p>
+    </div>
+    <a href="Kontakt.dc.html" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 12px; min-height: 54px; padding: 0 30px; background: {{brand}}; color: #0D1215; font-weight: 700; font-size: 14px; letter-spacing: 0.06em">Nezáväzný dopyt
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+</section>
+
+<footer style="border-top: 1px solid rgba(238,240,243,0.1); padding: 40px clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 1.9; color: rgba(238,240,243,0.55)">
+  <div><span style="display: block; color: rgba(238,240,243,0.85); font-weight: 600">Pressburg Team s.r.o.</span>Žltá 2A, 851 07 Bratislava – Petržalka<br>IČO 55330703<br>info@profiprerabkyteam.sk · +421 948 536 398</div>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Ochrana osobných údajov</a>
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Cookies</a>
+    <a href="Blog.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Blog</a>
+    <a href="https://www.instagram.com/profi_prerabky" style="color: rgba(238,240,243,0.7); text-decoration: none">Instagram</a>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#51AE4B","options":["#51AE4B","#2F4858"],"section":"Téma"},"$preview":{"width":1280,"height":3600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { job: 0 };
+  }
+  renderVals() {
+    const brand = this.props.brand ?? '#51AE4B';
+    const STD = '61,50 € s DPH · mimo Bratislavy od 80 € podľa vzdialenosti · zahŕňa konzultáciu a zistenie príčiny, nie samotnú opravu · ďalšia hodina 45 € (55,35 € s DPH) alebo cena za úkon · nad 8 h 35 €/h · materiál zvlášť.';
+    const J = [
+      { name: 'Elektrikár', brand: 'Pán Elektrikár', accent: '#FF6B70',
+        tagline: 'Zásuvky, svetlá, ističe — a hliník, ktorý už nemá čo robiť v stene.',
+        lead: 'Drobné elektro od výmeny vypínača po dotiahnutie rozvádzača. Väčšie veci vieme nafotiť a naceniť vopred.',
+        items: ['Výmena zásuviek a vypínačov', 'Montáž svietidiel a LED pásov', 'Oprava a doplnenie istenia', 'Hľadanie poruchy a skratu', 'Predĺženie rozvodu, nová vetva', 'Odborná prehliadka a skúška (revízia)'],
+        price: '50 €', priceLabel: 'výjazd / konzultácia v Bratislave', note: STD },
+      { name: 'Vodár', brand: 'Pán Vodár', accent: '#8FA6E6',
+        tagline: 'Kvapká, tečie, nehreje. Prídeme skôr, než to zatečie k susedovi.',
+        lead: 'Batérie, sifóny, prípojky spotrebičov, drobné úniky. Pri väčšej poruche vieme hneď povedať, čo to bude stáť.',
+        items: ['Výmena batérií a sifónov', 'Oprava WC a splachovania', 'Prípojka práčky a umývačky', 'Výmena ventilov a hadíc', 'Odstránenie úniku vody', 'Montáž sanity'],
+        price: '50 €', priceLabel: 'výjazd / konzultácia v Bratislave', note: STD },
+      { name: 'Hodinový majster', brand: 'Profi Prerábky', accent: '#51AE4B',
+        tagline: 'Všetko ostatné, čo nie je na celý deň.',
+        lead: 'Drobné práce všetkého druhu — od pár kusov dlažby po dvere, ktoré nedoliehajú.',
+        items: ['Výmena pár kusov dlažby', 'Opravy podláh a líšt', 'Nastavenie a oprava dverí', 'Montáž nábytku a políc', 'Vŕtanie, kotvenie, zavesenie', 'Drobné murárske opravy'],
+        price: '50 €', priceLabel: 'výjazd / konzultácia v Bratislave', note: STD },
+      { name: 'Klimatizácia', brand: 'Pán Elektrikár', accent: '#FF6B70',
+        tagline: 'Predávame aj montujeme. Jednotku vieme dodať aj samostatne.',
+        lead: 'Montáž split jednotiek do bytu, domu aj prevádzky. Pre firmy dodávame jednotky aj vo väčšom množstve.',
+        items: ['Montáž split jednotky', 'Rozvod medi a odvod kondenzu', 'Elektrické napojenie', 'Predaj samotných jednotiek', 'B2B dodávky vo väčšom', 'Servis a čistenie — od 69 € mimo sezóny, 110 € v sezóne'],
+        price: '0 €', priceLabel: 'obhliadka a cenová ponuka v Bratislave',
+        note: 'Mimo Bratislavy je obhliadka od 80 € — ak si montáž objednáte, odpočítame vám ju z ceny. Montáž do 3,5 kW (do 3 m rozvodu) od 284,55 € (350 € s DPH). Každý ďalší meter 34,15 € (42 € s DPH). Vyšší výkon na dopyt.' }
+    ];
+    const i = this.state.job;
+    const jobs = J.map((j, k) => ({
+      name: j.name, brand: j.brand,
+      pressed: k === i ? 'true' : 'false',
+      pick: () => this.setState({ job: k }),
+      style: k === i
+        ? 'border-color:' + j.accent + ';background:rgba(238,240,243,0.05);color:#EEF0F3'
+        : 'border-color:rgba(238,240,243,0.12);background:transparent;color:rgba(238,240,243,0.62)',
+      dot: 'background:' + (k === i ? j.accent : 'rgba(238,240,243,0.2)')
+    }));
+    const c = J[i];
+    return {
+      brand,
+      jobs,
+      accent: c.accent,
+      current: [{ tagline: c.tagline, lead: c.lead, price: c.price, priceLabel: c.priceLabel, note: c.note, items: c.items.map((label) => ({ label })) }],
+      prices: [
+        { label: 'Výjazd / konzultácia v Bratislave (bez práce)', main: '50 €', sub: '61,50 € s DPH' },
+        { label: 'Výjazd mimo Bratislavy — podľa vzdialenosti alebo dohody', main: 'od 80 €', sub: 'od 98,40 € s DPH' },
+        { label: 'Každá ďalšia hodina alebo cena za úkon', main: '45 €', sub: '55,35 € s DPH' },
+        { label: 'Práca dlhšia ako deň (nad 8 h) — za hodinu', main: '35 €', sub: '43,05 € s DPH' },
+        { label: 'Doprava po dohode — za kilometer (len pri väčších zákazkách)', main: '0,53 €/km', sub: '0,65 €/km s DPH' },
+        { label: 'Montáž klimatizácie do 3,5 kW', main: 'od 284,55 €', sub: 'od 350 € s DPH' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

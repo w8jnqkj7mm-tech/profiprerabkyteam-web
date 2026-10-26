@@ -27,7 +27,7 @@ export default {
       },
       fontFamily: {
         sans: ['Montserrat', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        serif: ['Spectral', 'Georgia', 'serif'],
       },
       fontSize: {
         xs: ['12px', { lineHeight: '1.4' }],

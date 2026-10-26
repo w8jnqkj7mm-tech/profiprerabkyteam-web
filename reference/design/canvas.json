@@ -1,0 +1,43 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Main.dc.html": { "expand": "fill", "h": 6400, "is_interactive": true, "title": "Úvodná stránka /", "w": 1440, "x": 0, "y": 0 },
+    "MalePrace.dc.html": { "expand": "fill", "h": 3600, "is_interactive": true, "title": "Malé práce /male-prace", "w": 1280, "x": 1520, "y": 0 },
+    "Rekonstrukcie.dc.html": { "expand": "fill", "h": 3400, "is_interactive": true, "title": "Rekonštrukcie /rekonstrukcie", "w": 1280, "x": 2880, "y": 0 },
+    "Cennik.dc.html": { "expand": "fill", "h": 3000, "is_interactive": true, "title": "Cenník /cennik", "w": 1280, "x": 4240, "y": 0 },
+    "Remeslo.dc.html": { "expand": "fill", "h": 4600, "is_interactive": true, "title": "Značka /elektrikar · /vodar · /prerabky · /stolarstvo", "w": 1280, "x": 5600, "y": 0 },
+    "Realizacie.dc.html": { "expand": "fill", "h": 2800, "is_interactive": true, "title": "Realizácie /realizacie", "w": 1280, "x": 1520, "y": 6520 },
+    "Blog.dc.html": { "expand": "fill", "h": 2400, "title": "Blog /blog", "w": 1280, "x": 2880, "y": 6520 },
+    "Kontakt.dc.html": { "expand": "fill", "h": 2400, "is_interactive": true, "title": "Kontakt /kontakt", "w": 1280, "x": 4240, "y": 6520 },
+    "Pravne.dc.html": { "expand": "fill", "h": 2600, "is_interactive": true, "title": "Právne /gdpr · /cookies", "w": 1280, "x": 5600, "y": 6520 }
+  },
+  "createdOnFiles": { "at": "2026-10-24T09:25:00Z", "v": 1 },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/artifact/BkL8cLun5eUxcppaT8phAs",
+      "copiedAt": "2026-10-24T09:25:00Z",
+      "namespace": "profiprerabky",
+      "title": "Profi Prerábky",
+      "version": null
+    }
+  ],
+  "launch": { "view": "canvas" },
+  "notes": {
+    "n1": { "x": 1520, "y": -340, "text": "Podstránky webu v1", "kind": "title1", "maxW": 5360 },
+    "n2": { "x": 1520, "y": 6180, "text": "Obsahové a právne stránky", "kind": "title1", "maxW": 5360 }
+  },
+  "order": [
+    "Main.dc.html",
+    "MalePrace.dc.html",
+    "Rekonstrukcie.dc.html",
+    "Cennik.dc.html",
+    "Remeslo.dc.html",
+    "Realizacie.dc.html",
+    "Blog.dc.html",
+    "Kontakt.dc.html",
+    "Pravne.dc.html"
+  ],
+  "pages": [],
+  "title": "Profi Prerábky Team – web v1"
+}

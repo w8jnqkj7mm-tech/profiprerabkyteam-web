@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Kompletné rekonštrukcie</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Spectral:ital,wght@0,300;0,400;1,300;1,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#101c24}
+a{color:#EEF0F3}a:hover{color:#ffffff}
+*{box-sizing:border-box}
+.dline{font-family:Spectral,Georgia,serif;font-weight:300;font-style:italic;letter-spacing:-0.005em}
+.btn{transition:transform .25s,background .25s,color .25s,box-shadow .25s;border-radius:999px}
+.btn:hover{transform:translateY(-2px)}
+.tab{transition:border-color .35s,color .35s,background .35s,box-shadow .35s;border-radius:999px}
+.tab:hover{color:#EEF0F3 !important}
+.swap{animation:swap .5s cubic-bezier(.2,.7,.1,1)}
+@keyframes swap{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 26%}
+}
+@keyframes rv{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.navlinks{display:flex;flex-wrap:wrap;gap:22px;font-size:13px;font-weight:500;letter-spacing:0.06em}
+:focus-visible{outline:2px solid #51AE4B;outline-offset:3px}
+@media (max-width: 900px){.navlinks{gap:14px;font-size:12px}}
+@media (prefers-reduced-motion: reduce){.rv,.swap{animation:none}}
+</style>
+</helmet>
+
+<div style="font-family: Montserrat, sans-serif; color: #EEF0F3; background: linear-gradient(180deg, #22343f 0%, #1a2a34 18%, #121d25 46%, #0F1920 100%); width: 100%; overflow: hidden">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 18px clamp(20px, 5vw, 64px); border-bottom: 1px solid rgba(238,240,243,0.1)">
+  <a href="Main.dc.html" aria-label="Profi Prerábky team – domov" style="display: flex; align-items: center; text-decoration: none"><img src="/_blob/c4ce37a99a8d85564931491a4ea4ddbf" alt="Profi Prerábky team" style="height: 44px; width: auto; display: block"></a>
+  <nav class="navlinks" aria-label="Hlavná navigácia">
+    <a href="MalePrace.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Malé práce</a>
+    <a href="Rekonstrukcie.dc.html" style="text-decoration: none; color: #51AE4B">Rekonštrukcie</a>
+    <a href="Remeslo.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Remeslá</a>
+    <a href="Cennik.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Cenník</a>
+    <a href="Realizacie.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Realizácie</a>
+    <a href="Kontakt.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Kontakt</a>
+  </nav>
+  <a href="tel:+421948536398" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border: 1px solid rgba(238,240,243,0.3); font-size: 13px; font-weight: 600">+421 948 536 398</a>
+</header>
+
+<!-- HERO -->
+<section style="position: relative; padding: clamp(56px, 7vw, 96px) clamp(20px, 5vw, 64px) clamp(48px, 6vw, 72px); overflow: hidden">
+  <div aria-hidden="true" style="position: absolute; inset: 0; background-image: url(/_blob/0b86a0829110647382f075169cbf13b2); background-size: cover; background-position: center; opacity: 0.22"></div>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, #0D1215 10%, rgba(13,18,21,0.6) 70%, rgba(13,18,21,0.9) 100%)"></div>
+  <div style="position: relative; max-width: 1240px; margin: 0 auto">
+    <nav aria-label="Omrvinky" style="font-size: 12px; letter-spacing: 0.1em; color: rgba(238,240,243,0.5); margin-bottom: 28px">
+      <a href="Main.dc.html" style="color: rgba(238,240,243,0.5); text-decoration: none">Úvod</a> · Rekonštrukcie
+    </nav>
+    <h1 style="margin: 0; font-weight: 600; font-size: clamp(36px, 5.6vw, 72px); line-height: 1.04; letter-spacing: -0.025em; max-width: 920px">Rekonštrukcia na kľúč.<br><span class="dline" style="color: {{brand}}">Jedna zmluva, jeden harmonogram.</span></h1>
+    <p style="margin: 28px 0 0; font-size: 17px; line-height: 1.7; color: rgba(238,240,243,0.75); max-width: 640px">Murár, elektrikár, vodár aj stolár sú z jedného tímu. Vy voláte jednému človeku — on rieši poradie remesiel, materiál aj termíny.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px">
+      <a href="Kontakt.dc.html" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 28px; background: {{brand}}; color: #0D1215; font-weight: 600; font-size: 14px">Objednať obhliadku
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+      <a href="Realizacie.dc.html" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border: 1px solid rgba(238,240,243,0.35); font-weight: 500; font-size: 14px">Pozrieť realizácie</a>
+    </div>
+  </div>
+</section>
+
+<!-- TYPY -->
+<section style="padding: clamp(56px, 7vw, 96px) clamp(20px, 5vw, 64px); max-width: 1240px; margin: 0 auto">
+  <p class="rv" style="margin: 0 0 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; color: {{brand}}">ČO REKONŠTRUUJEME</p>
+  <div class="rv" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px">
+    <sc-for list="{{types}}" as="ty" hint-placeholder-count="4">
+      <button type="button" class="tab" onClick="{{ty.pick}}" aria-pressed="{{ty.pressed}}" style="{{ty.style}}; font-family: Montserrat, sans-serif; min-height: 52px; padding: 0 26px; border-width: 1px; border-style: solid; font-size: 15px; font-weight: 600; cursor: pointer">{{ty.name}}</button>
+    </sc-for>
+  </div>
+
+  <div class="rv" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+    <div style="flex: 999 1 520px; min-width: 0; background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); border-top: 3px solid {{brand}}; padding: clamp(28px, 3.4vw, 44px)">
+      <sc-for list="{{current}}" as="c" hint-placeholder-count="1">
+        <div class="swap">
+          <h2 class="dline" style="font-style: normal; margin: 0; font-size: clamp(26px, 3vw, 34px); line-height: 1.2">{{c.tagline}}</h2>
+          <p style="margin: 14px 0 26px; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.7); max-width: 620px">{{c.lead}}</p>
+          <ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 32px">
+            <sc-for list="{{c.items}}" as="i" hint-placeholder-count="6">
+              <li style="display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{brand}}" stroke-width="2.4" aria-hidden="true" style="flex: none"><path d="M4 12.5l5 5L20 6.5"></path></svg>
+                {{i.label}}
+              </li>
+            </sc-for>
+          </ul>
+          <div style="display: flex; flex-wrap: wrap; gap: 28px; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(238,240,243,0.12)">
+            <div><span style="display: block; font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.5)">TRVANIE</span><span style="display: block; font-size: 18px; font-weight: 600; margin-top: 6px">{{c.duration}}</span></div>
+            <div><span style="display: block; font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.5)">CENOVÁ PONUKA</span><span style="display: block; font-size: 18px; font-weight: 600; margin-top: 6px">{{c.quote}}</span></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="flex: 1 1 280px; min-width: 0; background: linear-gradient(180deg, #3a5768 0%, #2a4150 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.14), 0 24px 60px rgba(0,0,0,0.38); padding: clamp(28px, 3.4vw, 40px); display: flex; flex-direction: column; gap: 20px">
+      <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: rgba(238,240,243,0.75)">OBHLIADKA</p>
+      <span style="font-size: 44px; font-weight: 600; line-height: 1">50 €</span>
+      <span style="font-size: 12px; color: rgba(238,240,243,0.6); margin-top: -14px">61,50 € s DPH</span>
+      <p style="margin: 0; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.88)">Pri realizácii sa celá odpočíta z ceny. Nacenenie veľkej zákazky je deň práce — preto ju účtujeme, ale ak u nás objednáte, nestojí vás nič.</p>
+      <p style="margin: 0; font-size: 13px; line-height: 1.7; color: rgba(238,240,243,0.7); background: rgba(13,18,21,0.3); padding: 14px 16px">Mimo Bratislavy je obhliadka od 80 € — základ, podľa vzdialenosti alebo dohody aj viac. Doprava je v tejto cene už zarátaná.</p>
+      <a href="Kontakt.dc.html" class="btn" style="margin-top: auto; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; background: #EEF0F3; color: #0D1215; font-weight: 600; font-size: 14px">Dohodnúť obhliadku</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRIEBEH -->
+<section style="background: linear-gradient(180deg, #e7eef2 0%, #d8e2e8 55%, #cbd7de 100%); color: #0D1215; padding: clamp(72px, 9vw, 120px) clamp(20px, 5vw, 64px)">
+  <div style="max-width: 1240px; margin: 0 auto">
+    <p style="margin: 0 0 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; color: #2F4858">PRIEBEH SPOLUPRÁCE</p>
+    <h2 style="margin: 0 0 56px; font-weight: 600; font-size: clamp(30px, 4vw, 52px); letter-spacing: -0.02em; line-height: 1.08">Od prvého telefonátu<br><span class="dline" style="">po odovzdanie kľúčov.</span></h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px">
+      <sc-for list="{{flow}}" as="f" hint-placeholder-count="6">
+        <div style="border-top: 2px solid rgba(13,18,21,0.25); padding-top: 20px">
+          <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: #2F4858">{{f.num}}</span>
+          <h3 style="margin: 12px 0 10px; font-size: 19px; font-weight: 600; line-height: 1.25">{{f.title}}</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.65; color: #2F4858">{{f.text}}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ZÁRUKA + ČO NIE JE V CENE -->
+<section style="padding: clamp(72px, 9vw, 120px) clamp(20px, 5vw, 64px); max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+  <div class="rv" style="background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); padding: clamp(28px, 3.4vw, 40px)">
+    <p style="margin: 0 0 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: {{brand}}">ZÁRUKA</p>
+    <h2 class="dline" style="font-style: normal; margin: 0 0 24px; font-size: 28px; line-height: 1.2">Dva roky, desať rokov <span style="font-style: italic; color: {{brand}}">a jedna doživotná.</span></h2>
+    <div style="display: flex; gap: 16px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid rgba(238,240,243,0.12)"><span style="font-size: 38px; font-weight: 600; width: 64px; flex: none">2</span><span style="font-size: 15px; line-height: 1.6; color: rgba(238,240,243,0.85)">roky na všetky vykonané práce.</span></div>
+    <div style="display: flex; gap: 16px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(238,240,243,0.12)"><span style="font-size: 38px; font-weight: 600; width: 64px; flex: none">10</span><span style="font-size: 15px; line-height: 1.6; color: rgba(238,240,243,0.85)">rokov na obklady a dlažby pri splnení podmienok.</span></div>
+    <div style="display: flex; gap: 16px; align-items: baseline; padding-top: 16px"><span style="font-size: 38px; font-weight: 600; width: 64px; flex: none; color: {{brand}}">∞</span><span style="font-size: 15px; line-height: 1.6; color: rgba(238,240,243,0.85)">doživotná garancia kvality remeselnej práce.</span></div>
+    <p style="margin: 20px 0 0; font-size: 12px; line-height: 1.7; color: rgba(238,240,243,0.6); background: rgba(13,18,21,0.4); padding: 14px 16px">Podmienky: 10-ročná záruka platí pri použití produktov Sopro a na pevnom, stabilnom podklade. Doživotná garancia sa vzťahuje na vyhotovenie práce — nie na opotrebenie materiálu, zásahy iných firiem ani na provizórne riešenia, ktoré si vyžiada klient. [OVERIŤ ZNENIE S PRÁVNIKOM]</p>
+  </div>
+
+  <div class="rv" style="background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); padding: clamp(28px, 3.4vw, 40px)">
+    <p style="margin: 0 0 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: {{brand}}">BEZ PREKVAPENÍ</p>
+    <h2 class="dline" style="font-style: normal; margin: 0 0 24px; font-size: 28px; line-height: 1.2">Čo je a čo nie je v cene.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px">
+      <div>
+        <span style="display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: {{brand}}; margin-bottom: 12px">V CENE</span>
+        <ul style="list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.5; color: rgba(238,240,243,0.85)">
+          <li style="padding: 9px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">Práca všetkých remesiel</li>
+          <li style="padding: 9px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">Koordinácia a harmonogram</li>
+          <li style="padding: 9px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">Odvoz sutiny</li>
+          <li style="padding: 9px 0">Ochrana spoločných priestorov</li>
+        </ul>
+      </div>
+      <div>
+        <span style="display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: rgba(238,240,243,0.6); margin-bottom: 12px">ZVLÁŠŤ</span>
+        <ul style="list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.5; color: rgba(238,240,243,0.65)">
+          <li style="padding: 9px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">Materiál a obklady</li>
+          <li style="padding: 9px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">Sanita, batérie, svietidlá</li>
+          <li style="padding: 9px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">Spotrebiče</li>
+          <li style="padding: 9px 0">Projekt a povolenia [DOPLNIŤ]</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin: 22px 0 0; font-size: 13px; line-height: 1.7; color: rgba(238,240,243,0.6)">Materiál viete kúpiť sami alebo cez nás — v cenovej ponuke je vždy položkovito rozpísaný.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding: 0 clamp(20px, 5vw, 64px) clamp(72px, 9vw, 120px); max-width: 1240px; margin: 0 auto">
+  <div style="background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); border-left: 3px solid {{brand}}; padding: clamp(32px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+    <div>
+      <h2 style="margin: 0; font-weight: 600; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.02em; line-height: 1.1">Povedzte nám,<br><span class="dline" style="color: {{brand}}">čo prerábate.</span></h2>
+      <p style="margin: 16px 0 0; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.7); max-width: 480px">Prvá odpoveď do 4 hodín v pracovnom čase, cenová ponuka podľa rozsahu do 1–10 pracovných dní.</p>
+    </div>
+    <a href="Kontakt.dc.html" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 12px; min-height: 54px; padding: 0 30px; background: {{brand}}; color: #0D1215; font-weight: 700; font-size: 14px; letter-spacing: 0.06em">Nezáväzný dopyt
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+    </a>
+  </div>
+</section>
+
+<footer style="border-top: 1px solid rgba(238,240,243,0.1); padding: 40px clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 1.9; color: rgba(238,240,243,0.55)">
+  <div><span style="display: block; color: rgba(238,240,243,0.85); font-weight: 600">Pressburg Team s.r.o.</span>Žltá 2A, 851 07 Bratislava – Petržalka<br>IČO 55330703<br>info@profiprerabkyteam.sk · +421 948 536 398</div>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Ochrana osobných údajov</a>
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Cookies</a>
+    <a href="Blog.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Blog</a>
+    <a href="https://www.instagram.com/profi_prerabky" style="color: rgba(238,240,243,0.7); text-decoration: none">Instagram</a>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#51AE4B","options":["#51AE4B","#2F4858"],"section":"Téma"},"$preview":{"width":1280,"height":3400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { type: 0 };
+  }
+  renderVals() {
+    const brand = this.props.brand ?? '#51AE4B';
+    const T = [
+      { name: 'Byt',
+        tagline: 'Celý byt od búrania jadra po nábytok na mieru.',
+        lead: 'Najčastejšia zákazka. Panelák aj novostavba, s dočasným vysťahovaním alebo po etapách, ak v byte bývate.',
+        items: ['Búranie jadra a priečok', 'Nové rozvody vody a elektriny', 'Omietky, stierky, sadrokartón', 'Obklady, dlažby a podlahy', 'Kúpeľňa a WC na kľúč', 'Kuchyňa a skrine na mieru'],
+        duration: '6–12 týždňov', quote: 'do 10 pracovných dní' },
+      { name: 'Dom',
+        tagline: 'Rodinný dom, kde sa zvyčajne nájde viac, než bolo v pláne.',
+        lead: 'Staršie domy prinášajú prekvapenia v stenách. Preto naceňujeme po obhliadke a zmeny riešime priebežne, nie faktúrou na konci.',
+        items: ['Rekonštrukcia rozvodov v celom dome', 'Výmena stúpačiek a kanalizácie', 'Zateplenie a omietky [DOPLNIŤ ROZSAH]', 'Kúrenie a radiátory', 'Podlahy a schodiská', 'Vstavaný nábytok'],
+        duration: '3–6 mesiacov', quote: 'do 10 pracovných dní' },
+      { name: 'Kancelária',
+        tagline: 'Komerčný priestor, často za plnej prevádzky klienta.',
+        lead: 'Vieme pracovať po častiach, po večeroch alebo cez víkend, aby ste nemuseli zavrieť. Dátové rozvody a osvetlenie riešime spolu.',
+        items: ['Nové priečky a dispozícia', 'Elektro a dátové rozvody', 'Osvetlenie a ovládanie', 'Podlahy a podhľady', 'Kuchynka a sociálne zázemie', 'Kancelársky nábytok na mieru'],
+        duration: '4–10 týždňov', quote: 'do 10 pracovných dní' },
+      { name: 'Kúpeľňa',
+        tagline: 'Jadro a kúpeľňa na kľúč, s 10-ročnou zárukou na obklady.',
+        lead: 'Najrýchlejšia veľká zákazka. Vodár, elektrikár a obkladač idú za sebou bez prestoja.',
+        items: ['Búranie starého jadra', 'Nové rozvody vody a odpadu', 'Hydroizolácia a obklady', 'Sprchový kút alebo vaňa', 'Sanita, batérie, vykurovací rebrík', 'Kúpeľňový nábytok do vlhka'],
+        duration: '2–4 týždne', quote: 'do 5 pracovných dní' }
+    ];
+    const i = this.state.type;
+    const types = T.map((t, k) => ({
+      name: t.name,
+      pressed: k === i ? 'true' : 'false',
+      pick: () => this.setState({ type: k }),
+      style: k === i
+        ? 'border-color:' + brand + ';background:' + brand + ';color:#0D1215'
+        : 'border-color:rgba(238,240,243,0.18);background:transparent;color:rgba(238,240,243,0.7)'
+    }));
+    const c = T[i];
+    return {
+      brand, types,
+      current: [{ tagline: c.tagline, lead: c.lead, duration: c.duration, quote: c.quote, items: c.items.map((label) => ({ label })) }],
+      flow: [
+        { num: '01', title: 'Obhliadka', text: 'Prídeme, odmeriame skutočný stav a prejdeme, čo chcete. 50 € — pri realizácii sa odpočíta.' },
+        { num: '02', title: 'Cenová ponuka', text: 'Položkovitý rozpis práce aj materiálu, podľa rozsahu do 1–10 pracovných dní.' },
+        { num: '03', title: 'Zmluva a harmonogram', text: 'Jedna zmluva na celú stavbu a termíny jednotlivých remesiel. Viete, kto kedy príde.' },
+        { num: '04', title: 'Realizácia', text: 'Remeslá idú za sebou, nie cez seba. Rozvody fotíme pred zakrytím.' },
+        { num: '05', title: 'Odovzdanie', text: 'Spoločná prehliadka, zoznam drobností a ich doriešenie. Potom odovzdanie.' },
+        { num: '06', title: 'Záruka', text: '2 roky na práce, 10 rokov na obklady pri splnení podmienok, doživotná garancia kvality vyhotovenia.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Kontakt a dopyt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Spectral:ital,wght@0,300;0,400;1,300;1,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#101c24}
+a{color:#EEF0F3}a:hover{color:#ffffff}
+*{box-sizing:border-box}
+.dline{font-family:Spectral,Georgia,serif;font-weight:300;font-style:italic;letter-spacing:-0.005em}
+.btn{transition:transform .25s,background .25s,color .25s,box-shadow .25s;border-radius:999px}
+.btn:hover{transform:translateY(-2px)}
+.tab{transition:border-color .35s,color .35s,background .35s,box-shadow .35s;border-radius:999px}
+.tab:hover{color:#EEF0F3 !important}
+.fld{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(238,240,243,0.24);color:#EEF0F3;font:500 16px Montserrat,sans-serif;padding:12px 0;border-radius:0}
+.fld:focus{outline:none;border-bottom-color:#51AE4B}
+select.fld option{background:#151B1F}
+.lab{display:block;font-size:11px;font-weight:600;letter-spacing:0.2em;color:rgba(238,240,243,0.6)}
+@supports (animation-timeline: view()){
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 26%}
+}
+@keyframes rv{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.navlinks{display:flex;flex-wrap:wrap;gap:22px;font-size:13px;font-weight:500;letter-spacing:0.06em}
+:focus-visible{outline:2px solid #51AE4B;outline-offset:3px}
+@media (max-width: 900px){.navlinks{gap:14px;font-size:12px}}
+@media (prefers-reduced-motion: reduce){.rv{animation:none}}
+</style>
+</helmet>
+
+<div style="font-family: Montserrat, sans-serif; color: #EEF0F3; background: linear-gradient(180deg, #22343f 0%, #1a2a34 18%, #121d25 46%, #0F1920 100%); width: 100%; overflow: hidden">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 18px clamp(20px, 5vw, 64px); border-bottom: 1px solid rgba(238,240,243,0.1)">
+  <a href="Main.dc.html" aria-label="Profi Prerábky team – domov" style="display: flex; align-items: center; text-decoration: none"><img src="/_blob/c4ce37a99a8d85564931491a4ea4ddbf" alt="Profi Prerábky team" style="height: 44px; width: auto; display: block"></a>
+  <nav class="navlinks" aria-label="Hlavná navigácia">
+    <a href="MalePrace.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Malé práce</a>
+    <a href="Rekonstrukcie.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Rekonštrukcie</a>
+    <a href="Remeslo.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Remeslá</a>
+    <a href="Cennik.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Cenník</a>
+    <a href="Realizacie.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Realizácie</a>
+    <a href="Kontakt.dc.html" style="text-decoration: none; color: #51AE4B">Kontakt</a>
+  </nav>
+  <a href="tel:+421948536398" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border: 1px solid rgba(238,240,243,0.3); font-size: 13px; font-weight: 600">+421 948 536 398</a>
+</header>
+
+<section style="padding: clamp(56px, 7vw, 88px) clamp(20px, 5vw, 64px) clamp(40px, 5vw, 64px); max-width: 1320px; margin: 0 auto">
+  <nav aria-label="Omrvinky" style="font-size: 12px; letter-spacing: 0.1em; color: rgba(238,240,243,0.5); margin-bottom: 28px">
+    <a href="Main.dc.html" style="color: rgba(238,240,243,0.5); text-decoration: none">Úvod</a> · Kontakt
+  </nav>
+  <h1 style="margin: 0; font-weight: 600; font-size: clamp(36px, 5.2vw, 64px); line-height: 1.06; letter-spacing: -0.025em">Povedzte nám,<br><span class="dline" style="color: {{brand}}">čo potrebujete.</span></h1>
+</section>
+
+<section style="padding: 0 clamp(20px, 5vw, 64px) clamp(64px, 8vw, 104px); max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px">
+
+  <div class="rv" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <a href="tel:+421948536398" class="btn" style="text-decoration: none; display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 0 22px; background: #EEF0F3; color: #0D1215; font-weight: 600; font-size: 16px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+        +421 948 536 398
+      </a>
+      <a href="https://wa.me/421948536398" class="btn" style="text-decoration: none; display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 0 22px; background: #25D366; color: #0D1215; font-weight: 600; font-size: 16px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3 0 .1 0 .7-.2 1.3z"></path></svg>
+        Napísať na WhatsApp
+      </a>
+      <a href="mailto:info@profiprerabkyteam.sk" class="btn" style="text-decoration: none; display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 0 22px; border: 1px solid rgba(238,240,243,0.3); font-weight: 500; font-size: 15px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18v12H3z"></path><path d="M3 6l9 7 9-7"></path></svg>
+        info@profiprerabkyteam.sk
+      </a>
+    </div>
+
+    <dl style="margin: 0; display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(238,240,243,0.12)">
+      <div style="display: flex; gap: 20px; padding: 16px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">
+        <dt class="lab" style="flex: none; width: 120px">HODINY</dt>
+        <dd style="margin: 0; font-size: 15px; line-height: 1.6">Po–Pi 8:30–17:00</dd>
+      </div>
+      <div style="display: flex; gap: 20px; padding: 16px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">
+        <dt class="lab" style="flex: none; width: 120px">ODPOVEĎ</dt>
+        <dd style="margin: 0; font-size: 15px; line-height: 1.6">Do 2–4 hodín v pracovnom čase.<br><span style="color: rgba(238,240,243,0.6)">Cenová ponuka podľa rozsahu do 1–10 pracovných dní.</span></dd>
+      </div>
+      <div style="display: flex; gap: 20px; padding: 16px 0; border-bottom: 1px solid rgba(238,240,243,0.08)">
+        <dt class="lab" style="flex: none; width: 120px">PROJEKTY</dt>
+        <dd style="margin: 0; font-size: 15px; line-height: 1.6">Števo Fuzy a Jakub Kleberc<br><span style="color: rgba(238,240,243,0.6)">Dopyty a komunikáciu vybavuje Jakub.</span></dd>
+      </div>
+      <div style="display: flex; gap: 20px; padding: 16px 0">
+        <dt class="lab" style="flex: none; width: 120px">OBLASŤ</dt>
+        <dd style="margin: 0; font-size: 15px; line-height: 1.6">Bratislava a okolie — Pezinok, Devín, Devínska Nová Ves, Ivanka pri Dunaji, Zálesie. [DOPLNIŤ ĎALŠIE OBCE]<br><span style="color: rgba(238,240,243,0.6)">Mimo Bratislavy je výjazd aj obhliadka od 80 € podľa vzdialenosti alebo dohody — doprava je v tom už zarátaná.</span></dd>
+      </div>
+    </dl>
+
+    <div style="height: 220px; border: 1px dashed rgba(238,240,243,0.25); display: flex; align-items: center; justify-content: center; font-size: 12px; letter-spacing: 0.2em; color: rgba(238,240,243,0.5)">[MAPA PÔSOBNOSTI]</div>
+  </div>
+
+  <form class="rv" onSubmit="{{submit}}" style="flex: 999 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 26px 32px; align-content: start; background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 16px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); border-top: 3px solid {{brand}}; padding: clamp(28px, 3.4vw, 44px)">
+
+    <div style="grid-column: 1 / -1">
+      <span class="lab" style="margin-bottom: 14px">O ČO IDE</span>
+      <div role="group" aria-label="Typ zákazky" style="display: flex; flex-wrap: wrap; gap: 10px">
+        <sc-for list="{{leadTypes}}" as="lt" hint-placeholder-count="2">
+          <button type="button" class="tab" onClick="{{lt.pick}}" aria-pressed="{{lt.pressed}}" style="{{lt.style}}; font-family: Montserrat, sans-serif; min-height: 48px; padding: 0 22px; border-width: 1px; border-style: solid; font-size: 14px; font-weight: 600; cursor: pointer">{{lt.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div><label for="k1" class="lab">MENO A PRIEZVISKO</label><input id="k1" class="fld" type="text" autocomplete="name" required></div>
+    <div><label for="k2" class="lab">TELEFÓN</label><input id="k2" class="fld" type="tel" autocomplete="tel" required></div>
+    <div><label for="k3" class="lab">E-MAIL</label><input id="k3" class="fld" type="email" autocomplete="email"></div>
+    <div><label for="k4" class="lab">LOKALITA</label><input id="k4" class="fld" type="text" placeholder="napr. Petržalka, Pezinok"></div>
+    <div><label for="k5" class="lab">REMESLO</label>
+      <select id="k5" class="fld">
+        <option>Kompletná rekonštrukcia</option>
+        <option>Kúpeľňa / WC</option>
+        <option>Elektroinštalácia</option>
+        <option>Vodoinštalácia</option>
+        <option>Klimatizácia</option>
+        <option>Hodinový majster</option>
+        <option>Nábytok na mieru</option>
+        <option>Komerčný priestor</option>
+      </select>
+    </div>
+    <div><label for="k6" class="lab">PREFEROVANÝ TERMÍN</label><input id="k6" class="fld" type="date"><span style="display: block; font-size: 11px; color: rgba(238,240,243,0.45); margin-top: 6px">Môžete uviesť aj viac termínov. Záväzným sa stáva až po potvrdení manažérom.</span></div>
+
+    <div style="grid-column: 1 / -1"><label for="k7" class="lab">ČO TREBA UROBIŤ</label><textarea id="k7" class="fld" rows="4" style="resize: vertical" placeholder="Napríklad: v kúpeľni tečie spod vane, byt v paneláku, 3. poschodie"></textarea></div>
+
+    <div style="grid-column: 1 / -1"><label for="k8" class="lab">FOTKY (VOLITEĽNÉ, MAX 5)</label><input id="k8" class="fld" type="file" accept="image/*" multiple="" style="font-size: 14px"><span style="display: block; font-size: 11px; color: rgba(238,240,243,0.45); margin-top: 6px">Fotka priestoru nám často ušetrí jednu obhliadku.</span></div>
+
+    <div style="grid-column: 1 / -1; display: flex; gap: 12px; align-items: flex-start">
+      <input id="k9" type="checkbox" required style="width: 20px; height: 20px; flex: none; margin: 2px 0 0; accent-color: #51AE4B">
+      <label for="k9" style="font-size: 13px; line-height: 1.6; color: rgba(238,240,243,0.7)">Súhlasím so spracovaním osobných údajov na účel vybavenia dopytu. <a href="Pravne.dc.html" style="color: {{brand}}">Ochrana osobných údajov</a></label>
+    </div>
+
+    <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 20px">
+      <button type="submit" class="btn" style="font-family: Montserrat, sans-serif; min-height: 54px; padding: 0 32px; background: {{brand}}; color: #0D1215; border: 0; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; cursor: pointer">Odoslať dopyt</button>
+      <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+        <span role="status" style="font-size: 14px; line-height: 1.6; color: rgba(238,240,243,0.85); max-width: 360px">Ďakujeme. Ozveme sa vám do 4 hodín v pracovnom čase (Po–Pi 8:30–17:00).</span>
+      </sc-if>
+    </div>
+
+    <p style="grid-column: 1 / -1; margin: 0; font-size: 11px; line-height: 1.7; color: rgba(238,240,243,0.4)">Formulár je chránený proti spamu. Dopyt sa ukladá do nášho systému a notifikácia ide priamo Jakubovi.</p>
+  </form>
+</section>
+
+<section style="padding: 0 clamp(20px, 5vw, 64px) clamp(64px, 8vw, 104px); max-width: 1320px; margin: 0 auto">
+  <div style="background: linear-gradient(180deg, #3a5768 0%, #2a4150 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.14), 0 24px 60px rgba(0,0,0,0.38); padding: clamp(28px, 3.4vw, 44px); display: flex; flex-wrap: wrap; gap: 40px">
+    <div style="flex: 1 1 260px">
+      <p style="margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: rgba(238,240,243,0.7)">FAKTURAČNÉ ÚDAJE</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.8">Pressburg Team s.r.o.<br>Žltá 2A, 851 07 Bratislava – Petržalka<br>IČO 55330703 · DIČ [DOPLNIŤ] · IČ DPH [DOPLNIŤ]<br>Zapísaná v OR [SÚD, ODDIEL, VLOŽKA]</p>
+    </div>
+    <div style="flex: 1 1 260px">
+      <p style="margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: rgba(238,240,243,0.7)">ZNAČKY TÍMU</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.8">Profi Prerábky — prerábky na kľúč<br>Pán Elektrikár — elektroinštalácie<br>Pán Vodár — vodoinštalácie<br>Stolárstvo Pressburg — nábytok na mieru</p>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top: 1px solid rgba(238,240,243,0.1); padding: 40px clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 1.9; color: rgba(238,240,243,0.55)">
+  <div><span style="display: block; color: rgba(238,240,243,0.85); font-weight: 600">Pressburg Team s.r.o.</span>Žltá 2A, 851 07 Bratislava – Petržalka<br>IČO 55330703</div>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Ochrana osobných údajov</a>
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Cookies</a>
+    <a href="Blog.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Blog</a>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#51AE4B","options":["#51AE4B","#2F4858"],"section":"Téma"},"$preview":{"width":1280,"height":2400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lead: 0, sent: false };
+  }
+  renderVals() {
+    const brand = this.props.brand ?? '#51AE4B';
+    const li = this.state.lead;
+    const leadTypes = ['Malá práca / oprava', 'Rekonštrukcia'].map((label, i) => ({
+      label,
+      pressed: i === li ? 'true' : 'false',
+      pick: () => this.setState({ lead: i }),
+      style: i === li
+        ? 'border-color:' + brand + ';background:' + brand + ';color:#0D1215'
+        : 'border-color:rgba(238,240,243,0.22);background:transparent;color:rgba(238,240,243,0.75)'
+    }));
+    return {
+      brand, leadTypes,
+      sent: this.state.sent,
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+{
+ "name": "Profi Prerábky",
+ "version": 4,
+ "color": {
+  "themes": [
+   {
+    "id": "light",
+    "name": "Svetlá"
+   },
+   {
+    "id": "dark",
+    "name": "Tmavá"
+   }
+  ],
+  "tokens": [
+   {
+    "name": "profi-green",
+    "value": "#50ae4d",
+    "usage": "Hlavná farba Profi Prerábky (výplň loga a zelený panel). Výplne, panely, akcenty v logu. NIE ako farba textu na bielej (2,8:1); text na nej je vždy `black` (7,5:1). Manuál na str. 1 uvádza #51ae4b, vektory loga a popis na str. 2 používajú #50ae4d."
+   },
+   {
+    "name": "profi-green-print",
+    "value": "#6abd49",
+    "usage": "Náhľad tlačovej zelenej C62,36 M0 Y96,62 K0 (str. 2, „TLAČ/PRINT FARBY“). Len pre podklady do tlače, nie na obrazovku."
+   },
+   {
+    "name": "profi-slate",
+    "value": "#2f4858",
+    "usage": "Tmavá modrošedá Profi Prerábky. Panel pod negatívnym logom, tmavé plochy; v svetlej téme ako `ink-muted` text na `white` (9,6:1) a `profi-mist` (7,0:1)."
+   },
+   {
+    "name": "profi-slate-print",
+    "value": "#006171",
+    "usage": "Náhľad tlačovej tmavej C83 M14 Y23 K50 (str. 2). Len pre tlač; na obrazovke používaj `profi-slate`."
+   },
+   {
+    "name": "profi-mist",
+    "value": "#dbdce5",
+    "usage": "Svetlá chladná šedá z manuálu (str. 2). Alternatívne pozadie sekcií; `black` a `profi-slate` text na nej sú čitateľné."
+   },
+   {
+    "name": "elektrikar-red",
+    "value": "#e51e25",
+    "usage": "Farba značky Pán Elektrikár (čiapka, panel). Na červenom paneli manuál kladie čierne logo; biely text 4,6:1, čierny 4,5:1. Vektory loga obsahujú #e51d25 a v akcentoch #e42328 – rovnaká farba po konverzii."
+   },
+   {
+    "name": "vodar-blue",
+    "value": "#4562ad",
+    "usage": "Farba značky Pán Vodár (čiapka, panel). Text na nej biely (5,8:1); čierny len od 24 px (3,6:1)."
+   },
+   {
+    "name": "stolarstvo-ink",
+    "value": "#231f20",
+    "usage": "Atramentová čierna rytín Stolárstvo Pressburg (Illustrator rich black). Iba pre grafiku Stolárstva; inak `black`."
+   },
+   {
+    "name": "panel-grey",
+    "value": "#b3b3b3",
+    "usage": "Stredne šedý podkladový panel z manuálu (3. stĺpec). Ukážkový podklad pre farebné logá; text na ňom `black` (10:1)."
+   },
+   {
+    "name": "panel-grey-light",
+    "value": "#d1d3d4",
+    "usage": "Svetlošedý podkladový panel z manuálu (4. stĺpec). Podklad pre monochromatické logo; text `black` (14:1)."
+   },
+   {
+    "name": "black",
+    "value": "#000000",
+    "usage": "Čierna kresba všetkých log a čierne panely. Text na `white`, `profi-mist`, `profi-green`, šedých paneloch."
+   },
+   {
+    "name": "white",
+    "value": "#ffffff",
+    "usage": "Biela. Pozadie stránky v svetlej téme, text na `black`, `profi-slate`, `vodar-blue`, `elektrikar-red`."
+   },
+   {
+    "name": "surface",
+    "value": {
+     "light": "{white}",
+     "dark": "{black}"
+    },
+    "usage": "Pozadie stránky."
+   },
+   {
+    "name": "surface-alt",
+    "value": {
+     "light": "{profi-mist}",
+     "dark": "{profi-slate}"
+    },
+    "usage": "Pozadie striedaných sekcií a kariet na `surface`."
+   },
+   {
+    "name": "ink",
+    "value": {
+     "light": "{black}",
+     "dark": "{white}"
+    },
+    "usage": "Hlavný text na `surface` a `surface-alt` (svetlá: 21:1 / 15,4:1; tmavá: 21:1 / 9,6:1). Tiež linky rámu BracketFrame."
+   },
+   {
+    "name": "ink-muted",
+    "value": {
+     "light": "{profi-slate}",
+     "dark": "{profi-mist}"
+    },
+    "usage": "Sekundárny text, popisky na `surface` a `surface-alt` (svetlá: 9,6:1 / 7,0:1; tmavá: 15,1:1 / 7,0:1)."
+   },
+   {
+    "name": "accent",
+    "value": "{profi-green}",
+    "usage": "Akcent: výplne, aktívne stavy, malé plochy, bodka nad „i“ a čiarka nad „á“ v logu. Text na ňom `on-accent`. Na `surface` v svetlej téme nesmie niesť text."
+   },
+   {
+    "name": "on-accent",
+    "value": "{black}",
+    "usage": "Text a ikony na `accent` (7,5:1) – tak, ako manuál kladie čierne logo na zelený panel."
+   },
+   {
+    "name": "web-green",
+    "value": "#51ae4b",
+    "usage": "WEB: akcent webu profiprerabkyteam.sk. Hodnota zo str. 1 manuálu; na tmavom podklade `web-bg` má 7,7:1, takže tu smie niesť aj text. Na bielej nie."
+   },
+   {
+    "name": "web-bg-top",
+    "value": "#22343f",
+    "usage": "WEB: horný koniec pozadia stránky. Tmavší odtieň `profi-slate` – rodina sedí, len je hlbšia."
+   },
+   {
+    "name": "web-bg",
+    "value": "#0f1920",
+    "usage": "WEB: dolný koniec pozadia stránky a podklad pätičky. Text `web-ink` na ňom 16,4:1."
+   },
+   {
+    "name": "web-panel-top",
+    "value": "#1c2c36",
+    "usage": "WEB: horný koniec gradientu panela (karta, box, formulár)."
+   },
+   {
+    "name": "web-panel-bottom",
+    "value": "#131e26",
+    "usage": "WEB: dolný koniec gradientu panela."
+   },
+   {
+    "name": "web-ink",
+    "value": "#eef0f3",
+    "usage": "WEB: hlavný text na tmavom podklade. Sekundárny text rieš priehľadnosťou (0,7), nie ďalšou farbou."
+   },
+   {
+    "name": "web-mist-top",
+    "value": "#e7eef2",
+    "usage": "WEB: horný koniec svetlej sekcie (náhrada plochej `profi-mist` na webe). Text `black` 17,6:1."
+   },
+   {
+    "name": "web-mist-bottom",
+    "value": "#cbd7de",
+    "usage": "WEB: dolný koniec svetlej sekcie. Text `black` 14,3:1."
+   },
+   {
+    "name": "web-hairline",
+    "value": "#e4edf11f",
+    "usage": "WEB: svetelný obrys panela (12 % krytie). Používa sa ako `box-shadow: 0 0 0 1px`, nie ako `border` – nezaberá miesto a nekazí zaoblenie."
+   }
+  ]
+ },
+ "type": {
+  "fonts": [],
+  "families": {
+   "display": "\"ofelia-text\", \"Ofelia Text\", Roboto, system-ui, sans-serif",
+   "sans": "Roboto, system-ui, sans-serif",
+   "web-sans": "Montserrat, system-ui, sans-serif",
+   "web-serif": "Spectral, Georgia, serif"
+  },
+  "groups": [
+   {
+    "name": "Nadpisy",
+    "family": "display",
+    "styles": [
+     {
+      "name": "display",
+      "fontSize": "56px",
+      "lineHeight": "60px",
+      "fontWeight": 600,
+      "sample": "Prerábky na kľúč",
+      "usage": "Hero titulky. Ofelia Text Semibold (rez z manuálu)."
+     },
+     {
+      "name": "h1",
+      "fontSize": "40px",
+      "lineHeight": "46px",
+      "fontWeight": 600,
+      "sample": "Kúpeľňa, elektrina, voda",
+      "usage": "Nadpis stránky."
+     },
+     {
+      "name": "h2",
+      "fontSize": "28px",
+      "lineHeight": "34px",
+      "fontWeight": 600,
+      "sample": "Čo pre vás urobíme",
+      "usage": "Nadpis sekcie."
+     },
+     {
+      "name": "h3",
+      "fontSize": "20px",
+      "lineHeight": "26px",
+      "fontWeight": 600,
+      "sample": "Elektroinštalácie",
+      "usage": "Nadpis karty / bloku."
+     }
+    ]
+   },
+   {
+    "name": "Text",
+    "family": "sans",
+    "styles": [
+     {
+      "name": "body",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontWeight": 400,
+      "sample": "AaBbáčô – kompletné prerábky bytov a domov.",
+      "usage": "Bežný text. Roboto Regular (z manuálu)."
+     },
+     {
+      "name": "body-sm",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontWeight": 400,
+      "sample": "Ponuka platí 30 dní.",
+      "usage": "Poznámky, popisky."
+     },
+     {
+      "name": "contact",
+      "fontSize": "18px",
+      "lineHeight": "24px",
+      "fontWeight": 500,
+      "sample": "+421 948 536 398",
+      "usage": "Kontaktné údaje (telefón, handle) – v manuáli Roboto v polotučnom vzhľade."
+     }
+    ]
+   },
+   {
+    "name": "Web – nadpisy",
+    "family": "web-sans",
+    "styles": [
+     {
+      "name": "web-hero",
+      "fontSize": "96px",
+      "lineHeight": "98px",
+      "fontWeight": 600,
+      "sample": "Kompletné rekonštrukcie",
+      "usage": "WEB: H1 úvodnej stránky. Na menších šírkach clamp až na 40 px."
+     },
+     {
+      "name": "web-h1",
+      "fontSize": "66px",
+      "lineHeight": "69px",
+      "fontWeight": 600,
+      "sample": "Elektroinštalácie",
+      "usage": "WEB: H1 podstránky (clamp od 34 px)."
+     },
+     {
+      "name": "web-h2",
+      "fontSize": "48px",
+      "lineHeight": "53px",
+      "fontWeight": 600,
+      "sample": "Štyri remeslá. Jeden tím.",
+      "usage": "WEB: nadpis sekcie (clamp od 28 px)."
+     },
+     {
+      "name": "web-h3",
+      "fontSize": "20px",
+      "lineHeight": "26px",
+      "fontWeight": 600,
+      "sample": "Jeden zodpovedný majster",
+      "usage": "WEB: nadpis karty."
+     },
+     {
+      "name": "web-eyebrow",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 600,
+      "sample": "PREČO JEDEN TÍM",
+      "usage": "WEB: štítok nad nadpisom. Verzálky, letter-spacing 0,28em, farba `web-green`."
+     }
+    ]
+   },
+   {
+    "name": "Web – druhý riadok nadpisu",
+    "family": "web-serif",
+    "styles": [
+     {
+      "name": "web-dline",
+      "fontSize": "48px",
+      "lineHeight": "53px",
+      "fontWeight": 300,
+      "sample": "Od búrania po nábytok na mieru.",
+      "usage": "WEB: druhý riadok nadpisu a tagline v paneli. Spectral 300 kurzíva, letter-spacing -0,005em, rovnaká veľkosť ako riadok nad ním; farba `web-green` na tmavom, `web-ink` na svetlej sekcii. Dvanásť miest ju používa bez kurzívy (veľké číslice v časovej osi, tagliny) — tam `font-style: normal`. Do 25. 10. 2026 tu bol Playfair Display italic: VYRADENÝ a zakázaný, lebo vysokokontrastná pätková kurzíva je poznávacie znamenie stránok generovaných AI a jeho vlásočnice na tmavom podklade a na telefóne mizli. Spectral je kresbou pre obrazovku s nízkym kontrastom ťahov."
+     }
+    ]
+   }
+  ]
+ },
+ "spacing": {
+  "note": "Mierka medzier na 8 px mriežke.",
+  "tokens": [
+   {
+    "name": "space-1",
+    "value": "4px",
+    "usage": "Medzera ikona–text."
+   },
+   {
+    "name": "space-2",
+    "value": "8px",
+    "usage": "Medzery v riadku, kontaktné položky."
+   },
+   {
+    "name": "space-3",
+    "value": "16px",
+    "usage": "Vnútorný okraj komponentov, odsadenie loga od okraja panela."
+   },
+   {
+    "name": "space-4",
+    "value": "24px",
+    "usage": "Odstup blokov v sekcii."
+   },
+   {
+    "name": "space-5",
+    "value": "48px",
+    "usage": "Odstup sekcií."
+   },
+   {
+    "name": "web-gutter",
+    "value": "64px",
+    "usage": "WEB: bočný okraj stránky na desktope; na mobile clamp na 20px."
+   },
+   {
+    "name": "web-section",
+    "value": "104px",
+    "usage": "WEB: zvislý odstup sekcií (clamp 64–160 px podľa šírky)."
+   },
+   {
+    "name": "web-panel-pad",
+    "value": "40px",
+    "usage": "WEB: vnútorný okraj panela (clamp 28–48 px)."
+   }
+  ]
+ },
+ "radius": {
+  "note": "Tlačové panely v manuáli sú pravouhlé (`radius-0`). Zaoblenie `radius-control`, `radius-card` a `radius-card-lg` platí LEN pre web – pozri sekciu „Webová vrstva“ v README.",
+  "tokens": [
+   {
+    "name": "radius-0",
+    "value": "0px",
+    "usage": "Panely, fotky, karty v TLAČI – manuál kladie logá na ostré pravouhlé panely."
+   },
+   {
+    "name": "radius-pill",
+    "value": "9999px",
+    "usage": "Polkruhový jazýček (pravý okraj str. 2) v tlači; na webe tlačidlá a štítky."
+   },
+   {
+    "name": "radius-control",
+    "value": "12px",
+    "usage": "WEB: záložky, prepínače, menšie ovládacie prvky."
+   },
+   {
+    "name": "radius-card",
+    "value": "14px",
+    "usage": "WEB: panel, karta, box s cenou, galéria."
+   },
+   {
+    "name": "radius-card-lg",
+    "value": "16px",
+    "usage": "WEB: veľký panel – formulár, karta realizácie alebo článku s fotkou (potrebuje `overflow: hidden`)."
+   }
+  ]
+ },
+ "shadow": {
+  "note": "Tlač tiene nepozná. Tieto tokeny sú len pre web; obrys sa rieši tieňom, nie `border`, aby nezaberal miesto a sledoval zaoblenie.",
+  "tokens": [
+   {
+    "name": "shadow-ring",
+    "value": "0 0 0 1px rgba(228,237,241,0.12)",
+    "usage": "WEB: svetelný obrys panela na tmavom podklade. Vždy spolu so `shadow-panel`."
+   },
+   {
+    "name": "shadow-ring-strong",
+    "value": "0 0 0 1px rgba(228,237,241,0.26)",
+    "usage": "WEB: obrys pri prejdení myšou alebo pri aktívnej karte."
+   },
+   {
+    "name": "shadow-panel",
+    "value": "0 24px 60px rgba(0,0,0,0.38)",
+    "usage": "WEB: hĺbka panela na tmavom podklade."
+   },
+   {
+    "name": "shadow-panel-hover",
+    "value": "0 32px 70px rgba(0,0,0,0.45)",
+    "usage": "WEB: panel pri prejdení myšou, spolu s posunom o -3 px."
+   },
+   {
+    "name": "shadow-on-light",
+    "value": "0 18px 40px rgba(26,45,56,0.14)",
+    "usage": "WEB: biela karta na svetlej sekcii. Tieň je modrastý, nie šedý – ladí s podkladom."
+   },
+   {
+    "name": "shadow-float",
+    "value": "0 8px 24px rgba(0,0,0,0.45)",
+    "usage": "WEB: plávajúce tlačidlá vpravo dole (telefón, WhatsApp, chat)."
+   }
+  ]
+ },
+ "gradient": {
+  "note": "Gradienty sú webová vrstva. Do tlače ani do log nepatria – tam platí plná farba z manuálu.",
+  "tokens": [
+   {
+    "name": "grad-page",
+    "value": "linear-gradient(180deg, #22343f 0%, #1a2a34 18%, #121d25 46%, #0f1920 100%)",
+    "usage": "WEB: pozadie celej stránky. Jeden prechod na celú výšku, nie na každú sekciu."
+   },
+   {
+    "name": "grad-panel",
+    "value": "linear-gradient(180deg, #1c2c36 0%, #131e26 100%)",
+    "usage": "WEB: panel a karta na tmavom podklade."
+   },
+   {
+    "name": "grad-mist",
+    "value": "linear-gradient(180deg, #e7eef2 0%, #d8e2e8 55%, #cbd7de 100%)",
+    "usage": "WEB: svetlá sekcia (kontrastná vložka medzi tmavými)."
+   },
+   {
+    "name": "grad-slate",
+    "value": "linear-gradient(180deg, #3a5768 0%, #2a4150 100%)",
+    "usage": "WEB: zvýraznený panel vo farbe `profi-slate` (záruka, obhliadka, fakturačné údaje)."
+   },
+   {
+    "name": "grad-white",
+    "value": "linear-gradient(180deg, #ffffff 0%, #f3f7f9 100%)",
+    "usage": "WEB: biela karta na svetlej sekcii, spolu so `shadow-on-light`."
+   },
+   {
+    "name": "grad-glow-green",
+    "value": "radial-gradient(circle at 40% 40%, rgba(81,174,75,0.30), rgba(81,174,75,0) 62%)",
+    "usage": "WEB: zelený svetelný kruh v hero. Rozostrenie 90 px. Len v hero úvodnej stránky – inde nie, kvôli rýchlosti na mobile."
+   },
+   {
+    "name": "grad-glow-slate",
+    "value": "radial-gradient(circle at 50% 50%, rgba(91,127,146,0.34), rgba(91,127,146,0) 64%)",
+    "usage": "WEB: studený svetelný kruh v hero, protiváha zeleného."
+   },
+   {
+    "name": "grad-hero-veil",
+    "value": "linear-gradient(180deg, rgba(20,32,40,0.72) 0%, rgba(20,32,40,0.18) 40%, rgba(15,25,32,0.94) 100%)",
+    "usage": "WEB: stmavenie fotky alebo videa pod hero textom, aby zostal čitateľný."
+   }
+  ]
+ }
+}

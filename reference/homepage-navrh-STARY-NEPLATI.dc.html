@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Profi Prerábky Team – úvod</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0D1215}
+a{color:#EEF0F3}a:hover{color:#ffffff}
+*{box-sizing:border-box}
+.serif{font-family:'Playfair Display',Georgia,serif;font-weight:400}
+/* hero line reveal */
+.line{display:block;overflow:hidden}
+.line > span{display:inline-block;transform:translateY(110%);animation:rise 1.1s cubic-bezier(.2,.7,.1,1) forwards}
+.l2 > span{animation-delay:.15s}.l3 > span{animation-delay:.3s}
+.fade{opacity:0;animation:fadein 1s ease forwards .7s}
+.fade2{opacity:0;animation:fadein 1s ease forwards 1s}
+@keyframes rise{to{transform:translateY(0)}}
+@keyframes fadein{to{opacity:1}}
+/* hero background placeholder motion (nahradí video) */
+.kb{animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.14) translate(-2%,-1.5%)}}
+.sweep{animation:sweep 9s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-60%) rotate(18deg);opacity:0}30%{opacity:.55}60%{opacity:0}100%{transform:translateX(160%) rotate(18deg);opacity:0}}
+/* scroll cue */
+.cue{animation:cue 2.2s cubic-bezier(.6,0,.3,1) infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* marquee */
+.track{display:flex;width:max-content;animation:marq 38s linear infinite}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* scroll-driven reveals */
+@supports (animation-timeline: view()){
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 28%}
+.rvx{animation:rvx linear both;animation-timeline:view();animation-range:entry 0% cover 40%}
+}
+@keyframes rv{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@keyframes rvx{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+/* trade panel swap */
+.swap{animation:swap .6s cubic-bezier(.2,.7,.1,1)}
+@keyframes swap{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.tab{transition:border-color .35s,color .35s,background .35s}
+.tab:hover{color:#EEF0F3 !important}
+.btn{transition:transform .25s,background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)}
+.range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.fld{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(238,240,243,0.24);color:#EEF0F3;font:500 16px Montserrat,sans-serif;padding:12px 0;border-radius:0}
+.fld:focus{outline:none;border-bottom-color:#51AE4B}
+select.fld option{background:#151B1F}
+:focus-visible{outline:2px solid #51AE4B;outline-offset:3px}
+@media (prefers-reduced-motion: reduce){
+.line > span,.fade,.fade2{animation:none;transform:none;opacity:1}
+.kb,.sweep,.cue,.track,.rv,.rvx,.swap{animation:none}
+}
+</style>
+</helmet>
+
+<div style="font-family: Montserrat, sans-serif; color: #EEF0F3; background: #0D1215; width: 100%; overflow: hidden">
+
+<!-- ============ 1. HERO (100vh) ============ -->
+<section aria-label="Úvod" style="position: relative; height: min(100vh, 920px); min-height: 680px; display: flex; flex-direction: column; overflow: hidden">
+  <video class="kb" ref="{{videoRef}}" src="/_blob/7d90053e8c4e6fdab03a8d22b710c1e6" poster="/_blob/b03b4f15cdbb925190ac4c12db56a0f2" autoplay="" muted="{{ true }}" loop="" playsinline="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,14,17,0.7) 0%, rgba(10,14,17,0.2) 42%, rgba(10,14,17,0.9) 100%), linear-gradient(90deg, rgba(10,14,17,0.75) 0%, rgba(10,14,17,0) 60%)"></div>
+
+  <!-- nav -->
+  <header style="position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px clamp(20px, 5vw, 72px)">
+    <a href="#" aria-label="Profi Prerábky team – domov" style="text-decoration: none; display: flex; align-items: center">
+      <img src="/_blob/3b48c903a5e319699f1b8cd10b1cfcaf" alt="Profi Prerábky team" style="height: 52px; width: auto; display: block">
+    </a>
+    <nav aria-label="Hlavná navigácia" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em">
+      <a href="#remesla" style="text-decoration: none; color: rgba(238,240,243,0.75)">Remeslá</a>
+      <a href="#postup" style="text-decoration: none; color: rgba(238,240,243,0.75)">Postup</a>
+      <a href="#realizacie" style="text-decoration: none; color: rgba(238,240,243,0.75)">Realizácie</a>
+      <a href="#dopyt" style="text-decoration: none; color: rgba(238,240,243,0.75)">Kontakt</a>
+    </nav>
+  </header>
+
+  <div style="position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 clamp(20px, 5vw, 72px) clamp(72px, 10vh, 120px); max-width: 1320px">
+    <div class="fade" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; border: 1px solid rgba(238,240,243,0.22); padding: 9px 16px; font-size: 12px; font-weight: 500; letter-spacing: 0.1em; margin-bottom: 36px; background: rgba(13,18,21,0.4)">
+      <span style="width: 6px; height: 6px; background: {{brand}}"></span>
+      Bratislava a okolie · 4 špecializované remeslá v jednom tíme
+    </div>
+    <h1 style="margin: 0; font-weight: 600; font-size: clamp(40px, 6.4vw, 96px); line-height: 1.02; letter-spacing: -0.025em">
+      <span class="line l1"><span>Kompletné rekonštrukcie</span></span>
+      <span class="line l2"><span>s vlastnými remeselníkmi.</span></span>
+      <span class="line l3"><span class="serif" style="font-style: italic; color: {{brand}}">Od búrania po nábytok na mieru.</span></span>
+    </h1>
+    <div class="fade2" style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px">
+      <a href="#dopyt" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 28px; background: #EEF0F3; color: #0D1215; font-weight: 600; font-size: 14px; letter-spacing: 0.06em">Nezáväzný dopyt
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+      <a href="tel:+421948536398" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 24px; border: 1px solid rgba(238,240,243,0.35); color: #EEF0F3; font-weight: 500; font-size: 14px; letter-spacing: 0.04em">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+        +421 948 536 398
+      </a>
+    </div>
+  </div>
+
+  <div aria-hidden="true" style="position: absolute; z-index: 2; left: 50%; bottom: 22px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 10px; letter-spacing: 0.3em; color: rgba(238,240,243,0.6)">
+    SCROLL
+    <span style="display: block; width: 1px; height: 44px; background: rgba(238,240,243,0.15); position: relative; overflow: hidden"><span class="cue" style="position: absolute; inset: 0; background: #EEF0F3"></span></span>
+  </div>
+</section>
+
+<!-- ============ 2. MARQUEE ============ -->
+<div aria-hidden="true" style="border-top: 1px solid rgba(238,240,243,0.1); border-bottom: 1px solid rgba(238,240,243,0.1); padding: 22px 0; overflow: hidden">
+  <div class="track serif" style="font-size: 34px; gap: 48px; white-space: nowrap; color: rgba(238,240,243,0.85)">
+    <span>Prerábky</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Elektrikár</span><span style="color: {{brand}}">✕</span><span>Vodár</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Stolárstvo</span><span style="color: {{brand}}">✕</span>
+    <span>Prerábky</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Elektrikár</span><span style="color: {{brand}}">✕</span><span>Vodár</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Stolárstvo</span><span style="color: {{brand}}">✕</span>
+    <span>Prerábky</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Elektrikár</span><span style="color: {{brand}}">✕</span><span>Vodár</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Stolárstvo</span><span style="color: {{brand}}">✕</span>
+    <span>Prerábky</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Elektrikár</span><span style="color: {{brand}}">✕</span><span>Vodár</span><span style="color: {{brand}}">✕</span><span style="font-style: italic">Stolárstvo</span><span style="color: {{brand}}">✕</span>
+  </div>
+</div>
+
+<!-- ============ 3. STATEMENT ============ -->
+<section style="padding: clamp(96px, 14vw, 180px) clamp(20px, 5vw, 72px); max-width: 1320px; margin: 0 auto">
+  <p class="rv" style="margin: 0 0 28px; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; color: {{brand}}">PREČO JEDEN TÍM</p>
+  <h2 class="rv" style="margin: 0; font-weight: 500; font-size: clamp(32px, 4.6vw, 68px); line-height: 1.12; letter-spacing: -0.02em; max-width: 1100px">Jedna zmluva. Jeden harmonogram. <span class="serif" style="font-style: italic; color: rgba(238,240,243,0.6)">Štyri remeslá, ktoré sa na stavbe nečakajú navzájom.</span></h2>
+  <div class="rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 40px; margin-top: 72px; border-top: 1px solid rgba(238,240,243,0.12); padding-top: 36px">
+    <div><div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px">Vlastní ľudia</div><div style="font-size: 15px; line-height: 1.65; color: rgba(238,240,243,0.68)">Murári, elektrikári, vodári aj stolári sú z jedného tímu. Žiadne preposielanie práce ďalej.</div></div>
+    <div><div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px">Jeden zodpovedný majster</div><div style="font-size: 15px; line-height: 1.65; color: rgba(238,240,243,0.68)">Vy voláte jednému človeku. On rieši poradie remesiel, materiál aj termíny.</div></div>
+    <div><div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px">Nadväznosť bez prestojov</div><div style="font-size: 15px; line-height: 1.65; color: rgba(238,240,243,0.68)">Rozvody, povrchy a nábytok plánujeme spolu, takže stolár dostane presne tie rozmery, ktoré murár postavil.</div></div>
+  </div>
+</section>
+
+<!-- ============ 4. REMESLÁ – interaktívny modul ============ -->
+<section id="remesla" style="padding: 0 clamp(20px, 5vw, 72px) clamp(96px, 12vw, 160px); max-width: 1440px; margin: 0 auto">
+  <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px">
+    <h2 style="margin: 0; font-weight: 600; font-size: clamp(36px, 5vw, 72px); letter-spacing: -0.025em; line-height: 1">Štyri remeslá.<br><span class="serif" style="font-style: italic; font-weight: 400; color: {{t.ink}}; transition: color .5s">Jeden tím.</span></h2>
+    <p style="margin: 0; max-width: 380px; font-size: 15px; line-height: 1.65; color: rgba(238,240,243,0.65)">Vyberte remeslo a posuňte jazdec Pred / Po.</p>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+    <!-- tabs -->
+    <div role="group" aria-label="Výber remesla" style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{trades}}" as="tr" hint-placeholder-count="4">
+        <button type="button" class="tab" onClick="{{tr.pick}}" aria-pressed="{{tr.pressed}}" style="{{tr.tabStyle}}; text-align: left; border-width: 1px; border-style: solid; padding: 22px 24px; cursor: pointer; font-family: Montserrat, sans-serif; display: flex; align-items: center; gap: 18px; min-height: 84px">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.1em; opacity: 0.7">{{tr.num}}</span>
+          <span style="flex: 1">
+            <span style="display: block; font-size: 20px; font-weight: 600; letter-spacing: -0.01em">{{tr.name}}</span>
+            <span style="display: block; font-size: 12px; letter-spacing: 0.08em; margin-top: 4px; opacity: 0.7">{{tr.brand}}</span>
+          </span>
+          <span style="{{tr.dotStyle}}; width: 10px; height: 10px; flex: none"></span>
+        </button>
+      </sc-for>
+    </div>
+
+    <!-- bento panel -->
+    <div style="flex: 999 1 640px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+      <!-- detail -->
+      <div style="background: #151B1F; border: 1px solid rgba(238,240,243,0.1); border-top: 3px solid {{t.accent}}; padding: 36px; display: flex; flex-direction: column; gap: 26px; transition: border-color .5s">
+        <sc-for list="{{active}}" as="a" hint-placeholder-count="1">
+          <div class="swap" style="display: flex; flex-direction: column; gap: 26px">
+            <div>
+              <img src="{{a.logo}}" alt="{{a.brand}}" style="height: 64px; width: auto; display: block">
+              <div class="serif" style="font-size: 30px; line-height: 1.2; margin-top: 12px">{{a.tagline}}</div>
+            </div>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+              <sc-for list="{{a.tasks}}" as="k" hint-placeholder-count="5">
+                <li style="display: flex; gap: 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5"><span style="color: {{a.ink}}; font-size: 12px; font-weight: 600">{{k.n}}</span>{{k.label}}</li>
+              </sc-for>
+            </ul>
+            <div style="display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; background: rgba(238,240,243,0.04)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{a.ink}}" stroke-width="1.8" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+              <div style="font-size: 14px; line-height: 1.6; color: rgba(238,240,243,0.82)">{{a.guarantee}}</div>
+            </div>
+            <a href="{{a.href}}" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: {{a.ink}}; min-height: 44px">PODROBNE O REMESLE
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- before / after -->
+      <div id="realizacie" style="display: flex; flex-direction: column; gap: 14px">
+        <div style="position: relative; flex: 1; min-height: 440px; overflow: hidden; background: #1a1918">
+          <div aria-hidden="true" style="position: absolute; inset: 0; background: repeating-linear-gradient(135deg, #2c2b29 0 2px, #232220 2px 14px), linear-gradient(180deg, #3a3835, #1e1d1b)"></div>
+          <div aria-hidden="true" style="position: absolute; left: 20px; top: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; background: rgba(13,18,21,0.7); padding: 6px 10px">PRED · [FOTO]</div>
+          <div aria-hidden="true" style="position: absolute; inset: 0; {{t.afterClip}}; background: {{t.afterBg}}">
+            <div style="position: absolute; right: 20px; top: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; background: rgba(13,18,21,0.7); padding: 6px 10px">PO · [FOTO]</div>
+          </div>
+          <div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; {{t.handleLeft}}; width: 2px; background: #EEF0F3; transform: translateX(-1px); pointer-events: none">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 50%; background: #EEF0F3; color: #0D1215; display: flex; align-items: center; justify-content: center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"></path></svg>
+            </div>
+          </div>
+          <label for="ba" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Porovnanie pred a po</label>
+          <input id="ba" class="range" type="range" min="0" max="100" value="{{t.pos}}" onInput="{{onSlide}}">
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: rgba(238,240,243,0.6)">
+          <span>{{t.caseLabel}}</span><span>[LOKALITA · TRVANIE]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. AKO PRACUJEME V TANDEME ============ -->
+<section id="postup" style="background: #DBDCE5; color: #0D1215; padding: clamp(96px, 12vw, 160px) clamp(20px, 5vw, 72px)">
+  <div style="max-width: 1320px; margin: 0 auto">
+    <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 64px">
+      <div>
+        <p style="margin: 0 0 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; color: #2F4858">AKO PRACUJEME V TANDEME</p>
+        <h2 style="margin: 0; font-weight: 600; font-size: clamp(34px, 4.8vw, 68px); letter-spacing: -0.025em; line-height: 1.02">Remeslá idú za sebou,<br><span class="serif" style="font-style: italic; font-weight: 400">nie cez seba.</span></h2>
+      </div>
+      <button type="button" onClick="{{replay}}" class="btn" style="font-family: Montserrat, sans-serif; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; background: transparent; border: 1px solid #0D1215; color: #0D1215; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; cursor: pointer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"></path></svg>
+        {{playLabel}}
+      </button>
+    </div>
+
+    <div style="position: relative; height: 2px; background: rgba(13,18,21,0.12); margin-bottom: 8px">
+      <div style="position: absolute; left: 0; top: 0; bottom: 0; {{progress}}; background: #0D1215; transition: width .8s cubic-bezier(.2,.7,.1,1)"></div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0">
+      <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+        <button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="{{s.style}}; font-family: Montserrat, sans-serif; text-align: left; background: transparent; border: 0; border-right: 1px solid rgba(13,18,21,0.1); padding: 28px 24px 32px 0; cursor: pointer; color: #0D1215; transition: opacity .4s; min-height: 140px">
+          <span style="display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.1em">{{s.num}}</span>
+          <span style="display: block; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-top: 18px; line-height: 1.2">{{s.title}}</span>
+          <span style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px">
+            <sc-for list="{{s.crew}}" as="c" hint-placeholder-count="1">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; padding: 5px 9px; color: #EEF0F3; {{c.bg}}">{{c.name}}</span>
+            </sc-for>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+
+    <sc-for list="{{current}}" as="d" hint-placeholder-count="1">
+      <div class="swap" style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; background: #0D1215; color: #EEF0F3; padding: clamp(28px, 4vw, 56px)">
+        <div>
+          <div class="serif" style="font-size: 96px; line-height: 0.9; color: {{d.ink}}">{{d.num}}</div>
+          <div style="font-size: 28px; font-weight: 600; margin-top: 18px; letter-spacing: -0.01em">{{d.title}}</div>
+        </div>
+        <div style="font-size: 16px; line-height: 1.7; color: rgba(238,240,243,0.78)">{{d.text}}</div>
+        <div style="border-left: 1px solid rgba(238,240,243,0.15); padding-left: 28px">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.24em; color: rgba(238,240,243,0.55)">ČO MÁTE PO TOMTO KROKU</div>
+          <div style="font-size: 16px; line-height: 1.6; margin-top: 12px">{{d.out}}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ 6. DOPYT ============ -->
+<section id="dopyt" style="padding: clamp(96px, 12vw, 160px) clamp(20px, 5vw, 72px); max-width: 1320px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 64px">
+  <div class="rv" style="flex: 1 1 340px">
+    <p style="margin: 0 0 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; color: {{brand}}">NEZÁVÄZNÝ DOPYT</p>
+    <h2 style="margin: 0; font-weight: 600; font-size: clamp(34px, 4.4vw, 60px); letter-spacing: -0.025em; line-height: 1.05">Povedzte nám,<br><span class="serif" style="font-style: italic; font-weight: 400">čo prerábate.</span></h2>
+    <p style="margin: 28px 0 0; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.68); max-width: 400px">Ozveme sa, dohodneme obhliadku a pripravíme cenovú ponuku podľa skutočného stavu.</p>
+    <div style="margin-top: 44px; display: flex; flex-direction: column; gap: 18px; font-size: 15px">
+      <a href="tel:+421948536398" style="text-decoration: none; min-height: 44px; display: flex; align-items: center; gap: 14px"><span style="font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.55); width: 90px">DISPEČING</span>+421 948 536 398</a>
+      <a href="mailto:[E-MAIL]" style="text-decoration: none; min-height: 44px; display: flex; align-items: center; gap: 14px"><span style="font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.55); width: 90px">E-MAIL</span>[E-MAIL]</a>
+      <div style="min-height: 44px; display: flex; align-items: center; gap: 14px"><span style="font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.55); width: 90px">HODINY</span>[PRACOVNÉ HODINY]</div>
+    </div>
+  </div>
+
+  <form class="rv" onSubmit="{{submit}}" style="flex: 999 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 32px; align-content: start">
+    <div><label for="f1" style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(238,240,243,0.6)">MENO</label><input id="f1" class="fld" type="text" autocomplete="name" required></div>
+    <div><label for="f2" style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(238,240,243,0.6)">TELEFÓN</label><input id="f2" class="fld" type="tel" autocomplete="tel" required></div>
+    <div><label for="f3" style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(238,240,243,0.6)">TYP PRÁCE</label>
+      <select id="f3" class="fld">
+        <option>Kompletná rekonštrukcia</option>
+        <option>Kúpeľňa / WC</option>
+        <option>Elektroinštalácia</option>
+        <option>Vodoinštalácia</option>
+        <option>Nábytok na mieru</option>
+        <option>Komerčný priestor</option>
+      </select>
+    </div>
+    <div><label for="f4" style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(238,240,243,0.6)">LOKALITA</label><input id="f4" class="fld" type="text" placeholder="napr. Petržalka, Pezinok"></div>
+    <div style="grid-column: 1 / -1"><label for="f5" style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(238,240,243,0.6)">ČO TREBA UROBIŤ</label><textarea id="f5" class="fld" rows="3" style="resize: vertical"></textarea></div>
+    <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 20px">
+      <button type="submit" class="btn" style="font-family: Montserrat, sans-serif; min-height: 54px; padding: 0 32px; background: {{brand}}; color: #0D1215; border: 0; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; cursor: pointer">Odoslať dopyt</button>
+      <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+        <span role="status" style="font-size: 14px; color: rgba(238,240,243,0.8)">Ďakujeme, ozveme sa vám.</span>
+      </sc-if>
+    </div>
+  </form>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="border-top: 1px solid rgba(238,240,243,0.1); padding: 40px clamp(20px, 5vw, 72px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-size: 12px; line-height: 1.8; color: rgba(238,240,243,0.55)">
+  <div>Pressburg Team s.r.o. · Profi Prerábky s.r.o. · Pán Elektrikár s.r.o. · Pán Vodár s.r.o.<br>IČO [DOPLNIŤ] · Bratislava</div>
+  <div style="display: flex; gap: 24px; align-items: center"><a href="https://www.instagram.com/profi_prerabky" style="color: rgba(238,240,243,0.7)">Instagram</a><a href="#" style="color: rgba(238,240,243,0.7)">Facebook</a><a href="#" style="color: rgba(238,240,243,0.7)">Ochrana osobných údajov</a></div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#51AE4B","options":["#51AE4B","#2F4858","#3E8F3A","#6CC266"]},"$preview":{"width":1440,"height":4600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { active: 0, pos: 50, step: 0, auto: true, sent: false };
+  }
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      if (this.state.auto) this.setState({ step: (this.state.step + 1) % 4 });
+    }, 3400);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  videoRef = (el) => { if (el) { el.muted = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } };
+  renderVals() {
+    const brand = this.props.brand ?? '#51AE4B';
+    const C = { pre: brand, ele: '#E51E25', vod: '#4562AD', sto: '#E9E3D8' };
+    const INK = { pre: brand, ele: '#FF6B70', vod: '#8FA6E6', sto: '#E9E3D8' };
+    const LOGO = { pre: '/_blob/3b48c903a5e319699f1b8cd10b1cfcaf', ele: '/_blob/8e2c0c842205230b1e4d4fd8c50c3489', vod: '/_blob/16a5bae3a12f6c958fe69114a76e370e', sto: '/_blob/fae86fd8d6d35bcba372fdc97f2e63c0' };
+    const T = [
+      { name: 'Prerábky', ink: INK.pre, logo: LOGO.pre, brand: 'Profi Prerábky', accent: C.pre, href: '#remesla',
+        tagline: 'Stavebná časť od búrania po finálne povrchy.',
+        tasks: ['Búracie práce a odvoz sutiny', 'Murovanie a sadrokartón', 'Omietky, stierky a maľby', 'Obklady a dlažby', 'Podlahy a prechodové lišty'],
+        guarantee: 'Jeden majster zodpovedný za celú stavbu a poradie remesiel. [OVERIŤ ZNENIE]',
+        caseLabel: 'Byt · kompletná rekonštrukcia',
+        afterBg: 'linear-gradient(160deg, #e9e2d6 0%, #cfc4b2 55%, #a8987f 100%)' },
+      { name: 'Elektrikár', ink: INK.ele, logo: LOGO.ele, brand: 'Pán Elektrikár', accent: C.ele, href: '#remesla',
+        tagline: 'Nové rozvody, rozvádzače a svetlo, ktoré dáva zmysel.',
+        tasks: ['Kompletné rozvody a výmena hliníka', 'Rozvádzače a istenie', 'Osvetlenie a ovládanie', 'Klimatizácie', 'Odborná prehliadka a skúška'],
+        guarantee: 'Rozvody fotografujeme pred zakrytím, aby ste vedeli, kde čo vedie. [OVERIŤ]',
+        caseLabel: 'Kancelária · nové rozvody a osvetlenie',
+        afterBg: 'radial-gradient(ellipse at 50% 20%, #fff3cf 0%, #d9c08a 35%, #5a4a2c 100%)' },
+      { name: 'Vodár', ink: INK.vod, logo: LOGO.vod, brand: 'Pán Vodár', accent: C.vod, href: '#remesla',
+        tagline: 'Voda, odpady a kúpeľňa bez prekvapení za obkladom.',
+        tasks: ['Rozvody vody a kanalizácie', 'Kúpeľne a WC na kľúč', 'Podlahové kúrenie', 'Napojenie spotrebičov', 'Tlakové skúšky rozvodov'],
+        guarantee: 'Každý rozvod prejde tlakovou skúškou pred obkladom. [OVERIŤ]',
+        caseLabel: 'Kúpeľňa · nové rozvody a sprchový kút',
+        afterBg: 'linear-gradient(180deg, #e6ecef 0%, #b9c6cd 50%, #6f8794 100%)' },
+      { name: 'Stolárstvo', ink: INK.sto, logo: LOGO.sto, brand: 'Stolárstvo Pressburg', accent: C.sto, href: '#remesla',
+        tagline: 'Nábytok vyrobený na rozmery vašej hotovej stavby.',
+        tasks: ['Kuchyne na mieru', 'Vstavané a šatníkové skrine', 'Obklady stien a niky', 'Kancelársky nábytok', 'Montáž a doladenie na mieste'],
+        guarantee: 'Zameriavame až hotovú stavbu, nie výkres. [OVERIŤ]',
+        caseLabel: 'Kuchyňa · dyha a lak',
+        afterBg: 'repeating-linear-gradient(90deg, #c9a27a 0 3px, #d8b48c 3px 9px, #bf966c 9px 13px)' }
+    ];
+    const a = this.state.active;
+    const pos = this.state.pos;
+    const trades = T.map((t, i) => ({
+      ...t,
+      num: '0' + (i + 1),
+      pressed: i === a ? 'true' : 'false',
+      pick: () => this.setState({ active: i, pos: 50 }),
+      tabStyle: i === a
+        ? 'border-color:' + t.accent + ';color:#EEF0F3;background:rgba(238,240,243,0.05)'
+        : 'border-color:rgba(238,240,243,0.12);color:rgba(238,240,243,0.62);background:transparent',
+      dotStyle: 'background:' + (i === a ? t.accent : 'rgba(238,240,243,0.2)')
+    }));
+    const cur = trades[a];
+    const t = {
+      accent: cur.accent, ink: cur.ink, pos: pos, caseLabel: cur.caseLabel, afterBg: cur.afterBg,
+      afterClip: 'clip-path:inset(0 0 0 ' + pos + '%)',
+      handleLeft: 'left:' + pos + '%'
+    };
+    const active = [{
+      key: a, accent: cur.accent, ink: cur.ink, logo: cur.logo, brand: cur.brand, brandUpper: cur.brand.toUpperCase(), tagline: cur.tagline,
+      guarantee: cur.guarantee, href: cur.href,
+      tasks: cur.tasks.map((x, j) => ({ n: '0' + (j + 1), label: x }))
+    }];
+
+    const crewOf = (k) => ({ name: { pre: 'Profi Prerábky', ele: 'Pán Elektrikár', vod: 'Pán Vodár', sto: 'Stolárstvo Pressburg' }[k], bg: 'background:' + ({ pre: '#2F4858', ele: '#B5161C', vod: '#4562AD', sto: '#1A1F22' }[k]) });
+    const S = [
+      { title: 'Búranie & odpady', crew: ['pre'], accent: C.pre, ink: INK.pre,
+        text: 'Demontáž, búracie práce, ochrana spoločných priestorov a priebežný odvoz sutiny. Priestor pripravíme tak, aby ďalšie remeslá mohli nastúpiť hneď.',
+        out: 'Čistý priestor a zameraný skutočný stav.' },
+      { title: 'Rozvody vody & elektriny', crew: ['vod', 'ele'], accent: C.ele, ink: INK.ele,
+        text: 'Vodár a elektrikár pracujú v jednom harmonograme. Trasy rozvodov dohodneme vopred, aby sa nekrížili a sedeli s budúcim nábytkom.',
+        out: 'Hotové rozvody, odskúšané pred zakrytím. [OVERIŤ]' },
+      { title: 'Omietky & obklady', crew: ['pre'], accent: C.pre, ink: INK.pre,
+        text: 'Omietky, stierky, sadrokartón, obklady a dlažby. Rozmery ník a stien pripravujeme rovno pre stolárov.',
+        out: 'Hotové povrchy pripravené na montáž.' },
+      { title: 'Nábytok na mieru', crew: ['sto'], accent: C.sto, ink: INK.sto,
+        text: 'Kuchyne, vstavané skrine a obklady vyrábame podľa zamerania hotovej stavby, nie podľa pôvodného výkresu.',
+        out: 'Priestor pripravený na bývanie alebo prevádzku.' }
+    ];
+    const st = this.state.step;
+    const steps = S.map((s, i) => ({
+      num: '0' + (i + 1), title: s.title,
+      crew: s.crew.map(crewOf),
+      pressed: i === st ? 'true' : 'false',
+      style: 'opacity:' + (i <= st ? '1' : '0.38'),
+      pick: () => this.setState({ step: i, auto: false })
+    }));
+    const cs = S[st];
+    const current = [{ num: '0' + (st + 1), title: cs.title, text: cs.text, out: cs.out, accent: cs.accent, ink: cs.ink }];
+
+    return {
+      brand, trades, t, active, videoRef: this.videoRef, steps, current,
+      progress: 'width:' + ((st + 1) / 4 * 100) + '%',
+      playLabel: this.state.auto ? 'Prehráva sa…' : 'Prehrať postup',
+      replay: () => this.setState({ step: 0, auto: true }),
+      onSlide: (e) => this.setState({ pos: Number(e.target.value) }),
+      submit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      sent: this.state.sent
+    };
+  }
+}
+</script>
+</body>
+</html>

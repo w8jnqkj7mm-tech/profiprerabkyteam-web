@@ -1,84 +1,890 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import TradeMarquee from '../components/TradeMarquee.astro';
-import WhyTeam from '../components/WhyTeam.astro';
-import ProcessTimeline from '../components/ProcessTimeline.astro';
-import ContactForm from '../components/ContactForm.astro';
-import Footer from '../components/Footer.astro';
+import { BRAND, TRADES, CREW, STEPS, JOBS, PRICES, SLIDES, CHIPS } from '../data/home';
 
 const title = 'Profi Prerábky Team – Kompletné rekonštrukcie s vlastnými remeselníkmi';
-const description = 'Kompletné rekonštrukcie bytov, domov a kancelárií v Bratislave. Elektriká, vodár, stolárstvo – všetko v jednom tíme. Bezplatná konzultácia.';
+const description = 'Kompletné rekonštrukcie bytov, domov a kancelárií v Bratislave. Prerábky, elektrikár, vodár a stolárstvo v jednom tíme.';
+
+const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+const phoneIcon = (size: number, stroke = 'currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>`;
+const waIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.2.3.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.5.3 0 .1 0 .7-.2 1.3z"></path></svg>';
+const playIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"></path></svg>';
+
+const t0 = TRADES[0];
+const s0 = STEPS[0];
+const j0 = JOBS[0];
+const marquee = Array.from({ length: 4 });
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Hero Section -->
-  <Hero posterUrl="/hero-poster.webp">
-    <Header slot="header" />
-  </Hero>
+<div class="home">
 
-  <!-- 1. ROZCESTNÍK: Malá práca / Rekonštrukcia -->
-  <section class="bg-bg-dark py-16 md:py-24 px-clamp-sm">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Malá práca -->
-        <a href="/male-prace" class="group bg-bg-panel border border-text-muted rounded-2xl p-8 md:p-12 hover:border-brand-green hover:bg-bg-panel/50 transition-all duration-350">
-          <div class="flex items-start justify-between mb-6">
-            <div>
-              <h3 class="text-2xl md:text-3xl font-bold mb-3">Potrebujem malú prácu</h3>
-              <p class="text-text-secondary text-sm mb-6">Hodinový majster, elektrikár, vodár, klimatizácia. Rýchlo a spoľahlivo.</p>
-            </div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0 text-brand-green opacity-0 group-hover:opacity-100 transition-opacity">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-bg-dark rounded-full text-xs font-medium text-text-secondary">Od 50 € + DPH</span>
-          </div>
-        </a>
+<!-- 0. INTRO -->
+<div id="intro" role="dialog" aria-label="Úvodné video">
+  <video id="intro-video" autoplay muted playsinline preload="auto" poster="/media/hero-poster.webp" aria-label="Od pôdorysu po kľúč">
+    <source src="/media/hero-1080.webm" type="video/webm" />
+    <source src="/media/hero-1080.mp4" type="video/mp4" />
+  </video>
+  <button type="button" class="btn ghost" id="intro-skip" style="position:absolute;right:clamp(20px,5vw,48px);bottom:clamp(20px,5vw,48px);background:rgba(13,18,21,0.6)">
+    Preskočiť intro <Fragment set:html={arrow} />
+  </button>
+</div>
+<script is:inline>
+  (function () {
+    var el = document.getElementById('intro');
+    var seen = false;
+    try { seen = localStorage.getItem('ppt-intro') === '1'; } catch (e) {}
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (seen || reduce) el.remove();
+  })();
+</script>
 
-        <!-- Rekonštrukcia -->
-        <a href="/rekonstrukcie" class="group bg-bg-panel border border-text-muted rounded-2xl p-8 md:p-12 hover:border-brand-green hover:bg-bg-panel/50 transition-all duration-350">
-          <div class="flex items-start justify-between mb-6">
-            <div>
-              <h3 class="text-2xl md:text-3xl font-bold mb-3">Plánujem rekonštrukciu</h3>
-              <p class="text-text-secondary text-sm mb-6">Byt, dom, kancelária, kúpeľňa. Komplexný projekt od plánu po osadenie.</p>
-            </div>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0 text-brand-green opacity-0 group-hover:opacity-100 transition-opacity">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </div>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-bg-dark rounded-full text-xs font-medium text-text-secondary">Bezplatná obhliadka</span>
-          </div>
-        </a>
+<!-- 1. HERO -->
+<section aria-label="Úvod" class="hero">
+  <div aria-hidden="true" style="position:absolute;inset:0;overflow:hidden">
+    {SLIDES.map((s, i) => (
+      <div class="kb hero-slide" style={`position:absolute;inset:0;background:${s.bg};opacity:${i === 0 ? 1 : 0};transition:opacity 1.6s ease`}>
+        {s.tag && <span style="position:absolute;right:20px;bottom:20px;font-size:11px;font-weight:600;letter-spacing:0.2em;color:rgba(238,240,243,0.5)">{s.tag}</span>}
+      </div>
+    ))}
+  </div>
+  <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(20,32,40,0.72) 0%, rgba(20,32,40,0.18) 40%, rgba(15,25,32,0.94) 100%), linear-gradient(90deg, rgba(20,32,40,0.8) 0%, rgba(20,32,40,0) 62%)"></div>
+  <div class="glow" aria-hidden="true" style="left:-8%;bottom:-14%;width:52%;height:70%;background:radial-gradient(circle at 40% 40%, rgba(81,174,75,0.30), rgba(81,174,75,0) 62%)"></div>
+  <div class="glow" aria-hidden="true" style="right:-10%;top:-16%;width:46%;height:62%;background:radial-gradient(circle at 50% 50%, rgba(91,127,146,0.34), rgba(91,127,146,0) 64%)"></div>
+
+  <header style="position:relative;z-index:3;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:24px clamp(20px,5vw,72px)">
+    <a href="/" aria-label="Profi Prerábky team – domov" style="display:flex;align-items:center">
+      <img src="/logos/profi-prerabky-team-negativ.svg" alt="Profi Prerábky team" style="height:52px;width:auto" />
+    </a>
+    <button type="button" class="burger btn ghost" id="burger" aria-expanded="false" aria-label="Menu" style="min-height:44px;padding:0 16px;font-size:12px;letter-spacing:0.1em">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+      MENU
+    </button>
+    <nav aria-label="Hlavná navigácia" class="navlinks" id="navlinks">
+      <a href="/male-prace">Malé práce</a>
+      <a href="/rekonstrukcie">Rekonštrukcie</a>
+      <a href="#remesla">Remeslá</a>
+      <a href="/cennik">Cenník</a>
+      <a href="#postup">Postup</a>
+      <a href="#realizacie">Realizácie</a>
+      <a href="#dopyt">Kontakt</a>
+    </nav>
+  </header>
+
+  <div id="hero" style="position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 clamp(20px,5vw,72px) clamp(72px,10vh,120px);max-width:1320px">
+    <div class="fade" style="display:inline-flex;align-self:flex-start;align-items:center;gap:10px;border:1px solid rgba(238,240,243,0.22);padding:9px 16px;font-size:12px;font-weight:500;letter-spacing:0.1em;margin-bottom:36px;background:rgba(13,18,21,0.4)">
+      <span style={`width:6px;height:6px;background:${BRAND}`}></span>
+      Bratislava a okolie · 4 špecializované remeslá v jednom tíme
+    </div>
+    <h1 style="margin:0;font-weight:600;font-size:clamp(40px,6.4vw,96px);line-height:1.02;letter-spacing:-0.025em">
+      <span class="line l1"><span>Kompletné rekonštrukcie</span></span>
+      <span class="line l2"><span>s vlastnými remeselníkmi.</span></span>
+      <span class="line l3"><span class="dline" style={`color:${BRAND}`}>Od búrania po nábytok na mieru.</span></span>
+    </h1>
+    <div class="fade2" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
+      <a href="#dopyt" class="btn" style="min-height:52px;padding:0 28px;background:#EEF0F3;color:#0D1215;font-weight:600;font-size:14px;letter-spacing:0.06em">Nezáväzný dopyt <Fragment set:html={arrow} /></a>
+      <a href="https://wa.me/421948536398" class="btn" style="min-height:52px;padding:0 24px;background:#25D366;color:#0D1215;font-weight:600;font-size:14px;letter-spacing:0.04em"><Fragment set:html={waIcon} /> WhatsApp</a>
+      <a href="tel:+421948536398" class="btn" style="min-height:52px;padding:0 24px;border:1px solid rgba(238,240,243,0.35);color:#EEF0F3;font-weight:500;font-size:14px;letter-spacing:0.04em"><Fragment set:html={phoneIcon(16)} /> +421 948 536 398</a>
+    </div>
+  </div>
+
+  <div class="scrollcue" aria-hidden="true">
+    SCROLL
+    <span style="display:block;width:1px;height:44px;background:rgba(238,240,243,0.15);position:relative;overflow:hidden"><span class="cue" style="position:absolute;inset:0;background:#EEF0F3"></span></span>
+  </div>
+</section>
+
+<!-- 2. ROZCESTNÍK -->
+<section aria-label="Čo potrebujete" style="padding:clamp(56px,7vw,88px) clamp(20px,5vw,72px);max-width:1320px;margin:0 auto">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:20px">
+    <div class="panel card" style={`display:flex;flex-direction:column;gap:20px;border-top:3px solid ${BRAND};padding:clamp(28px,3.4vw,44px)`}>
+      <div>
+        <div class="eyebrow" style={`color:${BRAND}`}>RÝCHLO A NA HODINY</div>
+        <div style="font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-0.02em;margin-top:12px">Potrebujem malú prácu</div>
+      </div>
+      <div style="font-size:15px;line-height:1.65;color:rgba(238,240,243,0.7)">Vyberte, o čo ide — ukážeme cenu výjazdu. Zvyčajne termín do pár dní.</div>
+      <div role="group" aria-label="Typ malej práce" style="display:flex;flex-wrap:wrap;gap:8px">
+        {JOBS.map((j, i) => (
+          <button type="button" class:list={['tab', 'chip', { on: i === 0 }]} data-job={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:44px;padding:0 14px;font-size:13px;font-weight:500">{j.label}</button>
+        ))}
+      </div>
+      <div style="margin-top:auto;padding-top:20px;border-top:1px solid rgba(238,240,243,0.1)">
+        <span style="display:block;font-size:24px;font-weight:600"><span id="job-price">{j0.price}</span> <span id="job-label" style="font-size:14px;font-weight:500;color:rgba(238,240,243,0.7)">{j0.priceLabel}</span></span>
+        <span id="job-note" style="display:block;font-size:12px;line-height:1.6;color:rgba(238,240,243,0.5);margin-top:4px">{j0.note}</span>
+        <span style="display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:12px">
+          <a href="/cennik" class="ulink">Celý cenník</a>
+          <a href="/male-prace" class="ulink">Malé práce</a>
+          <a href="/elektrikar" class="ulink">Elektrikár</a>
+          <a href="/vodar" class="ulink">Vodár</a>
+        </span>
+        <a id="job-cta" href={j0.href} style={`display:inline-flex;align-items:center;gap:10px;margin-top:16px;min-height:44px;font-size:13px;font-weight:600;letter-spacing:0.1em;color:${BRAND}`}><span id="job-cta-text">{j0.cta}</span> <Fragment set:html={arrow} /></a>
       </div>
     </div>
-  </section>
 
-  <!-- 2. MARQUEE (4 remeslá) -->
-  <TradeMarquee />
+    <a href="/rekonstrukcie" class="panel card" style="color:#EEF0F3;display:flex;flex-direction:column;gap:20px;border-top:3px solid #EEF0F3;padding:clamp(28px,3.4vw,44px)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+        <div>
+          <div class="eyebrow" style="color:rgba(238,240,243,0.75)">CELÝ PROJEKT NA KĽÚČ</div>
+          <div style="font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-0.02em;margin-top:12px">Plánujem rekonštrukciu</div>
+        </div>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" style="flex:none;margin-top:6px"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </div>
+      <div style="font-size:15px;line-height:1.65;color:rgba(238,240,243,0.7)">Byt, dom, kancelária alebo kúpeľňa. Jedna zmluva, jeden harmonogram, štyri remeslá z jedného tímu.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        {['Byt', 'Dom', 'Kancelária', 'Kúpeľňa'].map((x) => <span class="pill">{x}</span>)}
+      </div>
+      <div style="margin-top:auto;padding-top:20px;border-top:1px solid rgba(238,240,243,0.1)">
+        <span style="display:block;font-size:24px;font-weight:600">50 € <span style="font-size:14px;font-weight:500;color:rgba(238,240,243,0.7)">obhliadka v Bratislave</span></span>
+        <span style="display:block;font-size:12px;color:rgba(238,240,243,0.5);margin-top:4px">61,50 € s DPH · pri realizácii sa celá odpočíta z ceny</span>
+      </div>
+    </a>
+  </div>
+</section>
 
-  <!-- 3. WHY TEAM (3 piliere) -->
-  <WhyTeam />
+<!-- 3. VIDEO -->
+<section aria-label="Od pôdorysu po kľúč" style="padding:0 0 clamp(72px,9vw,120px)">
+  <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,72px)">
+    <div class="rv" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px">
+      <h2 style="margin:0;font-weight:600;font-size:clamp(28px,3.6vw,48px);letter-spacing:-0.02em;line-height:1.1">Od pôdorysu <span class="dline" style={`color:${BRAND}`}>po kľúč.</span></h2>
+      <button type="button" class="btn ghost" id="replay-video" style="min-height:48px;padding:0 22px"><Fragment set:html={playIcon} /> Prehrať znova</button>
+    </div>
+    <div class="panel" style="position:relative;overflow:hidden">
+      <video id="main-video" poster="/media/hero-poster.webp" muted playsinline preload="metadata" aria-label="3D animácia: od pôdorysu po odovzdanie na kľúč" style="width:100%;height:auto;display:block">
+        <source src="/media/hero-1080.webm" type="video/webm" />
+        <source src="/media/hero-1080.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;font-size:12px;letter-spacing:0.08em;color:rgba(238,240,243,0.6)">
+      {['Navrhneme', 'Postavíme', 'Rozvedieme', 'Omietneme', 'Zariadime na mieru', 'Odovzdáme na kľúč'].map((x, i, a) => (
+        <Fragment><span>{x}</span>{i < a.length - 1 && <span aria-hidden="true" style={`color:${BRAND}`}>·</span>}</Fragment>
+      ))}
+    </div>
+  </div>
+</section>
 
-  <!-- TODO: 4. TRADE INTERACTIVE (tabs + Pred/Po) -->
+<!-- 4. MARQUEE -->
+<div aria-hidden="true" style="border-top:1px solid rgba(238,240,243,0.1);border-bottom:1px solid rgba(238,240,243,0.1);padding:22px 0;overflow:hidden">
+  <div class="track" style="font-family:Spectral,Georgia,serif;font-size:34px;gap:48px;white-space:nowrap;color:rgba(238,240,243,0.85)">
+    {marquee.map(() => (
+      <Fragment>
+        <span>Prerábky</span><span style={`color:${BRAND}`}>✕</span>
+        <span style="font-style:italic">Elektrikár</span><span style={`color:${BRAND}`}>✕</span>
+        <span>Vodár</span><span style={`color:${BRAND}`}>✕</span>
+        <span style="font-style:italic">Stolárstvo</span><span style={`color:${BRAND}`}>✕</span>
+      </Fragment>
+    ))}
+  </div>
+</div>
 
-  <!-- 5. PROCESS TIMELINE (4 kroky) -->
-  <ProcessTimeline />
+<!-- 5. STATEMENT -->
+<section style="padding:clamp(96px,14vw,180px) clamp(20px,5vw,72px);max-width:1320px;margin:0 auto">
+  <p class="rv kicker" style={`margin:0 0 28px;color:${BRAND}`}>PREČO JEDEN TÍM</p>
+  <h2 class="rv" style="margin:0;font-weight:500;font-size:clamp(32px,4.6vw,68px);line-height:1.12;letter-spacing:-0.02em;max-width:1100px">Jedna zmluva. Jeden harmonogram. <span class="dline" style="color:rgba(238,240,243,0.6)">Štyri remeslá, ktoré sa na stavbe nečakajú navzájom.</span></h2>
+  <div class="rv" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px;margin-top:72px;border-top:1px solid rgba(238,240,243,0.12);padding-top:36px">
+    <div><div class="pillar-t">Vlastní ľudia</div><div class="pillar-d">Murári, elektrikári, vodári aj stolári sú z jedného tímu. Žiadne preposielanie práce ďalej.</div></div>
+    <div><div class="pillar-t">Jeden zodpovedný majster</div><div class="pillar-d">Vy voláte jednému človeku. On rieši poradie remesiel, materiál aj termíny.</div></div>
+    <div><div class="pillar-t">Nadväznosť bez prestojov</div><div class="pillar-d">Rozvody, povrchy a nábytok plánujeme spolu, takže stolár dostane presne tie rozmery, ktoré murár postavil.</div></div>
+  </div>
+</section>
 
-  <!-- 6. CONTACT FORM -->
-  <ContactForm title="Napíšte nám" description="Bez predstáv a zbytočných formálov. Čo chcete dosiahnuť?" />
+<!-- 6. REMESLÁ -->
+<section id="remesla" style="padding:0 clamp(20px,5vw,72px) clamp(96px,12vw,160px);max-width:1440px;margin:0 auto">
+  <div class="rv" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px">
+    <h2 style="margin:0;font-weight:600;font-size:clamp(36px,5vw,72px);letter-spacing:-0.025em;line-height:1">Štyri remeslá.<br /><span id="trade-title" class="dline" style={`color:${t0.ink};transition:color .5s`}>Jeden tím.</span></h2>
+    <p style="margin:0;max-width:380px;font-size:15px;line-height:1.65;color:rgba(238,240,243,0.65)">Vyberte remeslo a posuňte jazdec Pred / Po.</p>
+  </div>
 
-  <!-- Footer -->
-  <Footer />
+  <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch">
+    <div role="group" aria-label="Výber remesla" style="flex:1 1 280px;display:flex;flex-direction:column;gap:10px">
+      {TRADES.map((tr, i) => (
+        <button type="button" class:list={['tab', 'trade-tab', { on: i === 0 }]} data-trade={i} aria-pressed={i === 0 ? 'true' : 'false'} style={`--accent:${tr.accent}`}>
+          <span style="font-size:12px;font-weight:600;letter-spacing:0.1em;opacity:0.7">0{i + 1}</span>
+          <span style="flex:1">
+            <span style="display:block;font-size:20px;font-weight:600;letter-spacing:-0.01em">{tr.name}</span>
+            <span style="display:block;font-size:12px;letter-spacing:0.08em;margin-top:4px;opacity:0.7">{tr.brand}</span>
+          </span>
+          <span class="dot" style="width:10px;height:10px;flex:none"></span>
+        </button>
+      ))}
+    </div>
+
+    <div style="flex:999 1 640px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px">
+      <div class="panel" id="trade-panel" style={`border-top:3px solid ${t0.accent};padding:36px;display:flex;flex-direction:column;gap:26px;transition:border-color .5s`}>
+        <div id="trade-body" class="swap" style="display:flex;flex-direction:column;gap:26px">
+          <div>
+            <img id="trade-logo" src={t0.logo} alt={t0.brand} style="height:64px;width:auto" />
+            <div id="trade-tagline" class="dline" style="font-style:normal;font-size:30px;line-height:1.2;margin-top:12px">{t0.tagline}</div>
+          </div>
+          <ul id="trade-tasks" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+            {t0.tasks.map((k, j) => (
+              <li class="task"><span class="task-n" style={`color:${t0.ink}`}>0{j + 1}</span><span class="task-l">{k}</span></li>
+            ))}
+          </ul>
+          <div style="display:flex;gap:14px;align-items:flex-start;padding:16px 18px;background:rgba(238,240,243,0.04)">
+            <svg id="trade-shield" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={t0.ink} stroke-width="1.8" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+            <div id="trade-guarantee" style="font-size:14px;line-height:1.6;color:rgba(238,240,243,0.82)">{t0.guarantee}</div>
+          </div>
+          <a id="trade-link" href={t0.href} style={`display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:0.1em;color:${t0.ink};min-height:44px`}>PODROBNE O REMESLE <Fragment set:html={arrow} /></a>
+        </div>
+      </div>
+
+      <div id="realizacie" style="display:flex;flex-direction:column;gap:14px">
+        <div class="panel" style="position:relative;flex:1;min-height:440px;overflow:hidden;background:#1a1918">
+          <div aria-hidden="true" style="position:absolute;inset:0;background:repeating-linear-gradient(135deg, #2c2b29 0 2px, #232220 2px 14px), linear-gradient(180deg, #3a3835, #1e1d1b)"></div>
+          <div aria-hidden="true" class="ba-tag" style="left:20px">PRED · [FOTO]</div>
+          <div aria-hidden="true" id="ba-after" style={`position:absolute;inset:0;clip-path:inset(0 0 0 50%);background:${t0.afterBg}`}>
+            <div class="ba-tag" style="right:20px">PO · [FOTO]</div>
+          </div>
+          <div aria-hidden="true" id="ba-handle" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#EEF0F3;transform:translateX(-1px);pointer-events:none">
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#EEF0F3;color:#0D1215;display:flex;align-items:center;justify-content:center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"></path></svg>
+            </div>
+          </div>
+          <label for="ba" class="sr-only">Porovnanie pred a po</label>
+          <input id="ba" class="range" type="range" min="0" max="100" value="50" />
+        </div>
+        <div style="display:flex;justify-content:space-between;gap:12px;font-size:13px;color:rgba(238,240,243,0.6)">
+          <span id="trade-case">{t0.caseLabel}</span><span>[LOKALITA · TRVANIE]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CENY A ZÁRUKA -->
+<section aria-label="Ceny a záruka" style="padding:0 clamp(20px,5vw,72px) clamp(96px,12vw,160px);max-width:1440px;margin:0 auto">
+  <div class="rv" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px">
+    <div class="panel" style="padding:36px;display:flex;flex-direction:column;gap:24px">
+      <div>
+        <div class="eyebrow" style={`color:${BRAND}`}>CENY MALÝCH PRÁC</div>
+        <div class="dline" style="font-style:normal;font-size:30px;line-height:1.2;margin-top:12px">Rovnaké pre všetky štyri značky.</div>
+      </div>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+        {PRICES.map((p) => (
+          <li style="display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px solid rgba(238,240,243,0.08)">
+            <span style="font-size:15px;line-height:1.5;color:rgba(238,240,243,0.86)">{p.label}</span>
+            <span style="text-align:right;flex:none">
+              <span style="display:block;font-size:20px;font-weight:600">{p.main}</span>
+              <span style="display:block;font-size:11px;color:rgba(238,240,243,0.5);margin-top:2px">{p.sub}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <div style="font-size:12px;line-height:1.6;color:rgba(238,240,243,0.55)">Hlavná cena je bez DPH, pod ňou je cena s DPH (23 %). Materiál sa účtuje zvlášť. Nacenenie veľkej zákazky je deň práce, preto obhliadku účtujeme — pri realizácii ju celú odpočítame.</div>
+      <a href="/cennik" style={`display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:0.1em;color:${BRAND};min-height:44px`}>CELÝ CENNÍK <Fragment set:html={arrow} /></a>
+    </div>
+
+    <div style="background:linear-gradient(180deg, #3a5768 0%, #2a4150 100%);border-radius:14px;box-shadow:0 0 0 1px rgba(228,237,241,0.14), 0 24px 60px rgba(0,0,0,0.38);padding:36px;display:flex;flex-direction:column;gap:24px">
+      <div>
+        <div class="eyebrow" style="color:rgba(238,240,243,0.75)">ZÁRUKA</div>
+        <div class="dline" style="font-style:normal;font-size:30px;line-height:1.2;margin-top:12px">Dva roky, desať rokov <span style={`font-style:italic;color:${BRAND}`}>a jedna doživotná.</span></div>
+      </div>
+      <div class="wr"><span class="wr-n">2</span><span class="wr-t"><strong>roky na všetky vykonané práce</strong> — štandard pri každej zákazke.</span></div>
+      <div class="wr"><span class="wr-n">10</span><span class="wr-t"><strong>rokov na obklady a dlažby</strong> — pri splnení podmienok nižšie.</span></div>
+      <div style={`display:flex;gap:18px;align-items:baseline;background:rgba(13,18,21,0.3);border-left:2px solid ${BRAND};padding:16px 18px`}>
+        <span class="wr-n" style={`color:${BRAND}`}>∞</span>
+        <span class="wr-t"><strong>Doživotná garancia kvality remeselnej práce.</strong> Ručíme za to, že práca je odvedená kvalitne a podľa technologických postupov — nielen dovtedy, kým plynie zákonná záruka.</span>
+      </div>
+      <div style="font-size:12px;line-height:1.7;color:rgba(238,240,243,0.7);background:rgba(13,18,21,0.3);padding:14px 16px">
+        Podmienky: 10-ročná záruka na obklady a dlažby platí pri použití produktov Sopro a na pevnom, stabilnom podklade. Doživotná garancia sa vzťahuje na vyhotovenie práce — nie na opotrebenie materiálu, zásahy iných firiem ani na provizórne riešenia, ktoré si vyžiada klient. [OVERIŤ ZNENIE S PRÁVNIKOM]
+      </div>
+    </div>
+
+    <div class="panel" style="padding:36px;display:flex;flex-direction:column;gap:20px">
+      <div>
+        <div class="eyebrow" style={`color:${BRAND}`}>HODNOTENIA</div>
+        <div class="dline" style="font-style:normal;font-size:30px;line-height:1.2;margin-top:12px">Google recenzie štyroch firiem.</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;border:1px dashed rgba(238,240,243,0.22);padding:24px;text-align:center">
+        <div style="font-size:12px;letter-spacing:0.2em;color:rgba(238,240,243,0.6)">[WIDGET GOOGLE RECENZIÍ]</div>
+        <div style="font-size:13px;line-height:1.6;color:rgba(238,240,243,0.5)">Načítané cez Google Places API — hodnotenie, počet recenzií a odkaz na profil. Recenzie sa neprepisujú ručne.</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:rgba(238,240,243,0.6)">
+        {['Profi Prerábky', 'Pán Elektrikár', 'Pán Vodár', 'Stolárstvo Pressburg'].map((x) => <span style="padding:6px 12px;border:1px solid rgba(238,240,243,0.18)">{x}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. POSTUP -->
+<section id="postup" style="background:linear-gradient(180deg, #e7eef2 0%, #d8e2e8 55%, #cbd7de 100%);color:#0D1215;padding:clamp(96px,12vw,160px) clamp(20px,5vw,72px)">
+  <div style="max-width:1320px;margin:0 auto">
+    <div class="rv" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:64px">
+      <div>
+        <p class="kicker" style="margin:0 0 20px;color:#2F4858">AKO PRACUJEME V TANDEME</p>
+        <h2 style="margin:0;font-weight:600;font-size:clamp(34px,4.8vw,68px);letter-spacing:-0.025em;line-height:1.02;color:#0D1215">Remeslá idú za sebou,<br /><span class="dline">nie cez seba.</span></h2>
+      </div>
+      <button type="button" class="btn" id="steps-play" style="min-height:48px;padding:0 22px;background:transparent;border:1px solid #0D1215;color:#0D1215;font-weight:600;font-size:13px;letter-spacing:0.08em"><Fragment set:html={playIcon} /> <span id="steps-play-label">Prehráva sa…</span></button>
+    </div>
+
+    <div style="position:relative;height:2px;background:rgba(13,18,21,0.12);margin-bottom:8px">
+      <div id="steps-progress" style="position:absolute;left:0;top:0;bottom:0;width:25%;background:#0D1215;transition:width .8s cubic-bezier(.2,.7,.1,1)"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0">
+      {STEPS.map((s, i) => (
+        <button type="button" class="step" data-step={i} aria-pressed={i === 0 ? 'true' : 'false'} style={`opacity:${i === 0 ? 1 : 0.38}`}>
+          <span style="display:block;font-size:13px;font-weight:600;letter-spacing:0.1em">0{i + 1}</span>
+          <span style="display:block;font-size:22px;font-weight:600;letter-spacing:-0.01em;margin-top:18px;line-height:1.2">{s.title}</span>
+          <span style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px">
+            {s.crew.map((c) => <span style={`font-size:11px;font-weight:600;letter-spacing:0.08em;padding:5px 9px;color:#EEF0F3;background:${CREW[c].bg}`}>{CREW[c].name}</span>)}
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <div id="step-detail" class="swap" style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:40px;background:linear-gradient(180deg, #22343f 0%, #131e26 100%);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,0.28);color:#EEF0F3;padding:clamp(28px,4vw,56px)">
+      <div>
+        <div id="step-num" class="dline" style={`font-style:normal;font-size:96px;line-height:0.9;color:${s0.ink}`}>01</div>
+        <div id="step-title" style="font-size:28px;font-weight:600;margin-top:18px;letter-spacing:-0.01em">{s0.title}</div>
+      </div>
+      <div id="step-text" style="font-size:16px;line-height:1.7;color:rgba(238,240,243,0.78)">{s0.text}</div>
+      <div style="border-left:1px solid rgba(238,240,243,0.15);padding-left:28px">
+        <div class="eyebrow" style="color:rgba(238,240,243,0.55)">ČO MÁTE PO TOMTO KROKU</div>
+        <div id="step-out" style="font-size:16px;line-height:1.6;margin-top:12px">{s0.out}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. DOPYT -->
+<section id="dopyt" style="padding:clamp(96px,12vw,160px) clamp(20px,5vw,72px);max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:64px">
+  <div class="rv" style="flex:1 1 340px">
+    <p class="kicker" style={`margin:0 0 20px;color:${BRAND}`}>NEZÁVÄZNÝ DOPYT</p>
+    <h2 style="margin:0;font-weight:600;font-size:clamp(34px,4.4vw,60px);letter-spacing:-0.025em;line-height:1.05">Povedzte nám,<br /><span class="dline">čo prerábate.</span></h2>
+    <p style="margin:28px 0 0;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.68);max-width:400px">Ozveme sa, dohodneme obhliadku a pripravíme cenovú ponuku podľa skutočného stavu.</p>
+    <div style={`margin-top:24px;display:flex;gap:12px;align-items:flex-start;padding:16px 18px;background:rgba(81,174,75,0.1);border-left:2px solid ${BRAND};max-width:400px`}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={BRAND} stroke-width="1.8" aria-hidden="true" style="flex:none;margin-top:2px"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+      <div style="font-size:14px;line-height:1.6;color:rgba(238,240,243,0.85)">Prvá odpoveď alebo návrh termínu do 2–4 hodín v pracovnom čase. Cenová ponuka podľa rozsahu do 1–10 pracovných dní.</div>
+    </div>
+    <div style="margin-top:40px;display:flex;flex-direction:column;gap:18px;font-size:15px">
+      <a href="tel:+421948536398" class="crow"><span class="crow-l">DISPEČING</span>+421 948 536 398</a>
+      <a href="https://wa.me/421948536398" class="crow"><span class="crow-l">WHATSAPP</span>+421 948 536 398</a>
+      <a href="mailto:info@profiprerabkyteam.sk" class="crow"><span class="crow-l">E-MAIL</span>info@profiprerabkyteam.sk</a>
+      <div class="crow"><span class="crow-l">HODINY</span>Po–Pi 8:30–17:00</div>
+      <div class="crow"><span class="crow-l">OBLASŤ</span>Bratislava a okolie</div>
+    </div>
+  </div>
+
+  <form id="lead-form" class="rv" style="flex:999 1 520px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:28px 32px;align-content:start">
+    <div style="grid-column:1 / -1">
+      <span class="flabel" style="display:block;margin-bottom:14px">O ČO IDE</span>
+      <div role="group" aria-label="Typ zákazky" style="display:flex;flex-wrap:wrap;gap:10px">
+        {['Malá práca / oprava', 'Rekonštrukcia'].map((label, i) => (
+          <button type="button" class:list={['tab', 'chip', 'lead-type', { on: i === 0 }]} data-lead={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:48px;padding:0 22px;font-size:14px;font-weight:600;letter-spacing:0.04em">{label}</button>
+        ))}
+      </div>
+      <input type="hidden" name="type" id="lead-type" value="small_work" />
+    </div>
+
+    <div><label for="f1" class="flabel">MENO</label><input id="f1" name="name" class="fld" type="text" autocomplete="name" required /></div>
+    <div><label for="f2" class="flabel">TELEFÓN</label><input id="f2" name="phone" class="fld" type="tel" autocomplete="tel" required /></div>
+    <div><label for="f6" class="flabel">E-MAIL</label><input id="f6" name="email" class="fld" type="email" autocomplete="email" /></div>
+    <div><label for="f4" class="flabel">LOKALITA</label><input id="f4" name="address" class="fld" type="text" placeholder="napr. Petržalka, Pezinok" /></div>
+    <div><label for="f3" class="flabel">REMESLO</label>
+      <select id="f3" name="trade" class="fld">
+        {['Kompletná rekonštrukcia', 'Kúpeľňa / WC', 'Elektroinštalácia', 'Vodoinštalácia', 'Klimatizácia', 'Hodinový majster', 'Nábytok na mieru', 'Komerčný priestor'].map((o) => <option>{o}</option>)}
+      </select>
+    </div>
+    <div><label for="f7" class="flabel">PREFEROVANÝ TERMÍN</label><input id="f7" name="preferred_date" class="fld" type="date" /><span class="fhint">Môžete uviesť aj viac termínov. Záväzným sa stáva až po potvrdení manažérom.</span></div>
+    <div style="grid-column:1 / -1"><label for="f5" class="flabel">ČO TREBA UROBIŤ</label><textarea id="f5" name="description" class="fld" rows="3" style="resize:vertical"></textarea></div>
+    <div style="grid-column:1 / -1"><label for="f8" class="flabel">FOTKY (VOLITEĽNÉ, MAX 5)</label><input id="f8" name="photos" class="fld" type="file" accept="image/*" multiple style="font-size:14px" /><span class="fhint">Fotka priestoru nám ušetrí jednu obhliadku navyše.</span></div>
+
+    <div style="grid-column:1 / -1;display:flex;gap:12px;align-items:flex-start">
+      <input id="f9" name="consent" type="checkbox" required style="width:20px;height:20px;flex:none;margin:2px 0 0;accent-color:#51AE4B" />
+      <label for="f9" style="font-size:13px;line-height:1.6;color:rgba(238,240,243,0.7)">Súhlasím so spracovaním osobných údajov na účel vybavenia dopytu. <a href="/gdpr" style={`color:${BRAND}`}>Ochrana osobných údajov</a></label>
+    </div>
+
+    <div style="grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+      <button type="submit" class="btn" style={`min-height:54px;padding:0 32px;background:${BRAND};color:#0D1215;border:0;font-weight:700;font-size:14px;letter-spacing:0.08em`}>Odoslať dopyt</button>
+      <span id="lead-sent" role="status" hidden style="font-size:14px;line-height:1.6;color:rgba(238,240,243,0.85)">Ďakujeme. Ozveme sa vám do 4 hodín v pracovnom čase (Po–Pi 8:30–17:00).</span>
+    </div>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(238,240,243,0.1);padding:56px clamp(20px,5vw,72px) 40px">
+  <div style="max-width:1320px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(238,240,243,0.1);align-items:center">
+      <img src="/logos/profi-prerabky-negativ.svg" alt="Profi Prerábky" style="width:100%;max-width:170px;height:auto" />
+      <img src="/logos/pan-elektrikar-lockup-negativ.svg" alt="Pán Elektrikár" style="width:100%;max-width:170px;height:auto" />
+      <img src="/logos/pan-vodar-lockup-negativ.svg" alt="Pán Vodár" style="width:100%;max-width:170px;height:auto" />
+      <img src="/logos/stolarstvo-pressburg-lockup-negativ.svg" alt="Stolárstvo Pressburg" style="width:100%;max-width:170px;height:auto" />
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;margin-top:32px;font-size:12px;line-height:1.9;color:rgba(238,240,243,0.55)">
+      <div style="max-width:420px">
+        <span style="display:block;color:rgba(238,240,243,0.85);font-weight:600">Pressburg Team s.r.o.</span>
+        Žltá 2A, 851 07 Bratislava – Petržalka<br />
+        IČO 55330703<br />
+        info@profiprerabkyteam.sk · +421 948 536 398
+      </div>
+      <div class="fcol">
+        <span class="fcol-h">ZNAČKY</span>
+        <a href="https://profiprerabky.sk">profiprerabky.sk</a>
+        <a href="https://panelektrikar.sk">panelektrikar.sk</a>
+        <a href="https://panvodar.sk">panvodar.sk</a>
+      </div>
+      <div class="fcol">
+        <span class="fcol-h">SLEDUJTE NÁS</span>
+        <a href="https://www.instagram.com/profi_prerabky">Instagram</a>
+        <a href="https://www.facebook.com/profiprerabky">Facebook</a>
+      </div>
+      <div class="fcol">
+        <span class="fcol-h">PRÁVNE</span>
+        <a href="/gdpr">Ochrana osobných údajov</a>
+        <a href="/cookies">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ASISTENT -->
+<div style="position:fixed;right:20px;bottom:20px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:12px">
+  <div id="chat" role="dialog" aria-label="S čím pomôžeme?" hidden class="panel" style={`width:min(340px, calc(100vw - 40px));border-top:3px solid ${BRAND};box-shadow:0 18px 48px rgba(0,0,0,0.55)`}>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid rgba(238,240,243,0.1)">
+      <span style="display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:0.14em;color:rgba(238,240,243,0.7)">
+        <span style={`width:7px;height:7px;border-radius:50%;background:${BRAND}`} aria-hidden="true"></span>
+        ASISTENT · ODPOVEDÁ AI
+      </span>
+      <button type="button" id="chat-close" aria-label="Zavrieť" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;color:rgba(238,240,243,0.7);cursor:pointer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </button>
+    </div>
+    <div id="chat-msgs" style="padding:16px 18px;max-height:320px;overflow-y:auto;display:flex;flex-direction:column;gap:10px"></div>
+    <div id="chat-chips" style="display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 14px">
+      {CHIPS.map((c) => <button type="button" class="tab chat-chip" style="min-height:36px;padding:0 14px;background:transparent;border:1px solid rgba(238,240,243,0.18);color:rgba(238,240,243,0.8);font-size:12px;cursor:pointer">{c}</button>)}
+    </div>
+    <div id="chat-cal" hidden style="padding:0 18px 14px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.14em;color:rgba(238,240,243,0.7)">VYBERTE TERMÍN</span>
+        <span style="font-size:11px;color:rgba(238,240,243,0.45)">aj viac dní</span>
+      </div>
+      <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px"></div>
+      <div id="cal-slots" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px"></div>
+      <p style={`margin:12px 0 0;font-size:11px;line-height:1.6;color:rgba(238,240,243,0.6);background:rgba(13,18,21,0.5);border-left:2px solid ${BRAND};border-radius:0 10px 10px 0;padding:10px 12px`}>Termín potvrdí manažér — až jeho potvrdením sa objednávka stáva záväznou. Voľné dni sú orientačné. [UKÁŽKOVÁ DOSTUPNOSŤ — naživo sa načíta z kalendára tímu]</p>
+      <p id="cal-summary" hidden style="margin:10px 0 0;font-size:13px;line-height:1.5;color:#EEF0F3"></p>
+    </div>
+    <div id="chat-actions" hidden style="display:flex;flex-direction:column;gap:8px;padding:0 18px 14px">
+      <button type="button" class="btn ghost" id="cal-toggle" style="justify-content:center;min-height:46px;padding:0 18px;font-size:14px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+        <span id="cal-toggle-label">Vybrať termín</span>
+      </button>
+      <a id="chat-wa" href="https://wa.me/421948536398" class="btn" style="justify-content:center;min-height:46px;padding:0 18px;background:#25D366;color:#0D1215;font-weight:600;font-size:14px"><Fragment set:html={waIcon} /> Pokračovať cez WhatsApp</a>
+      <a href="#dopyt" id="chat-to-form" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;border-radius:999px;border:1px solid rgba(238,240,243,0.22);color:#EEF0F3;font-size:13px;font-weight:600;letter-spacing:0.06em">Vyplniť formulár dopytu</a>
+    </div>
+    <form id="chat-form" style="display:flex;gap:8px;align-items:center;padding:12px 14px;border-top:1px solid rgba(238,240,243,0.1)">
+      <label for="chatin" class="sr-only">Napíšte správu asistentovi</label>
+      <input id="chatin" type="text" autocomplete="off" placeholder="Napíšte, s čím potrebujete pomôcť…" style="flex:1;min-width:0;min-height:44px;padding:0 14px;background:rgba(13,18,21,0.5);border:1px solid rgba(238,240,243,0.16);border-radius:999px;color:#EEF0F3;font:400 14px Montserrat,sans-serif" />
+      <button type="submit" aria-label="Odoslať správu" style={`width:44px;height:44px;flex:none;border-radius:50%;background:${BRAND};color:#0D1215;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center`}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"></path></svg>
+      </button>
+    </form>
+    <div style="border-top:1px solid rgba(238,240,243,0.1);padding:14px 18px">
+      <a href="tel:+421948536398" style="display:flex;align-items:center;gap:10px;min-height:44px;font-size:14px;font-weight:600;color:#EEF0F3"><Fragment set:html={phoneIcon(16, BRAND)} /> Radšej voláte? +421 948 536 398</a>
+      <span style="display:block;font-size:11px;line-height:1.5;color:rgba(238,240,243,0.45);margin-top:2px">Po–Pi 8:30–17:00 · odpovedáme do 4 hodín v pracovnom čase</span>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:10px">
+    <a href="tel:+421948536398" class="btn" aria-label="Zavolajte nám na +421 948 536 398" style="width:56px;height:56px;padding:0;justify-content:center;border-radius:50%;background:#EEF0F3;color:#0D1215;box-shadow:0 8px 24px rgba(0,0,0,0.45)"><Fragment set:html={phoneIcon(22)} /></a>
+    <button type="button" class="btn" id="chat-toggle" aria-expanded="false" style={`min-height:56px;padding:0 22px;background:${BRAND};color:#0D1215;border:0;font-weight:600;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,0.45)`}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-3.3-.6L3 21l1.8-5.2A8.3 8.3 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"></path></svg>
+      <span id="chat-toggle-label">S čím pomôžeme?</span>
+    </button>
+  </div>
+</div>
+
+</div>
 </BaseLayout>
 
-<style>
+<style is:global>
+  body { margin: 0; background: #101c24; }
+  [hidden] { display: none !important; }
+  .home { font-family: Montserrat, sans-serif; color: #EEF0F3; background: linear-gradient(180deg, #22343f 0%, #1a2a34 18%, #121d25 46%, #0F1920 100%); width: 100%; overflow: hidden; }
+  .home a { color: inherit; text-decoration: none; }
+  .home a:hover { color: #fff; }
+  .home * { box-sizing: border-box; }
+  .home button { font-family: Montserrat, sans-serif; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  #intro { position: fixed; inset: 0; z-index: 100; background: #0D1215; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  #intro video { width: 100%; height: 100%; object-fit: cover; }
+
+  .hero { position: relative; height: min(100vh, 920px); min-height: 680px; display: flex; flex-direction: column; overflow: hidden; }
+  .glow { position: absolute; pointer-events: none; border-radius: 50%; filter: blur(90px); }
+  .dline { font-family: Spectral, Georgia, serif; font-weight: 300; font-style: italic; letter-spacing: -0.005em; }
+  .line { display: block; overflow: hidden; }
+  .line > span { display: inline-block; transform: translateY(110%); animation: rise 1.1s cubic-bezier(.2,.7,.1,1) forwards; }
+  .l2 > span { animation-delay: .15s; } .l3 > span { animation-delay: .3s; }
+  .fade { opacity: 0; animation: fadein 1s ease forwards .7s; }
+  .fade2 { opacity: 0; animation: fadein 1s ease forwards 1s; }
+  @keyframes rise { to { transform: translateY(0); } }
+  @keyframes fadein { to { opacity: 1; } }
+  .kb { animation: kb 22s ease-in-out infinite alternate; }
+  @keyframes kb { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.14) translate(-2%,-1.5%); } }
+  .cue { animation: cue 2.2s cubic-bezier(.6,0,.3,1) infinite; transform-origin: top; }
+  @keyframes cue { 0% { transform: scaleY(0); } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+  .track { display: flex; width: max-content; animation: marq 38s linear infinite; }
+  @keyframes marq { to { transform: translateX(-50%); } }
+  @supports (animation-timeline: view()) {
+    .rv { animation: rv linear both; animation-timeline: view(); animation-range: entry 5% cover 28%; }
+  }
+  @keyframes rv { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: none; } }
+  .swap { animation: swap .6s cubic-bezier(.2,.7,.1,1); }
+  @keyframes swap { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .btn { display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; cursor: pointer; transition: transform .25s, background .25s, color .25s, box-shadow .25s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.ghost { background: transparent; border: 1px solid rgba(238,240,243,0.35); color: #EEF0F3; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; }
+  .tab { transition: border-color .35s, color .35s, background .35s, box-shadow .35s; border-radius: 12px; cursor: pointer; }
+  .tab:hover { color: #EEF0F3 !important; }
+  .chip { border: 1px solid rgba(238,240,243,0.18); background: transparent; color: rgba(238,240,243,0.75); }
+  .chip.on { border-color: #51AE4B; background: #51AE4B; color: #0D1215; }
+  .chip.on:hover { color: #0D1215 !important; }
+  .lead-type { border-color: rgba(238,240,243,0.22); }
+  .card { transition: box-shadow .3s, transform .3s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(228,237,241,0.26), 0 32px 70px rgba(0,0,0,0.45) !important; }
+  .panel { background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.24em; }
+  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.28em; }
+  .pill { font-size: 12px; padding: 6px 14px; border-radius: 999px; background: rgba(228,237,241,0.06); box-shadow: inset 0 0 0 1px rgba(238,240,243,0.16); }
+  .ulink { color: rgba(238,240,243,0.78) !important; border-bottom: 1px solid rgba(238,240,243,0.28); padding-bottom: 2px; }
+  .pillar-t { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .pillar-d { font-size: 15px; line-height: 1.65; color: rgba(238,240,243,0.68); }
+
+  .trade-tab { text-align: left; border: 1px solid rgba(238,240,243,0.12); color: rgba(238,240,243,0.62); background: transparent; padding: 22px 24px; display: flex; align-items: center; gap: 18px; min-height: 84px; }
+  .trade-tab .dot { background: rgba(238,240,243,0.2); }
+  .trade-tab.on { border-color: var(--accent); color: #EEF0F3; background: rgba(238,240,243,0.05); }
+  .trade-tab.on .dot { background: var(--accent); }
+  .task { display: flex; gap: 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5; }
+  .task-n { font-size: 12px; font-weight: 600; }
+  .ba-tag { position: absolute; top: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; background: rgba(13,18,21,0.7); padding: 6px 10px; }
+  .range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+
+  .wr { display: flex; gap: 18px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid rgba(238,240,243,0.18); }
+  .wr-n { font-size: 44px; font-weight: 600; line-height: 1; flex: none; width: 72px; }
+  .wr-t { font-size: 15px; line-height: 1.6; color: rgba(238,240,243,0.85); }
+  .wr-t strong { font-weight: 600; color: #EEF0F3; }
+
+  .step { text-align: left; background: transparent; border: 0; border-right: 1px solid rgba(13,18,21,0.1); padding: 28px 24px 32px 0; cursor: pointer; color: #0D1215; transition: opacity .4s; min-height: 140px; }
+
+  .crow { min-height: 44px; display: flex; align-items: center; gap: 14px; }
+  .crow-l { font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.55); width: 90px; flex: none; }
+  .flabel { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(238,240,243,0.6); }
+  .fhint { display: block; font-size: 11px; color: rgba(238,240,243,0.45); margin-top: 6px; }
+  .home .fld { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(238,240,243,0.24); color: #EEF0F3; font: 500 16px Montserrat, sans-serif; padding: 12px 0; border-radius: 0; }
+  .home .fld:focus { outline: none; border-bottom-color: #51AE4B; }
+  .home select.fld option { background: #151B1F; }
+  .home .fld::placeholder { color: rgba(238,240,243,0.4); }
+
+  .fcol { display: flex; flex-direction: column; gap: 6px; }
+  .fcol-h { color: rgba(238,240,243,0.4); letter-spacing: 0.2em; font-size: 11px; }
+  .fcol a { color: rgba(238,240,243,0.7); }
+
+  .burger { display: none; }
+  .scrollcue { position: absolute; z-index: 2; right: clamp(20px,5vw,72px); bottom: 22px; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 10px; letter-spacing: .3em; color: rgba(238,240,243,.6); }
+  .navlinks { display: flex; flex-wrap: wrap; gap: 26px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; }
+  .navlinks a { color: rgba(238,240,243,0.75); }
+  @media (max-width: 1100px) { .scrollcue { display: none; } }
+  @media (max-width: 900px) {
+    .burger { display: inline-flex; }
+    .navlinks { display: none; }
+    .navlinks.open { display: flex; flex-direction: column; width: 100%; gap: 18px; padding-top: 18px; }
+  }
   @media (prefers-reduced-motion: reduce) {
-    .group {
-      transition: none !important;
-    }
+    .line > span, .fade, .fade2 { animation: none; transform: none; opacity: 1; }
+    .kb, .cue, .track, .rv, .swap { animation: none; }
   }
 </style>
+
+<script>
+  import { TRADES, STEPS, JOBS, BRAND, answer } from '../data/home';
+
+  const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function restartSwap(el: HTMLElement) {
+    el.classList.remove('swap');
+    void el.offsetWidth;
+    el.classList.add('swap');
+  }
+
+  // Intro
+  const intro = document.getElementById('intro');
+  if (intro) {
+    const closeIntro = () => {
+      try { localStorage.setItem('ppt-intro', '1'); } catch {}
+      intro.remove();
+    };
+    const v = $<HTMLVideoElement>('intro-video');
+    v.muted = true;
+    v.addEventListener('ended', closeIntro);
+    v.play()?.catch(closeIntro);
+    $('intro-skip').addEventListener('click', closeIntro);
+  }
+
+  // Hero slides
+  const slides = document.querySelectorAll<HTMLElement>('.hero-slide');
+  let slide = 0;
+  if (!reduce) {
+    setInterval(() => {
+      slide = (slide + 1) % slides.length;
+      slides.forEach((s, i) => (s.style.opacity = i === slide ? '1' : '0'));
+    }, 6000);
+  }
+
+  // Menu
+  const burger = $('burger');
+  burger.addEventListener('click', () => {
+    const open = $('navlinks').classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+
+  // Small jobs
+  document.querySelectorAll<HTMLButtonElement>('[data-job]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const j = JOBS[Number(btn.dataset.job)];
+      document.querySelectorAll('[data-job]').forEach((b) => {
+        b.classList.toggle('on', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      $('job-price').textContent = j.price;
+      $('job-label').textContent = j.priceLabel;
+      $('job-note').textContent = j.note;
+      $('job-cta-text').textContent = j.cta;
+      $<HTMLAnchorElement>('job-cta').href = j.href;
+    });
+  });
+
+  // Main video
+  $('replay-video').addEventListener('click', () => {
+    const v = $<HTMLVideoElement>('main-video');
+    v.currentTime = 0;
+    v.muted = true;
+    v.play()?.catch(() => {});
+  });
+
+  // Trades + before/after
+  const range = $<HTMLInputElement>('ba');
+  const setPos = (pos: number) => {
+    $('ba-after').style.clipPath = `inset(0 0 0 ${pos}%)`;
+    $('ba-handle').style.left = pos + '%';
+  };
+  range.addEventListener('input', () => setPos(Number(range.value)));
+
+  document.querySelectorAll<HTMLButtonElement>('[data-trade]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const t = TRADES[Number(btn.dataset.trade)];
+      document.querySelectorAll('[data-trade]').forEach((b) => {
+        b.classList.toggle('on', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      $('trade-title').style.color = t.ink;
+      $('trade-panel').style.borderTopColor = t.accent;
+      const logo = $<HTMLImageElement>('trade-logo');
+      logo.src = t.logo;
+      logo.alt = t.brand;
+      $('trade-tagline').textContent = t.tagline;
+      const ul = $('trade-tasks');
+      ul.replaceChildren(...t.tasks.map((label, j) => {
+        const li = document.createElement('li');
+        li.className = 'task';
+        const n = document.createElement('span');
+        n.className = 'task-n';
+        n.style.color = t.ink;
+        n.textContent = '0' + (j + 1);
+        const l = document.createElement('span');
+        l.textContent = label;
+        li.append(n, l);
+        return li;
+      }));
+      $('trade-shield').setAttribute('stroke', t.ink);
+      $('trade-guarantee').textContent = t.guarantee;
+      const link = $<HTMLAnchorElement>('trade-link');
+      link.href = t.href;
+      link.style.color = t.ink;
+      $('trade-case').textContent = t.caseLabel;
+      $('ba-after').style.background = t.afterBg;
+      range.value = '50';
+      setPos(50);
+      restartSwap($('trade-body'));
+    });
+  });
+
+  // Steps
+  let step = 0;
+  let auto = true;
+  const stepBtns = document.querySelectorAll<HTMLButtonElement>('[data-step]');
+  const renderStep = () => {
+    const s = STEPS[step];
+    stepBtns.forEach((b, i) => {
+      b.style.opacity = i <= step ? '1' : '0.38';
+      b.setAttribute('aria-pressed', String(i === step));
+    });
+    $('steps-progress').style.width = ((step + 1) / 4) * 100 + '%';
+    const num = $('step-num');
+    num.textContent = '0' + (step + 1);
+    num.style.color = s.ink;
+    $('step-title').textContent = s.title;
+    $('step-text').textContent = s.text;
+    $('step-out').textContent = s.out;
+    $('steps-play-label').textContent = auto ? 'Prehráva sa…' : 'Prehrať postup';
+    restartSwap($('step-detail'));
+  };
+  stepBtns.forEach((b, i) => b.addEventListener('click', () => { step = i; auto = false; renderStep(); }));
+  $('steps-play').addEventListener('click', () => { step = 0; auto = true; renderStep(); });
+  if (reduce) { auto = false; $('steps-play-label').textContent = 'Prehrať postup'; }
+  setInterval(() => { if (auto) { step = (step + 1) % 4; renderStep(); } }, 3400);
+
+  // Lead form
+  const leadValues = ['small_work', 'renovation'];
+  document.querySelectorAll<HTMLButtonElement>('[data-lead]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-lead]').forEach((b) => {
+        b.classList.toggle('on', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      $<HTMLInputElement>('lead-type').value = leadValues[Number(btn.dataset.lead)];
+    });
+  });
+  $<HTMLFormElement>('lead-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    $('lead-sent').hidden = false;
+  });
+
+  // Assistant
+  type Msg = { who: 'bot' | 'me'; text: string };
+  const msgs: Msg[] = [{ who: 'bot', text: 'Dobrý deň. Som automatický asistent Profi Prerábky Team. Napíšte mi, s čím potrebujete pomôcť — alebo si vyberte z možností nižšie.' }];
+  const pickedDays: string[] = [];
+  const pickedSlots: string[] = [];
+  let calOpen = false;
+
+  const chat = $('chat');
+  const chatInput = $<HTMLInputElement>('chatin');
+
+  const pad = (n: number) => (n < 10 ? '0' + n : '' + n);
+  const dayText = () => pickedDays.slice().sort().map((k) => {
+    const p = k.split('-');
+    return Number(p[2]) + '. ' + Number(p[1]) + '.';
+  }).join(', ');
+
+  function renderMsgs() {
+    const box = $('chat-msgs');
+    box.replaceChildren(...msgs.map((m) => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;justify-content:' + (m.who === 'me' ? 'flex-end' : 'flex-start');
+      const b = document.createElement('div');
+      b.style.cssText = m.who === 'me'
+        ? `max-width:84%;padding:10px 14px;border-radius:14px 14px 4px 14px;background:${BRAND};color:#0D1215;font-size:14px;line-height:1.5`
+        : 'max-width:88%;padding:10px 14px;border-radius:14px 14px 14px 4px;background:rgba(13,18,21,0.55);box-shadow:inset 0 0 0 1px rgba(228,237,241,0.1);color:#EEF0F3;font-size:14px;line-height:1.55';
+      b.textContent = m.text;
+      wrap.append(b);
+      return wrap;
+    }));
+    box.scrollTop = box.scrollHeight;
+    $('chat-chips').hidden = msgs.length > 1;
+    $('chat-actions').hidden = msgs.length < 3;
+    updateWa();
+  }
+
+  function updateWa() {
+    const lastMine = msgs.filter((m) => m.who === 'me').slice(-1)[0];
+    const days = dayText();
+    const text = 'Dobrý deň, píšem z webu. ' + (lastMine ? lastMine.text : 'Potrebujem poradiť.')
+      + (pickedDays.length ? ' Termín by mi vyhovoval: ' + days + (pickedSlots.length ? ' (' + pickedSlots.join(', ') + ')' : '') + '.' : '');
+    $<HTMLAnchorElement>('chat-wa').href = 'https://wa.me/421948536398?text=' + encodeURIComponent(text);
+    const summary = $('cal-summary');
+    summary.hidden = !(pickedDays.length || pickedSlots.length);
+    summary.textContent = 'Vybrané: ' + (days || '—') + (pickedSlots.length ? ' · ' + pickedSlots.join(', ') : '');
+  }
+
+  function ask(text: string) {
+    const q = text.trim();
+    if (!q) return;
+    msgs.push({ who: 'me', text: q }, { who: 'bot', text: answer(q) });
+    chatInput.value = '';
+    renderMsgs();
+  }
+
+  const calBase = 'font-family:Montserrat,sans-serif;min-height:34px;padding:0;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid ';
+  function renderCal() {
+    const grid = $('cal-grid');
+    const now = new Date();
+    const first = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    const lead = (first.getDay() + 6) % 7;
+    const nodes: HTMLElement[] = ['Po', 'Ut', 'St', 'Št', 'Pi', 'So', 'Ne'].map((h) => {
+      const s = document.createElement('span');
+      s.style.cssText = 'text-align:center;font-size:10px;color:rgba(238,240,243,0.4);padding:2px 0';
+      s.textContent = h;
+      return s;
+    });
+    for (let i = 0; i < lead; i++) {
+      const s = document.createElement('span');
+      nodes.push(s);
+    }
+    for (let i = 0; i < 28; i++) {
+      const d = new Date(first.getFullYear(), first.getMonth(), first.getDate() + i);
+      const key = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+      const wd = d.getDay();
+      const busy = wd === 0 || wd === 6 || d.getDate() % 7 === 3;
+      const on = pickedDays.includes(key);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = String(d.getDate());
+      b.setAttribute('aria-label', d.getDate() + '. ' + (d.getMonth() + 1) + '. ' + (busy ? '— obsadené' : '— voľné'));
+      if (busy) {
+        b.disabled = true;
+        b.style.cssText = calBase + 'transparent;background:transparent;color:rgba(238,240,243,0.22);cursor:not-allowed;text-decoration:line-through';
+      } else {
+        b.setAttribute('aria-pressed', String(on));
+        b.style.cssText = on
+          ? calBase + BRAND + ';background:' + BRAND + ';color:#0D1215'
+          : calBase + 'rgba(238,240,243,0.18);background:transparent;color:rgba(238,240,243,0.85)';
+        b.addEventListener('click', () => {
+          const idx = pickedDays.indexOf(key);
+          if (idx >= 0) pickedDays.splice(idx, 1); else pickedDays.push(key);
+          renderCal();
+          updateWa();
+        });
+      }
+      nodes.push(b);
+    }
+    grid.replaceChildren(...nodes);
+
+    $('cal-slots').replaceChildren(...['Doobeda 8:00–12:00', 'Poobede 12:00–17:00', 'Kedykoľvek'].map((label) => {
+      const on = pickedSlots.includes(label);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = label;
+      b.setAttribute('aria-pressed', String(on));
+      b.style.cssText = 'font-family:Montserrat,sans-serif;min-height:34px;padding:0 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid '
+        + (on ? BRAND + ';background:' + BRAND + ';color:#0D1215' : 'rgba(238,240,243,0.18);background:transparent;color:rgba(238,240,243,0.8)');
+      b.addEventListener('click', () => {
+        const idx = pickedSlots.indexOf(label);
+        if (idx >= 0) pickedSlots.splice(idx, 1); else pickedSlots.push(label);
+        renderCal();
+        updateWa();
+      });
+      return b;
+    }));
+  }
+
+  const setChat = (open: boolean) => {
+    chat.hidden = !open;
+    $('chat-toggle').setAttribute('aria-expanded', String(open));
+    $('chat-toggle-label').textContent = open ? 'Zavrieť' : 'S čím pomôžeme?';
+  };
+  $('chat-toggle').addEventListener('click', () => setChat(chat.hidden));
+  $('chat-close').addEventListener('click', () => setChat(false));
+  $('chat-to-form').addEventListener('click', () => setChat(false));
+  document.querySelectorAll<HTMLButtonElement>('.chat-chip').forEach((c) => c.addEventListener('click', () => ask(c.textContent || '')));
+  $<HTMLFormElement>('chat-form').addEventListener('submit', (e) => { e.preventDefault(); ask(chatInput.value); });
+  $('cal-toggle').addEventListener('click', () => {
+    calOpen = !calOpen;
+    $('chat-cal').hidden = !calOpen;
+    $('cal-toggle-label').textContent = calOpen ? 'Skryť kalendár' : 'Vybrať termín';
+    if (calOpen) renderCal();
+  });
+
+  renderMsgs();
+</script>

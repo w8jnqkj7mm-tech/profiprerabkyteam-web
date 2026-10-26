@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<title>Blog a rady</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Spectral:ital,wght@0,300;0,400;1,300;1,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#101c24}
+a{color:#EEF0F3}a:hover{color:#ffffff}
+*{box-sizing:border-box}
+.dline{font-family:Spectral,Georgia,serif;font-weight:300;font-style:italic;letter-spacing:-0.005em}
+.btn{transition:transform .25s,background .25s,color .25s,box-shadow .25s;border-radius:999px}
+.btn:hover{transform:translateY(-2px)}
+.card{transition:box-shadow .3s,transform .3s}
+.card:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(228,237,241,0.26),0 32px 70px rgba(0,0,0,0.45)}
+@supports (animation-timeline: view()){
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 5% cover 26%}
+}
+@keyframes rv{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+.navlinks{display:flex;flex-wrap:wrap;gap:22px;font-size:13px;font-weight:500;letter-spacing:0.06em}
+:focus-visible{outline:2px solid #51AE4B;outline-offset:3px}
+@media (max-width: 900px){.navlinks{gap:14px;font-size:12px}}
+@media (prefers-reduced-motion: reduce){.rv{animation:none}}
+</style>
+</helmet>
+
+<div style="font-family: Montserrat, sans-serif; color: #EEF0F3; background: linear-gradient(180deg, #22343f 0%, #1a2a34 18%, #121d25 46%, #0F1920 100%); width: 100%; overflow: hidden">
+
+<header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 18px clamp(20px, 5vw, 64px); border-bottom: 1px solid rgba(238,240,243,0.1)">
+  <a href="Main.dc.html" aria-label="Profi Prerábky team – domov" style="display: flex; align-items: center; text-decoration: none"><img src="/_blob/c4ce37a99a8d85564931491a4ea4ddbf" alt="Profi Prerábky team" style="height: 44px; width: auto; display: block"></a>
+  <nav class="navlinks" aria-label="Hlavná navigácia">
+    <a href="MalePrace.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Malé práce</a>
+    <a href="Rekonstrukcie.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Rekonštrukcie</a>
+    <a href="Remeslo.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Remeslá</a>
+    <a href="Cennik.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Cenník</a>
+    <a href="Realizacie.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Realizácie</a>
+    <a href="Kontakt.dc.html" style="text-decoration: none; color: rgba(238,240,243,0.75)">Kontakt</a>
+  </nav>
+  <a href="tel:+421948536398" class="btn" style="text-decoration: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border: 1px solid rgba(238,240,243,0.3); font-size: 13px; font-weight: 600">+421 948 536 398</a>
+</header>
+
+<section style="padding: clamp(56px, 7vw, 96px) clamp(20px, 5vw, 64px) clamp(32px, 4vw, 48px); max-width: 1240px; margin: 0 auto">
+  <nav aria-label="Omrvinky" style="font-size: 12px; letter-spacing: 0.1em; color: rgba(238,240,243,0.5); margin-bottom: 28px">
+    <a href="Main.dc.html" style="color: rgba(238,240,243,0.5); text-decoration: none">Úvod</a> · Blog
+  </nav>
+  <h1 style="margin: 0; font-weight: 600; font-size: clamp(36px, 5.2vw, 64px); line-height: 1.06; letter-spacing: -0.025em">Rady zo stavby.<br><span class="dline" style="color: {{brand}}">Bez marketingových rečí.</span></h1>
+  <p style="margin: 24px 0 0; font-size: 16px; line-height: 1.7; color: rgba(238,240,243,0.7); max-width: 640px">Čo stojí prerábka, čo si pripraviť pred obhliadkou, kde sa najčastejšie šetrí zle. Dva články mesačne.</p>
+</section>
+
+<!-- HLAVNÝ ČLÁNOK -->
+<section style="padding: 0 clamp(20px, 5vw, 64px) clamp(48px, 6vw, 72px); max-width: 1240px; margin: 0 auto">
+  <a href="Blog.dc.html" class="card rv" style="text-decoration: none; color: #EEF0F3; display: flex; flex-wrap: wrap; background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 16px; overflow: hidden; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); border-top: 3px solid {{brand}}">
+    <div style="flex: 1 1 360px; min-height: 280px; background: repeating-linear-gradient(135deg, #2c2b29 0 2px, #232220 2px 14px); display: flex; align-items: flex-end; padding: 20px">
+      <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; background: rgba(13,18,21,0.7); padding: 6px 10px">[FOTO ČLÁNKU]</span>
+    </div>
+    <div style="flex: 999 1 420px; min-width: 0; padding: clamp(28px, 3.4vw, 44px); display: flex; flex-direction: column; gap: 16px; justify-content: center">
+      <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: {{brand}}">ODPORÚČAME · CENY</span>
+      <h2 style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em">Koľko stojí prerábka bytu v Bratislave v roku 2026</h2>
+      <p style="margin: 0; font-size: 15px; line-height: 1.7; color: rgba(238,240,243,0.7)">Reálne rozpätia podľa veľkosti bytu a rozsahu prác, rozdiel medzi panelákom a novostavbou a položky, na ktorých sa najčastejšie podstrelí rozpočet.</p>
+      <span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(238,240,243,0.5)">[DÁTUM] · 8 min čítania</span>
+    </div>
+  </a>
+</section>
+
+<!-- ZOZNAM -->
+<section style="padding: 0 clamp(20px, 5vw, 64px) clamp(64px, 8vw, 104px); max-width: 1240px; margin: 0 auto">
+  <div class="rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px">
+    <sc-for list="{{posts}}" as="p" hint-placeholder-count="6">
+      <a href="Blog.dc.html" class="card" style="text-decoration: none; color: #EEF0F3; display: flex; flex-direction: column; background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 16px; overflow: hidden; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38)">
+        <div style="height: 170px; background: repeating-linear-gradient(135deg, #2c2b29 0 2px, #232220 2px 14px); display: flex; align-items: flex-end; padding: 14px">
+          <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.2em; background: rgba(13,18,21,0.7); padding: 5px 9px">[FOTO]</span>
+        </div>
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1">
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: {{p.ink}}">{{p.cat}}</span>
+          <h2 style="margin: 0; font-size: 19px; font-weight: 600; line-height: 1.3">{{p.title}}</h2>
+          <p style="margin: 0; font-size: 14px; line-height: 1.65; color: rgba(238,240,243,0.68)">{{p.text}}</p>
+          <span style="margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(238,240,243,0.1); font-size: 12px; color: rgba(238,240,243,0.5)">{{p.meta}}</span>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+  <p style="margin: 32px 0 0; font-size: 13px; line-height: 1.8; color: rgba(238,240,243,0.5)">Články sú zatiaľ návrhy tém. Publikujú sa len schválené — koncepty zostávajú skryté. [SCHVÁLIŤ TÉMY]</p>
+</section>
+
+<footer style="border-top: 1px solid rgba(238,240,243,0.1); padding: 40px clamp(20px, 5vw, 64px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 1.9; color: rgba(238,240,243,0.55)">
+  <div><span style="display: block; color: rgba(238,240,243,0.85); font-weight: 600">Pressburg Team s.r.o.</span>Žltá 2A, 851 07 Bratislava – Petržalka<br>IČO 55330703<br>info@profiprerabkyteam.sk · +421 948 536 398</div>
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Ochrana osobných údajov</a>
+    <a href="Pravne.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Cookies</a>
+    <a href="Kontakt.dc.html" style="color: rgba(238,240,243,0.7); text-decoration: none">Kontakt</a>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#51AE4B","options":["#51AE4B","#2F4858"],"section":"Téma"},"$preview":{"width":1280,"height":2400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const brand = this.props.brand ?? '#51AE4B';
+    return {
+      brand,
+      posts: [
+        { cat: 'KÚPEĽŇA', ink: '#8FA6E6', title: 'Prerábka kúpeľne krok za krokom', text: 'Čo sa deje v ktorom týždni, kedy sa nedá sprchovať a prečo sa obklad kladie až po tlakovej skúške.', meta: '[DÁTUM] · 6 min' },
+        { cat: 'ELEKTRINA', ink: '#FF6B70', title: 'Hliníkové rozvody: kedy ich musíte vymeniť', text: 'Ako spoznať hliník v stene, čo s ním robí moderná spotreba a koľko stojí výmena v dvojizbovom byte.', meta: '[DÁTUM] · 5 min' },
+        { cat: 'PRÍPRAVA', ink: brand, title: 'Čo si pripraviť pred obhliadkou', text: 'Pôdorys, fotky, zoznam toho, čo vás na byte najviac hnevá. S tým vieme naceniť presnejšie a rýchlejšie.', meta: '[DÁTUM] · 4 min' },
+        { cat: 'NÁBYTOK', ink: '#E9E3D8', title: 'Prečo sa kuchyňa zameriava až na konci', text: 'Výška stropu a rovina steny sa počas stavby menia o centimetre. Pri nábytku na mieru to rozhoduje.', meta: '[DÁTUM] · 4 min' },
+        { cat: 'ROZPOČET', ink: brand, title: 'Päť miest, kde sa pri prerábke šetrí zle', text: 'Hydroizolácia, rozvody, podklad pod dlažbu. To, čo sa zakryje, sa najhoršie opravuje.', meta: '[DÁTUM] · 7 min' },
+        { cat: 'KLIMATIZÁCIA', ink: '#FF6B70', title: 'Kedy riešiť klimatizáciu pri rekonštrukcii', text: 'Rozvod medi sa dá schovať do steny, ak sa o ňom vie včas. Potom je to už sekanie do hotovej omietky.', meta: '[DÁTUM] · 5 min' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
