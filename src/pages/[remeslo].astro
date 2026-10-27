@@ -1,0 +1,170 @@
+---
+import SubLayout from '../layouts/SubLayout.astro';
+import { REMESLA } from '../data/remesla';
+
+export function getStaticPaths() {
+  return REMESLA.map((t) => ({ params: { remeslo: t.slug }, props: { t } }));
+}
+
+const { t } = Astro.props as { t: (typeof REMESLA)[number] };
+const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+const check = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${t.ink}" stroke-width="2.4" aria-hidden="true" style="flex:none"><path d="M4 12.5l5 5L20 6.5"></path></svg>`;
+---
+
+<SubLayout title={`${t.seoTitle} – ${t.brand}`} description={t.lead}>
+
+<section style="position:relative;padding:clamp(48px,6vw,80px) clamp(20px,5vw,64px) clamp(48px,6vw,72px);overflow:hidden">
+  <div aria-hidden="true" style={`position:absolute;inset:0;${t.heroWash}`}></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto">
+    <nav class="crumbs" aria-label="Omrvinky"><a href="/">Úvod</a> · {t.name}</nav>
+    <img src={t.logo} alt={t.brand} style="height:78px;width:auto;margin-bottom:28px" />
+    <h1 style="margin:0;font-weight:600;font-size:clamp(34px,5.2vw,66px);line-height:1.05;letter-spacing:-0.025em;max-width:900px">{t.h1}<br /><span class="dline" style={`color:${t.ink}`}>{t.h1b}</span></h1>
+    <p style="margin:26px 0 0;font-size:17px;line-height:1.7;color:rgba(238,240,243,0.75);max-width:620px">{t.lead}</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
+      <a href="#dopyt" class="btn" style={`min-height:52px;padding:0 28px;background:${t.accent};color:${t.onAccent};font-weight:600;font-size:14px`}>{t.cta} <Fragment set:html={arrow} /></a>
+      <a href="https://wa.me/421948536398" class="btn" style="min-height:52px;padding:0 24px;background:#25D366;color:#0D1215;font-weight:600;font-size:14px">WhatsApp</a>
+      <a href="tel:+421948536398" class="btn" style="min-height:52px;padding:0 24px;border:1px solid rgba(238,240,243,0.35);font-weight:500;font-size:14px">+421 948 536 398</a>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:40px;padding-top:26px;border-top:1px solid rgba(238,240,243,0.14);font-size:14px;color:rgba(238,240,243,0.7)">
+      <span>Odpoveď do 4 hodín v pracovnom čase</span>
+      <span>Po–Pi 8:30–17:00</span>
+      <span>Bratislava a okolie</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(56px,7vw,88px) clamp(20px,5vw,64px);max-width:1240px;margin:0 auto">
+  <div class="rv" style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+    <div style="flex:1 1 280px">
+      <p class="kicker" style={`margin:0 0 18px;color:${t.ink}`}>ČO ROBÍME</p>
+      <h2 style="margin:0;font-weight:600;font-size:clamp(26px,3.4vw,42px);letter-spacing:-0.02em;line-height:1.12">{t.servicesTitle}</h2>
+      <p style="margin:18px 0 0;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.65)">{t.servicesLead}</p>
+    </div>
+    <ul style="flex:999 1 540px;min-width:0;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:0 36px">
+      {t.services.map((s) => <li style="display:flex;gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(238,240,243,0.08);font-size:16px;line-height:1.5"><Fragment set:html={check} /><span>{s}</span></li>)}
+    </ul>
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,5vw,64px) clamp(56px,7vw,88px);max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px">
+  <div class="rv panel" style={`border-top:3px solid ${t.accent};padding:clamp(28px,3.4vw,40px)`}>
+    <p class="eyebrow" style={`margin:0 0 12px;color:${t.ink}`}>NÁŠ SĽUB</p>
+    <p class="dline" style="font-style:normal;margin:0;font-size:24px;line-height:1.35">{t.promise}</p>
+  </div>
+  <div class="rv panel" style="padding:clamp(28px,3.4vw,40px)">
+    <p class="eyebrow" style={`margin:0 0 12px;color:${t.ink}`}>CENY</p>
+    <span style="display:block;font-size:32px;font-weight:600">{t.price}</span>
+    <span style="display:block;font-size:13px;color:rgba(238,240,243,0.6);margin-top:6px">{t.priceSub}</span>
+    <p style="margin:18px 0 0;font-size:14px;line-height:1.7;color:rgba(238,240,243,0.65)">{t.priceNote}</p>
+    <a href="/cennik" style={`display:inline-flex;align-items:center;gap:10px;margin-top:16px;min-height:44px;font-size:13px;font-weight:600;letter-spacing:0.1em;color:${t.ink}`}>CELÝ CENNÍK <Fragment set:html={arrow} /></a>
+  </div>
+  <div class="rv" style={`background:${t.accent};border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,0.32);color:${t.onAccent};padding:clamp(28px,3.4vw,40px);display:flex;flex-direction:column;gap:16px`}>
+    <p class="eyebrow" style="margin:0;opacity:0.75">SÚČASŤ TÍMU</p>
+    <p style="margin:0;font-size:20px;line-height:1.4;font-weight:600">{t.teamNote}</p>
+    <a href="/#postup" class="btn" style={`margin-top:auto;justify-content:center;min-height:48px;background:${t.onAccent};color:${t.accent};font-weight:600;font-size:14px`}>Celý tím a postup</a>
+  </div>
+</section>
+
+<section class="light-band" style="padding:clamp(64px,8vw,104px) clamp(20px,5vw,64px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <p class="kicker" style="margin:0 0 18px;color:#2F4858">TYPICKÉ ZÁKAZKY</p>
+    <h2 style="margin:0 0 48px;font-weight:600;font-size:clamp(28px,3.8vw,48px);letter-spacing:-0.02em;line-height:1.1;color:#0D1215">S čím nás volajú <span class="dline">najčastejšie.</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px">
+      {t.cases.map((c) => (
+        <div style={`background:linear-gradient(180deg,#ffffff 0%,#f3f7f9 100%);border-radius:14px;box-shadow:0 18px 40px rgba(26,45,56,0.14);padding:28px;border-top:3px solid ${t.accent === '#E9E3D8' ? '#1A1F22' : t.accent}`}>
+          <h3 style="margin:0 0 10px;font-size:19px;font-weight:600;line-height:1.25;color:#0D1215">{c.title}</h3>
+          <p style="margin:0 0 16px;font-size:14px;line-height:1.65;color:#2F4858">{c.text}</p>
+          <span style="font-size:12px;letter-spacing:0.1em;color:#5a6b77">{c.meta}</span>
+        </div>
+      ))}
+    </div>
+    <a href="/realizacie" style="display:inline-flex;align-items:center;gap:10px;margin-top:36px;min-height:48px;font-size:13px;font-weight:600;letter-spacing:0.1em;color:#0D1215">POZRIEŤ REALIZÁCIE <Fragment set:html={arrow} /></a>
+  </div>
+</section>
+
+<section style="padding:clamp(56px,7vw,88px) clamp(20px,5vw,64px);max-width:1240px;margin:0 auto">
+  <div class="rv" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:28px">
+    <h2 style="margin:0;font-weight:600;font-size:clamp(24px,3vw,36px);letter-spacing:-0.02em">Naša práca</h2>
+    <span style="font-size:13px;color:rgba(238,240,243,0.5)">Fotky zverejňujeme so súhlasom klientov, bez mien a adries.</span>
+  </div>
+  <div class="rv" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:16px">
+    {t.gallery.map((g) => (
+      <div style={`height:240px;background:url(${g.img}) center / cover;display:flex;align-items:flex-end;padding:14px;border-radius:14px;box-shadow:0 0 0 1px rgba(228,237,241,0.12),0 18px 44px rgba(0,0,0,0.34)`}>
+        <span style="font-size:10px;font-weight:600;letter-spacing:0.2em;background:rgba(13,18,21,0.7);padding:5px 9px">{g.tag}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,5vw,64px) clamp(56px,7vw,88px);max-width:1240px;margin:0 auto">
+  <div class="rv" style="display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start">
+    <div style="flex:1 1 260px">
+      <p class="kicker" style={`margin:0 0 18px;color:${t.ink}`}>ČASTÉ OTÁZKY</p>
+      <h2 style="margin:0;font-weight:600;font-size:clamp(26px,3.4vw,40px);letter-spacing:-0.02em;line-height:1.12">Na čo sa pýtate <span class="dline" style={`color:${t.ink}`}>najčastejšie.</span></h2>
+    </div>
+    <div style="flex:999 1 540px;min-width:0">
+      {t.faq.map((q) => (
+        <div style="padding:22px 0;border-bottom:1px solid rgba(238,240,243,0.1)">
+          <h3 style="margin:0 0 10px;font-size:17px;font-weight:600;line-height:1.35">{q.q}</h3>
+          <p style="margin:0;font-size:15px;line-height:1.75;color:rgba(238,240,243,0.7)">{q.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,5vw,64px) clamp(56px,7vw,88px);max-width:1240px;margin:0 auto">
+  <div class="rv panel" style="padding:clamp(28px,3.4vw,44px);display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between">
+    <div>
+      <p class="eyebrow" style={`margin:0 0 10px;color:${t.ink}`}>HODNOTENIA</p>
+      <h2 style="margin:0;font-size:24px;font-weight:600;line-height:1.3">Google recenzie — {t.brand}</h2>
+      <p style="margin:12px 0 0;font-size:14px;line-height:1.7;color:rgba(238,240,243,0.6);max-width:520px">Načítané cez Google Places API z profilu tejto firmy. Recenzie sa neprepisujú ručne.</p>
+    </div>
+    <div style="flex:1 1 260px;min-height:120px;border:1px dashed rgba(238,240,243,0.25);display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:0.2em;color:rgba(238,240,243,0.5)">[WIDGET RECENZIÍ · {t.brandShort}]</div>
+  </div>
+</section>
+
+<section id="dopyt" style="padding:0 clamp(20px,5vw,64px) clamp(64px,8vw,104px);max-width:1240px;margin:0 auto">
+  <div class="rv panel" style={`display:flex;flex-wrap:wrap;gap:48px;border-radius:16px;border-top:3px solid ${t.accent};padding:clamp(28px,3.4vw,48px)`}>
+    <div style="flex:1 1 300px;min-width:0">
+      <p class="eyebrow" style={`margin:0 0 14px;color:${t.ink}`}>NEZÁVÄZNÝ DOPYT</p>
+      <h2 style="margin:0;font-weight:600;font-size:clamp(26px,3.2vw,40px);letter-spacing:-0.02em;line-height:1.1">{t.ctaTitle}</h2>
+      <p style="margin:16px 0 0;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.7);max-width:440px">Ozveme sa do 4 hodín v pracovnom čase (Po–Pi 8:30–17:00). Dopyt vybavuje Jakub Kleberc.</p>
+      <div style="margin-top:28px;display:flex;flex-direction:column;gap:14px">
+        <a href="tel:+421948536398" class="crow"><span class="crow-l">TELEFÓN</span>+421 948 536 398</a>
+        <a href="mailto:info@profiprerabkyteam.sk" class="crow"><span class="crow-l">E-MAIL</span>info@profiprerabkyteam.sk</a>
+        <div class="crow"><span class="crow-l">OBLASŤ</span>Bratislava a okolie</div>
+      </div>
+    </div>
+    <form id="trade-form" style="flex:999 1 420px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:24px 28px;align-content:start">
+      <input type="hidden" name="trade" value={t.brand} />
+      <div><label for="r1" class="flabel">MENO</label><input id="r1" name="name" class="fld" type="text" autocomplete="name" required /></div>
+      <div><label for="r2" class="flabel">TELEFÓN</label><input id="r2" name="phone" class="fld" type="tel" autocomplete="tel" required /></div>
+      <div><label for="r3" class="flabel">E-MAIL</label><input id="r3" name="email" class="fld" type="email" autocomplete="email" /></div>
+      <div><label for="r4" class="flabel">LOKALITA</label><input id="r4" name="address" class="fld" type="text" placeholder="napr. Petržalka" /></div>
+      <div style="grid-column:1 / -1"><label for="r5" class="flabel">ČO TREBA UROBIŤ</label><textarea id="r5" name="description" class="fld" rows="3" style="resize:vertical" placeholder={t.formHint}></textarea></div>
+      <div style="grid-column:1 / -1;display:flex;gap:12px;align-items:flex-start">
+        <input id="r6" name="consent" type="checkbox" required style="width:20px;height:20px;flex:none;margin:2px 0 0;accent-color:#51AE4B" />
+        <label for="r6" style="font-size:13px;line-height:1.6;color:rgba(238,240,243,0.7)">Súhlasím so spracovaním osobných údajov. <a href="/gdpr" style={`color:${t.ink}`}>Ochrana osobných údajov</a></label>
+      </div>
+      <div style="grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:18px;align-items:center">
+        <button type="submit" class="btn" style={`min-height:52px;padding:0 30px;background:${t.accent};color:${t.onAccent};border:0;font-weight:700;font-size:14px;letter-spacing:0.06em`}>Odoslať dopyt</button>
+        <span id="trade-sent" role="status" hidden style="font-size:14px;line-height:1.6;color:rgba(238,240,243,0.85);max-width:320px">Ďakujeme. Ozveme sa vám do 4 hodín v pracovnom čase.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,5vw,64px) clamp(64px,8vw,104px);max-width:900px;margin:0 auto">
+  <h2 style="margin:0 0 16px;font-size:20px;font-weight:600;line-height:1.3;color:rgba(238,240,243,0.85)">{t.seoTitle}</h2>
+  <p style="margin:0;font-size:15px;line-height:1.8;color:rgba(238,240,243,0.6)">{t.seoText}</p>
+</section>
+
+</SubLayout>
+
+<script>
+  document.getElementById('trade-form')!.addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('trade-sent')!.hidden = false;
+  });
+</script>
