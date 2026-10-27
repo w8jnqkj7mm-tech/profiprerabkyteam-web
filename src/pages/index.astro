@@ -22,9 +22,9 @@ const marquee = Array.from({ length: 4 });
 
 <!-- 0. INTRO -->
 <div id="intro" role="dialog" aria-label="Úvodné video">
-  <video id="intro-video" autoplay muted playsinline preload="auto" poster="/media/hero-poster.webp" aria-label="Od pôdorysu po kľúč">
-    <source src="/media/hero-1080.webm" type="video/webm" />
-    <source src="/media/hero-1080.mp4" type="video/mp4" />
+  <video id="intro-video" autoplay muted playsinline preload="auto" aria-label="Od pôdorysu po kľúč – Profi Prerábky Team">
+    <source src="/media/intro-720.mp4" type="video/mp4" media="(max-width: 900px)" />
+    <source src="/media/intro-1080.mp4" type="video/mp4" />
   </video>
   <button type="button" class="btn ghost" id="intro-skip" style="position:absolute;right:clamp(20px,5vw,48px);bottom:clamp(20px,5vw,48px);background:rgba(13,18,21,0.6)">
     Preskočiť intro <Fragment set:html={arrow} />
@@ -34,7 +34,7 @@ const marquee = Array.from({ length: 4 });
   (function () {
     var el = document.getElementById('intro');
     var seen = false;
-    try { seen = localStorage.getItem('ppt-intro') === '1'; } catch (e) {}
+    try { seen = localStorage.getItem('ppt-intro-v2') === '1'; } catch (e) {}
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (seen || reduce) el.remove();
   })();
@@ -516,7 +516,7 @@ const marquee = Array.from({ length: 4 });
   const intro = document.getElementById('intro');
   if (intro) {
     const closeIntro = () => {
-      try { localStorage.setItem('ppt-intro', '1'); } catch {}
+      try { localStorage.setItem('ppt-intro-v2', '1'); } catch {}
       intro.remove();
     };
     const v = $<HTMLVideoElement>('intro-video');
