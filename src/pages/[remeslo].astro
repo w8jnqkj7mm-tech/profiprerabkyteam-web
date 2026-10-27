@@ -18,7 +18,7 @@ const check = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" strok
   <div style="position:relative;max-width:1240px;margin:0 auto">
     <nav class="crumbs" aria-label="Omrvinky"><a href="/">Úvod</a> · {t.name}</nav>
     <img src={t.logo} alt={t.brand} style="height:78px;width:auto;margin-bottom:28px" />
-    <h1 style="margin:0;font-weight:600;font-size:clamp(34px,5.2vw,66px);line-height:1.05;letter-spacing:-0.025em;max-width:900px">{t.h1}<br /><span class="dline" style={`color:${t.ink}`}>{t.h1b}</span></h1>
+    <h1 style="margin:0;font-weight:600;font-size:min(8.2vw, clamp(34px,5.2vw,66px));line-height:1.05;letter-spacing:-0.025em;max-width:900px">{t.h1}<br /><span class="dline" style={`color:${t.ink}`}>{t.h1b}</span></h1>
     <p style="margin:26px 0 0;font-size:17px;line-height:1.7;color:rgba(238,240,243,0.75);max-width:620px">{t.lead}</p>
     <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
       <a href="#dopyt" class="btn" style={`min-height:52px;padding:0 28px;background:${t.accent};color:${t.onAccent};font-weight:600;font-size:14px`}>{t.cta} <Fragment set:html={arrow} /></a>

@@ -105,7 +105,7 @@ body { margin: 0; background: #101c24; }
 .sub-wrap { max-width: 1320px; margin: 0 auto; padding-inline: clamp(20px,5vw,64px); }
 .crumbs { font-size: 12px; letter-spacing: 0.1em; color: rgba(238,240,243,0.5); margin-bottom: 28px; }
 .crumbs a { color: rgba(238,240,243,0.5); }
-.sub-h1 { margin: 0; font-weight: 600; font-size: clamp(36px,5.2vw,64px); line-height: 1.06; letter-spacing: -0.025em; }
+.sub-h1 { margin: 0; font-weight: 600; font-size: min(9.4vw, clamp(36px,5.2vw,64px)); line-height: 1.06; letter-spacing: -0.025em; }
 .sub-lead { margin: 24px 0 0; font-size: 16px; line-height: 1.7; color: rgba(238,240,243,0.7); max-width: 640px; }
 .light-band { background: linear-gradient(180deg, #e7eef2 0%, #d8e2e8 55%, #cbd7de 100%); color: #0D1215; }
 .sub-footer { border-top: 1px solid rgba(238,240,243,0.1); padding: 40px clamp(20px,5vw,64px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 1.9; color: rgba(238,240,243,0.55); }
@@ -119,4 +119,3 @@ body { margin: 0; background: #101c24; }
 .doc a { color: #51AE4B; }
 .doc .todo { color: #FFC65C; }
 .job-item { display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5; }
-.home h1, .home h2 { overflow-wrap: break-word; hyphens: auto; }
