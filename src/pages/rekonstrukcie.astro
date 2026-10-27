@@ -1,167 +1,191 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import ProcessTimeline from '../components/ProcessTimeline.astro';
-import ContactForm from '../components/ContactForm.astro';
-import Footer from '../components/Footer.astro';
+import SubLayout from '../layouts/SubLayout.astro';
+import { BRAND } from '../data/home';
 
-const title = 'Rekonštrukcie – Byt, dom, kúpeľňa, kancelária';
-const description = 'Kompletné rekonštrukcie od plánu do odevzdania. Elektrikár, vodár, stavebník, stolár – všetko v jednom tíme.';
+const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+const check = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${BRAND}" stroke-width="2.4" aria-hidden="true" style="flex:none"><path d="M4 12.5l5 5L20 6.5"></path></svg>`;
 
-const projectTypes = [
-  {
-    title: 'Byt',
-    description: 'Kompletná obnova jednostranky až veľkého 4-izbového bytu. S novým nábytkom na mieru.',
-    icon: '🏢',
-  },
-  {
-    title: 'Dom',
-    description: 'Rekonštrukcia rodinného domu, jednotlivých miestností alebo rozšírenie objektu.',
-    icon: '🏠',
-  },
-  {
-    title: 'Kúpeľňa',
-    description: 'Špecializácia na kúpeľne – od plánu po nové obklady, vykurovanie, svetlá.',
-    icon: '🚿',
-  },
-  {
-    title: 'Kuchyňa',
-    description: 'Nová kuchyňa so skrytou elektrickým spotrebičmi a majster-postavený nábytok.',
-    icon: '🍳',
-  },
-  {
-    title: 'Kancelária',
-    description: 'Prestavba komerčného priestoru s ohľadom na bezpečnosť a požiadavky zákona.',
-    icon: '🏢',
-  },
-  {
-    title: 'Ostatné',
-    description: 'Tvarové a iné špecifické projektov. Vždy nájdeme riešenie.',
-    icon: '🔧',
-  },
+const TYPES = [
+  { name: 'Byt',
+    tagline: 'Celý byt od búrania jadra po nábytok na mieru.',
+    lead: 'Najčastejšia zákazka. Panelák aj novostavba, s dočasným vysťahovaním alebo po etapách, ak v byte bývate.',
+    items: ['Búranie jadra a priečok', 'Nové rozvody vody a elektriny', 'Omietky, stierky, sadrokartón', 'Obklady, dlažby a podlahy', 'Kúpeľňa a WC na kľúč', 'Kuchyňa a skrine na mieru'],
+    duration: '6–12 týždňov', quote: 'do 10 pracovných dní' },
+  { name: 'Dom',
+    tagline: 'Rodinný dom, kde sa zvyčajne nájde viac, než bolo v pláne.',
+    lead: 'Staršie domy prinášajú prekvapenia v stenách. Preto naceňujeme po obhliadke a zmeny riešime priebežne, nie faktúrou na konci.',
+    items: ['Rekonštrukcia rozvodov v celom dome', 'Výmena stúpačiek a kanalizácie', 'Zateplenie a omietky [DOPLNIŤ ROZSAH]', 'Kúrenie a radiátory', 'Podlahy a schodiská', 'Vstavaný nábytok'],
+    duration: '3–6 mesiacov', quote: 'do 10 pracovných dní' },
+  { name: 'Kancelária',
+    tagline: 'Komerčný priestor, často za plnej prevádzky klienta.',
+    lead: 'Vieme pracovať po častiach, po večeroch alebo cez víkend, aby ste nemuseli zavrieť. Dátové rozvody a osvetlenie riešime spolu.',
+    items: ['Nové priečky a dispozícia', 'Elektro a dátové rozvody', 'Osvetlenie a ovládanie', 'Podlahy a podhľady', 'Kuchynka a sociálne zázemie', 'Kancelársky nábytok na mieru'],
+    duration: '4–10 týždňov', quote: 'do 10 pracovných dní' },
+  { name: 'Kúpeľňa',
+    tagline: 'Jadro a kúpeľňa na kľúč, s 10-ročnou zárukou na obklady.',
+    lead: 'Najrýchlejšia veľká zákazka. Vodár, elektrikár a obkladač idú za sebou bez prestoja.',
+    items: ['Búranie starého jadra', 'Nové rozvody vody a odpadu', 'Hydroizolácia a obklady', 'Sprchový kút alebo vaňa', 'Sanita, batérie, vykurovací rebrík', 'Kúpeľňový nábytok do vlhka'],
+    duration: '2–4 týždne', quote: 'do 5 pracovných dní' },
 ];
+
+const FLOW = [
+  { title: 'Obhliadka', text: 'Prídeme, odmeriame skutočný stav a prejdeme, čo chcete. 50 € — pri realizácii sa odpočíta.' },
+  { title: 'Cenová ponuka', text: 'Položkovitý rozpis práce aj materiálu, podľa rozsahu do 1–10 pracovných dní.' },
+  { title: 'Zmluva a harmonogram', text: 'Jedna zmluva na celú stavbu a termíny jednotlivých remesiel. Viete, kto kedy príde.' },
+  { title: 'Realizácia', text: 'Remeslá idú za sebou, nie cez seba. Rozvody fotíme pred zakrytím.' },
+  { title: 'Odovzdanie', text: 'Spoločná prehliadka, zoznam drobností a ich doriešenie. Potom odovzdanie.' },
+  { title: 'Záruka', text: '2 roky na práce, 10 rokov na obklady pri splnení podmienok, doživotná garancia kvality vyhotovenia.' },
+];
+const t0 = TYPES[0];
+const inPrice = ['Práca všetkých remesiel', 'Koordinácia a harmonogram', 'Odvoz sutiny', 'Ochrana spoločných priestorov'];
+const extra = ['Materiál a obklady', 'Sanita, batérie, svietidlá', 'Spotrebiče', 'Projekt a povolenia [DOPLNIŤ]'];
 ---
 
-<BaseLayout title={title} description={description}>
-  <Header />
+<SubLayout title="Rekonštrukcie na kľúč – Profi Prerábky Team" description="Rekonštrukcie bytov, domov, kancelárií a kúpeľní v Bratislave. Jedna zmluva, jeden harmonogram, štyri remeslá z jedného tímu." current="/rekonstrukcie">
 
-  <!-- Hero section -->
-  <section class="bg-bg-dark py-16 md:py-24 px-clamp-sm">
-    <div class="max-w-7xl mx-auto">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6">Rekonštrukcie</h1>
-      <p class="text-text-secondary max-w-2xl text-lg">
-        Od prvého stretnutia cez projekt po odovzdanie na kľúč. Všetko remeslo v jednom tíme – bez koordinácie externe.
-      </p>
+<section style="position:relative;padding:clamp(56px,7vw,96px) clamp(20px,5vw,64px) clamp(48px,6vw,72px);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;inset:0;background:url(/foto/ruzinov-kuchyna-obyvacka/01.jpg) center / cover;opacity:0.22"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg,#0D1215 10%,rgba(13,18,21,0.6) 70%,rgba(13,18,21,0.9) 100%)"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto">
+    <nav class="crumbs" aria-label="Omrvinky"><a href="/">Úvod</a> · Rekonštrukcie</nav>
+    <h1 style="margin:0;font-weight:600;font-size:clamp(36px,5.6vw,72px);line-height:1.04;letter-spacing:-0.025em;max-width:920px">Rekonštrukcia na kľúč.<br /><span class="dline" style={`color:${BRAND}`}>Jedna zmluva, jeden harmonogram.</span></h1>
+    <p style="margin:28px 0 0;font-size:17px;line-height:1.7;color:rgba(238,240,243,0.75);max-width:640px">Murár, elektrikár, vodár aj stolár sú z jedného tímu. Vy voláte jednému človeku — on rieši poradie remesiel, materiál aj termíny.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px">
+      <a href="/kontakt" class="btn" style={`min-height:52px;padding:0 28px;background:${BRAND};color:#0D1215;font-weight:600;font-size:14px`}>Objednať obhliadku <Fragment set:html={arrow} /></a>
+      <a href="/realizacie" class="btn" style="min-height:52px;padding:0 24px;border:1px solid rgba(238,240,243,0.35);font-weight:500;font-size:14px">Pozrieť realizácie</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Project types -->
-  <section class="bg-bg-dark py-16 md:py-24 px-clamp-sm">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-3xl font-bold mb-12">Aké projekty riešime?</h2>
+<section style="padding:clamp(56px,7vw,96px) clamp(20px,5vw,64px);max-width:1240px;margin:0 auto">
+  <p class="rv kicker" style={`margin:0 0 24px;color:${BRAND}`}>ČO REKONŠTRUUJEME</p>
+  <div class="rv" role="group" aria-label="Typ rekonštrukcie" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px">
+    {TYPES.map((t, i) => (
+      <button type="button" class:list={['tab', 'chip', { on: i === 0 }]} data-type={i} aria-pressed={i === 0 ? 'true' : 'false'} style="min-height:52px;padding:0 26px;font-size:15px;font-weight:600">{t.name}</button>
+    ))}
+  </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {projectTypes.map((type) => (
-          <div class="rv bg-bg-panel border border-text-muted rounded-xl p-8 hover:border-brand-green transition-all">
-            <div class="text-5xl mb-4">{type.icon}</div>
-            <h3 class="text-xl font-bold mb-2">{type.title}</h3>
-            <p class="text-text-secondary text-sm">{type.description}</p>
-          </div>
-        ))}
-      </div>
-
-      <!-- Why choose us -->
-      <div class="bg-bg-panel rounded-xl p-8 md:p-12 mb-16">
-        <h3 class="text-2xl font-bold mb-8">Prečo sa nám oplatí?</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h4 class="font-bold text-lg mb-2 text-brand-green">Všetko v jednom</h4>
-            <p class="text-text-secondary text-sm">
-              Bez čakania na externý tím. Elektrikár a vodár vedia, ako spolu pracovať. Stolár pristúpi, keď sú steny hotové.
-            </p>
-          </div>
-          <div>
-            <h4 class="font-bold text-lg mb-2 text-brand-green">Jeden manažér</h4>
-            <p class="text-text-secondary text-sm">
-              Vždy vieš, kto rozhoduje. Jeden z dvojice (Števo alebo Jakub) si vezme tvoj projekt za svoj.
-            </p>
-          </div>
-          <div>
-            <h4 class="font-bold text-lg mb-2 text-brand-green">Lacnejšie</h4>
-            <p class="text-text-secondary text-sm">
-              Bez medziinštitúcií a sprostredkovateľov. Nákup materiálu riešime sami. Cena je nižšia.
-            </p>
-          </div>
-          <div>
-            <h4 class="font-bold text-lg mb-2 text-brand-green">Rýchlejšie</h4>
-            <p class="text-text-secondary text-sm">
-              Bez zbytočného čakania. Keď je čas, všetci vedia, čo sa deje. Práce na sebe navzájom nadväzujú.
-            </p>
-          </div>
+  <div class="rv" style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch">
+    <div class="panel" style={`flex:999 1 520px;min-width:0;border-top:3px solid ${BRAND};padding:clamp(28px,3.4vw,44px)`}>
+      <div id="type-body" class="swap">
+        <h2 id="type-tagline" class="dline" style="font-style:normal;margin:0;font-size:clamp(26px,3vw,34px);line-height:1.2">{t0.tagline}</h2>
+        <p id="type-lead" style="margin:14px 0 26px;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.7);max-width:620px">{t0.lead}</p>
+        <ul id="type-items" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:0 32px">
+          {t0.items.map((it) => <li class="job-item"><Fragment set:html={check} /><span>{it}</span></li>)}
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:28px;margin-top:28px;padding-top:22px;border-top:1px solid rgba(238,240,243,0.12)">
+          <div><span class="kv-l">TRVANIE</span><span id="type-duration" class="kv-v">{t0.duration}</span></div>
+          <div><span class="kv-l">CENOVÁ PONUKA</span><span id="type-quote" class="kv-v">{t0.quote}</span></div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Process -->
-  <ProcessTimeline />
+    <div style="flex:1 1 280px;min-width:0;background:linear-gradient(180deg,#3a5768 0%,#2a4150 100%);border-radius:14px;box-shadow:0 0 0 1px rgba(228,237,241,0.14),0 24px 60px rgba(0,0,0,0.38);padding:clamp(28px,3.4vw,40px);display:flex;flex-direction:column;gap:20px">
+      <p class="eyebrow" style="margin:0;color:rgba(238,240,243,0.75)">OBHLIADKA</p>
+      <span style="font-size:44px;font-weight:600;line-height:1">50 €</span>
+      <span style="font-size:12px;color:rgba(238,240,243,0.6);margin-top:-14px">61,50 € s DPH</span>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.88)">Pri realizácii sa celá odpočíta z ceny. Nacenenie veľkej zákazky je deň práce — preto ju účtujeme, ale ak u nás objednáte, nestojí vás nič.</p>
+      <p style="margin:0;font-size:13px;line-height:1.7;color:rgba(238,240,243,0.7);background:rgba(13,18,21,0.3);padding:14px 16px">Mimo Bratislavy je obhliadka od 80 € — základ, podľa vzdialenosti alebo dohody aj viac. Doprava je v tejto cene už zarátaná.</p>
+      <a href="/kontakt" class="btn" style="margin-top:auto;justify-content:center;min-height:48px;background:#EEF0F3;color:#0D1215;font-weight:600;font-size:14px">Dohodnúť obhliadku</a>
+    </div>
+  </div>
+</section>
 
-  <!-- Warranty -->
-  <section class="bg-bg-panel py-16 md:py-24 px-clamp-sm">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">Záruka na naše práce</h2>
-      <div class="space-y-4 text-left max-w-2xl mx-auto">
-        <div class="bg-bg-dark rounded-lg p-6">
-          <h3 class="font-bold text-lg mb-2">2 roky záruka</h3>
-          <p class="text-text-secondary text-sm">
-            Na všetky práce – elektrikárstvo, vodoinstalácii, stavebné práce, nábytok.
-          </p>
+<section class="light-band" style="padding:clamp(72px,9vw,120px) clamp(20px,5vw,64px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <p class="kicker" style="margin:0 0 20px;color:#2F4858">PRIEBEH SPOLUPRÁCE</p>
+    <h2 style="margin:0 0 56px;font-weight:600;font-size:clamp(30px,4vw,52px);letter-spacing:-0.02em;line-height:1.08;color:#0D1215">Od prvého telefonátu<br /><span class="dline">po odovzdanie kľúčov.</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px">
+      {FLOW.map((f, i) => (
+        <div style="border-top:2px solid rgba(13,18,21,0.25);padding-top:20px">
+          <span style="font-size:13px;font-weight:600;letter-spacing:0.1em;color:#2F4858">0{i + 1}</span>
+          <h3 style="margin:12px 0 10px;font-size:19px;font-weight:600;line-height:1.25;color:#0D1215">{f.title}</h3>
+          <p style="margin:0;font-size:14px;line-height:1.65;color:#2F4858">{f.text}</p>
         </div>
-        <div class="bg-bg-dark rounded-lg p-6">
-          <h3 class="font-bold text-lg mb-2">10 rokov záruka na obklady a dlažby</h3>
-          <p class="text-text-secondary text-sm">
-            Podmienka: Produkty Sopro a stavba na pevnom, stabilnom podklade.
-          </p>
-          <p class="text-text-secondary text-xs mt-2 italic">
-            Neplatí pri provizórnych riešeniach, ktoré si vyžiadal zákazník.
-          </p>
-        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(72px,9vw,120px) clamp(20px,5vw,64px);max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px">
+  <div class="rv panel" style="padding:clamp(28px,3.4vw,40px)">
+    <p class="eyebrow" style={`margin:0 0 12px;color:${BRAND}`}>ZÁRUKA</p>
+    <h2 class="dline" style="font-style:normal;margin:0 0 24px;font-size:28px;line-height:1.2">Dva roky, desať rokov <span style={`font-style:italic;color:${BRAND}`}>a jedna doživotná.</span></h2>
+    <div class="wr"><span class="wr-n" style="font-size:38px;width:64px">2</span><span class="wr-t">roky na všetky vykonané práce.</span></div>
+    <div class="wr" style="padding-top:16px"><span class="wr-n" style="font-size:38px;width:64px">10</span><span class="wr-t">rokov na obklady a dlažby pri splnení podmienok.</span></div>
+    <div style="display:flex;gap:16px;align-items:baseline;padding-top:16px"><span class="wr-n" style={`font-size:38px;width:64px;color:${BRAND}`}>∞</span><span class="wr-t">doživotná garancia kvality remeselnej práce.</span></div>
+    <p style="margin:20px 0 0;font-size:12px;line-height:1.7;color:rgba(238,240,243,0.6);background:rgba(13,18,21,0.4);padding:14px 16px">Podmienky: 10-ročná záruka platí pri použití produktov Sopro a na pevnom, stabilnom podklade. Doživotná garancia sa vzťahuje na vyhotovenie práce — nie na opotrebenie materiálu, zásahy iných firiem ani na provizórne riešenia, ktoré si vyžiada klient. [OVERIŤ ZNENIE S PRÁVNIKOM]</p>
+  </div>
+
+  <div class="rv panel" style="padding:clamp(28px,3.4vw,40px)">
+    <p class="eyebrow" style={`margin:0 0 12px;color:${BRAND}`}>BEZ PREKVAPENÍ</p>
+    <h2 class="dline" style="font-style:normal;margin:0 0 24px;font-size:28px;line-height:1.2">Čo je a čo nie je v cene.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px">
+      <div>
+        <span style={`display:block;font-size:12px;font-weight:600;letter-spacing:0.1em;color:${BRAND};margin-bottom:12px`}>V CENE</span>
+        <ul class="plain-list" style="color:rgba(238,240,243,0.85)">{inPrice.map((x) => <li>{x}</li>)}</ul>
+      </div>
+      <div>
+        <span style="display:block;font-size:12px;font-weight:600;letter-spacing:0.1em;color:rgba(238,240,243,0.6);margin-bottom:12px">ZVLÁŠŤ</span>
+        <ul class="plain-list" style="color:rgba(238,240,243,0.65)">{extra.map((x) => <li>{x}</li>)}</ul>
       </div>
     </div>
-  </section>
+    <p style="margin:22px 0 0;font-size:13px;line-height:1.7;color:rgba(238,240,243,0.6)">Materiál viete kúpiť sami alebo cez nás — v cenovej ponuke je vždy položkovito rozpísaný.</p>
+  </div>
+</section>
 
-  <!-- Contact form -->
-  <ContactForm
-    title="Bezplatná obhliadka a návrh"
-    description="Nepredajom ti nič bez poriadneho návrhu. Prídem, pozriem si to, a do týždňa máš odhad."
-  />
+<section style="padding:0 clamp(20px,5vw,64px) clamp(72px,9vw,120px);max-width:1240px;margin:0 auto">
+  <div class="panel" style={`border-left:3px solid ${BRAND};padding:clamp(32px,4vw,56px);display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between`}>
+    <div>
+      <h2 style="margin:0;font-weight:600;font-size:clamp(26px,3.2vw,40px);letter-spacing:-0.02em;line-height:1.1">Povedzte nám,<br /><span class="dline" style={`color:${BRAND}`}>čo prerábate.</span></h2>
+      <p style="margin:16px 0 0;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.7);max-width:480px">Prvá odpoveď do 4 hodín v pracovnom čase, cenová ponuka podľa rozsahu do 1–10 pracovných dní.</p>
+    </div>
+    <a href="/kontakt" class="btn" style={`min-height:54px;padding:0 30px;background:${BRAND};color:#0D1215;font-weight:700;font-size:14px;letter-spacing:0.06em`}>Nezáväzný dopyt <Fragment set:html={arrow} /></a>
+  </div>
+</section>
 
-  <Footer />
-</BaseLayout>
+<script type="application/json" id="types-data" set:html={JSON.stringify(TYPES)} />
+<template id="check-tpl"><Fragment set:html={check} /></template>
+</SubLayout>
 
-<style>
-  .rv {
-    animation: rv linear both;
-    animation-timeline: view();
-    animation-range: entry 5% cover 28%;
-  }
-
-  @keyframes rv {
-    from {
-      opacity: 0;
-      transform: translateY(48px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .rv {
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-  }
+<style is:global>
+  .job-item { display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5; }
+  .kv-l { display: block; font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.5); }
+  .kv-v { display: block; font-size: 18px; font-weight: 600; margin-top: 6px; }
+  .plain-list { list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.5; }
+  .plain-list li { padding: 9px 0; border-bottom: 1px solid rgba(238,240,243,0.08); }
+  .plain-list li:last-child { border-bottom: 0; }
 </style>
+
+<script>
+  type T = { tagline: string; lead: string; items: string[]; duration: string; quote: string };
+  const types: T[] = JSON.parse(document.getElementById('types-data')!.textContent || '[]');
+  const tpl = document.getElementById('check-tpl') as HTMLTemplateElement;
+  const $ = (id: string) => document.getElementById(id)!;
+  document.querySelectorAll<HTMLButtonElement>('[data-type]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const t = types[Number(btn.dataset.type)];
+      document.querySelectorAll('[data-type]').forEach((b) => {
+        b.classList.toggle('on', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      $('type-tagline').textContent = t.tagline;
+      $('type-lead').textContent = t.lead;
+      $('type-duration').textContent = t.duration;
+      $('type-quote').textContent = t.quote;
+      $('type-items').replaceChildren(...t.items.map((label) => {
+        const li = document.createElement('li');
+        li.className = 'job-item';
+        li.append(tpl.content.cloneNode(true));
+        const s = document.createElement('span');
+        s.textContent = label;
+        li.append(s);
+        return li;
+      }));
+      const body = $('type-body');
+      body.classList.remove('swap');
+      void body.offsetWidth;
+      body.classList.add('swap');
+    });
+  });
+</script>
