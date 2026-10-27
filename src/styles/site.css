@@ -111,3 +111,11 @@ body { margin: 0; background: #101c24; }
 .sub-footer { border-top: 1px solid rgba(238,240,243,0.1); padding: 40px clamp(20px,5vw,64px); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; font-size: 12px; line-height: 1.9; color: rgba(238,240,243,0.55); }
 .sub-footer a { color: rgba(238,240,243,0.7); }
 .ba-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.doc h2 { margin: 40px 0 14px; font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.doc h3 { margin: 24px 0 10px; font-size: 16px; font-weight: 600; }
+.doc p, .doc li { font-size: 15px; line-height: 1.75; color: rgba(238,240,243,0.8); }
+.doc p { margin: 0 0 12px; }
+.doc ul { margin: 0 0 12px; padding-left: 20px; list-style: disc; }
+.doc a { color: #51AE4B; }
+.doc .todo { color: #FFC65C; }
+.job-item { display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5; }

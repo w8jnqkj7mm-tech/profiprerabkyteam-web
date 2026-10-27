@@ -1,0 +1,52 @@
+---
+import SubLayout from '../layouts/SubLayout.astro';
+import { BRAND } from '../data/home';
+
+const POSTS = [
+  { cat: 'KÚPEĽŇA', ink: '#8FA6E6', title: 'Prerábka kúpeľne krok za krokom', text: 'Čo sa deje v ktorom týždni, kedy sa nedá sprchovať a prečo sa obklad kladie až po tlakovej skúške.', meta: '[DÁTUM] · 6 min', img: '/foto/kupelne/02.jpg' },
+  { cat: 'ELEKTRINA', ink: '#FF6B70', title: 'Hliníkové rozvody: kedy ich musíte vymeniť', text: 'Ako spoznať hliník v stene, čo s ním robí moderná spotreba a koľko stojí výmena v dvojizbovom byte.', meta: '[DÁTUM] · 5 min', img: '/foto/robotnicka-elektro/03.jpg' },
+  { cat: 'PRÍPRAVA', ink: BRAND, title: 'Čo si pripraviť pred obhliadkou', text: 'Pôdorys, fotky, zoznam toho, čo vás na byte najviac hnevá. S tým vieme naceniť presnejšie a rýchlejšie.', meta: '[DÁTUM] · 4 min', img: '/foto/palisady-kuchyna/02.jpg' },
+  { cat: 'NÁBYTOK', ink: '#E9E3D8', title: 'Prečo sa kuchyňa zameriava až na konci', text: 'Výška stropu a rovina steny sa počas stavby menia o centimetre. Pri nábytku na mieru to rozhoduje.', meta: '[DÁTUM] · 4 min', img: '/foto/kuchyna-stolarstvo/01.jpg' },
+  { cat: 'ROZPOČET', ink: BRAND, title: 'Päť miest, kde sa pri prerábke šetrí zle', text: 'Hydroizolácia, rozvody, podklad pod dlažbu. To, čo sa zakryje, sa najhoršie opravuje.', meta: '[DÁTUM] · 7 min', img: '/foto/kupelne/06.jpg' },
+  { cat: 'KLIMATIZÁCIA', ink: '#FF6B70', title: 'Kedy riešiť klimatizáciu pri rekonštrukcii', text: 'Rozvod medi sa dá schovať do steny, ak sa o ňom vie včas. Potom je to už sekanie do hotovej omietky.', meta: '[DÁTUM] · 5 min', img: '/foto/klimatizacia-ruzinov/01.jpg' },
+];
+---
+
+<SubLayout title="Blog – Profi Prerábky Team" description="Rady zo stavby: ceny prerábok, príprava na obhliadku, kúpeľne, elektrina a nábytok na mieru." current="/blog">
+
+<section style="padding:clamp(56px,7vw,96px) clamp(20px,5vw,64px) clamp(32px,4vw,48px);max-width:1240px;margin:0 auto">
+  <nav class="crumbs" aria-label="Omrvinky"><a href="/">Úvod</a> · Blog</nav>
+  <h1 class="sub-h1">Rady zo stavby.<br /><span class="dline" style={`color:${BRAND}`}>Bez marketingových rečí.</span></h1>
+  <p class="sub-lead">Čo stojí prerábka, čo si pripraviť pred obhliadkou, kde sa najčastejšie šetrí zle. Dva články mesačne.</p>
+</section>
+
+<section style="padding:0 clamp(20px,5vw,64px) clamp(48px,6vw,72px);max-width:1240px;margin:0 auto">
+  <article class="panel rv" style={`display:flex;flex-wrap:wrap;border-radius:16px;overflow:hidden;border-top:3px solid ${BRAND}`}>
+    <div style="flex:1 1 360px;min-height:280px;background:url(/foto/ruzinov-kuchyna-obyvacka/01.jpg) center / cover"></div>
+    <div style="flex:999 1 420px;min-width:0;padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:16px;justify-content:center">
+      <span class="eyebrow" style={`letter-spacing:0.2em;color:${BRAND}`}>ODPORÚČAME · CENY</span>
+      <h2 style="margin:0;font-size:clamp(24px,2.8vw,34px);font-weight:600;line-height:1.2;letter-spacing:-0.02em">Koľko stojí prerábka bytu v Bratislave v roku 2026</h2>
+      <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.7)">Reálne rozpätia podľa veľkosti bytu a rozsahu prác, rozdiel medzi panelákom a novostavbou a položky, na ktorých sa najčastejšie podstrelí rozpočet.</p>
+      <span style="font-size:12px;letter-spacing:0.08em;color:rgba(238,240,243,0.5)">[DÁTUM] · 8 min čítania</span>
+    </div>
+  </article>
+</section>
+
+<section style="padding:0 clamp(20px,5vw,64px) clamp(64px,8vw,104px);max-width:1240px;margin:0 auto">
+  <div class="rv" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:24px">
+    {POSTS.map((p) => (
+      <article class="panel" style="display:flex;flex-direction:column;border-radius:16px;overflow:hidden">
+        <div style={`height:170px;background:url(${p.img}) center / cover`}></div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1">
+          <span class="eyebrow" style={`letter-spacing:0.2em;color:${p.ink}`}>{p.cat}</span>
+          <h2 style="margin:0;font-size:19px;font-weight:600;line-height:1.3">{p.title}</h2>
+          <p style="margin:0;font-size:14px;line-height:1.65;color:rgba(238,240,243,0.68)">{p.text}</p>
+          <span style="margin-top:auto;padding-top:14px;border-top:1px solid rgba(238,240,243,0.1);font-size:12px;color:rgba(238,240,243,0.5)">{p.meta}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+  <p style="margin:32px 0 0;font-size:13px;line-height:1.8;color:rgba(238,240,243,0.5)">Články sú zatiaľ návrhy tém. Publikujú sa len schválené — koncepty zostávajú skryté. [SCHVÁLIŤ TÉMY]</p>
+</section>
+
+</SubLayout>

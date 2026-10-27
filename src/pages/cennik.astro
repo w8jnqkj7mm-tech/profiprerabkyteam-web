@@ -1,0 +1,122 @@
+---
+import SubLayout from '../layouts/SubLayout.astro';
+import { BRAND } from '../data/home';
+
+const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+
+const GROUPS = [
+  { title: 'VÝJAZD A PRÁCA', note: 'Platí pre elektrikára, vodára aj hodinového majstra. Hodinová sadzba platí pre práce do jedného dňa, teda do 8 hodín.', rows: [
+    { label: 'Výjazd / konzultácia pri malej práci v Bratislave (bez práce)', net: '50 €', vat: '61,50 €' },
+    { label: 'Výjazd mimo Bratislavy — základ, podľa vzdialenosti alebo dohody aj viac', net: 'od 80 €', vat: 'od 98,40 €' },
+    { label: 'Každá ďalšia hodina — alebo cena za úkon', net: '45 €', vat: '55,35 €' },
+    { label: 'Práca dlhšia ako jeden deň (nad 8 h) — za hodinu', net: '35 €', vat: '43,05 €' },
+    { label: 'Obhliadka veľkej zákazky v Bratislave — pri realizácii sa odpočíta', net: '50 €', vat: '61,50 €' },
+    { label: 'Obhliadka mimo Bratislavy — základ, podľa vzdialenosti alebo dohody aj viac', net: 'od 80 €', vat: 'od 98,40 €' },
+  ] },
+  { title: 'DOPRAVA', note: 'Mimo Bratislavy je doprava už zarátaná v cene výjazdu aj obhliadky (od 80 €). Samostatne sa účtuje len po dohode pri väčších zákazkách. [OVERIŤ]', rows: [
+    { label: 'Doprava po dohode — za kilometer', net: '0,53 €/km', vat: '0,65 €/km' },
+  ] },
+  { title: 'KLIMATIZÁCIE', note: 'Predávame aj montujeme. Jednotku vieme dodať aj samostatne alebo firmám vo väčšom. Servis sa oplatí objednať mimo sezóny — cez leto je dopyt najvyšší a cena tomu zodpovedá.', rows: [
+    { label: 'Obhliadka a cenová ponuka v Bratislave', net: '0 €', vat: '0 €' },
+    { label: 'Obhliadka mimo Bratislavy — alebo zdarma, ak si montáž objednáte', net: 'od 80 €', vat: 'od 98,40 €' },
+    { label: 'Montáž do 3,5 kW (do 3 m medzi vonkajšou a vnútornou jednotkou)', net: 'od 284,55 €', vat: 'od 350 €' },
+    { label: 'Každý ďalší meter rozvodu', net: '34,15 €', vat: '42 €' },
+    { label: 'Jednotky s vyšším výkonom', net: 'na dopyt', vat: 'na dopyt' },
+    { label: 'Servis a čistenie mimo sezóny (jeseň až jar)', net: 'od 69 €', vat: 'od 84,87 €' },
+    { label: 'Servis a čistenie počas sezóny', net: '110 €', vat: '135,30 €' },
+  ] },
+];
+---
+
+<SubLayout title="Cenník malých prác – Profi Prerábky Team" description="Výjazd 50 € bez DPH, ďalšia hodina 45 €, montáž klimatizácie od 284,55 €. Rovnaký cenník pre všetky štyri značky." current="/cennik">
+
+<div id="prices" class="show-net">
+<section style="padding:clamp(56px,7vw,96px) clamp(20px,5vw,64px) clamp(32px,4vw,48px);max-width:1100px;margin:0 auto">
+  <nav class="crumbs" aria-label="Omrvinky"><a href="/">Úvod</a> · Cenník</nav>
+  <h1 class="sub-h1">Cenník malých prác.<br /><span class="dline" style={`color:${BRAND}`}>Rovnaký pre všetky štyri značky.</span></h1>
+  <p class="sub-lead" style="max-width:620px">Elektrikár, vodár, hodinový majster aj stolár účtujú rovnako. Materiál sa účtuje zvlášť podľa skutočnej spotreby.</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:36px">
+    <span style="font-size:11px;font-weight:600;letter-spacing:0.2em;color:rgba(238,240,243,0.5)">ZOBRAZIŤ CENY</span>
+    <div role="group" aria-label="Zobrazenie cien" style="display:flex;gap:8px">
+      <button type="button" class="tab chip on vat-mode" data-mode="net" aria-pressed="true" style="min-height:44px;padding:0 20px;font-size:13px;font-weight:600">Bez DPH</button>
+      <button type="button" class="tab chip vat-mode" data-mode="vat" aria-pressed="false" style="min-height:44px;padding:0 20px;font-size:13px;font-weight:600">S DPH (23 %)</button>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,5vw,64px) clamp(56px,7vw,88px);max-width:1100px;margin:0 auto">
+  {GROUPS.map((g) => (
+    <div class="rv" style="margin-bottom:40px">
+      <h2 class="eyebrow" style={`margin:0 0 4px;font-size:12px;color:${BRAND}`}>{g.title}</h2>
+      <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:rgba(238,240,243,0.6)">{g.note}</p>
+      <ul style="list-style:none;margin:0;padding:0;border-top:1px solid rgba(238,240,243,0.14)">
+        {g.rows.map((r) => (
+          <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:16px;padding:18px 0;border-bottom:1px solid rgba(238,240,243,0.08)">
+            <span style="flex:1 1 260px;font-size:16px;line-height:1.5;color:rgba(238,240,243,0.9)">{r.label}</span>
+            <span style="text-align:right;flex:none;font-variant-numeric:tabular-nums">
+              <span class="p-net">
+                <span style="display:block;font-size:22px;font-weight:600">{r.net}</span>
+                {r.vat !== r.net && <span class="p-sub">{r.vat} s DPH</span>}
+              </span>
+              <span class="p-vat">
+                <span style="display:block;font-size:22px;font-weight:600">{r.vat}</span>
+                {r.vat !== r.net && <span class="p-sub">{r.net} bez DPH</span>}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+  <p style={`margin:0 0 14px;font-size:14px;line-height:1.8;color:rgba(238,240,243,0.78);background:rgba(13,18,21,0.45);border-left:2px solid ${BRAND};border-radius:0 12px 12px 0;padding:14px 18px`}>Hodinová sadzba 45 € platí pre práce, ktoré zaberú najviac jeden deň (8 hodín). Pri dlhších prácach klesá na <strong style="color:#EEF0F3">35 € za hodinu</strong> (43,05 € s DPH) — alebo vám radšej pripravíme cenovú ponuku na celý rozsah, čo pri väčších zákazkách vychádza lepšie pre obe strany.</p>
+  <p style="margin:0;font-size:13px;line-height:1.8;color:rgba(238,240,243,0.55)"><span class="p-net">Zobrazené sú ceny bez DPH, pod nimi cena s DPH (23 %). Materiál sa účtuje zvlášť.</span><span class="p-vat">Zobrazené sú konečné ceny s DPH (23 %), pod nimi cena bez DPH. Materiál sa účtuje zvlášť.</span> Ceny platia pre Bratislavu; mimo Bratislavy je základ výjazdu aj obhliadky od 80 € podľa vzdialenosti alebo dohody. Ceny sú orientačné a platia od [DÁTUM PLATNOSTI].</p>
+</section>
+</div>
+
+<section class="light-band" style="padding:clamp(64px,8vw,104px) clamp(20px,5vw,64px)">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:48px">
+    <div>
+      <p class="kicker" style="margin:0 0 18px;color:#2F4858">OBHLIADKA</p>
+      <h2 style="margin:0;font-weight:600;font-size:clamp(28px,3.6vw,44px);letter-spacing:-0.02em;line-height:1.1;color:#0D1215">Prečo si obhliadku<br /><span class="dline">účtujeme.</span></h2>
+    </div>
+    <div style="font-size:16px;line-height:1.75;color:#2F4858">
+      <p style="margin:0 0 16px">Nacenenie veľkej zákazky je deň práce — zameranie na mieste, prepočet materiálu, oslovenie dodávateľov a rozpis po položkách. Preto obhliadku účtujeme.</p>
+      <p style="margin:0 0 16px;color:#0D1215;font-weight:600">Ak u nás zákazku objednáte, celú sumu za obhliadku odpočítame z ceny diela.</p>
+      <p style="margin:0 0 16px">Pri malej práci je výjazd zároveň konzultáciou. <strong style="color:#0D1215">Nezahŕňa samotnú opravu</strong> — tá sa účtuje od ďalšej hodiny alebo cenou za úkon. <strong style="color:#0D1215">Zahŕňa však konzultáciu a zistenie príčiny</strong>, čo je často to hlavné, pre čo nás voláte.</p>
+      <p style="margin:0 0 16px">Ak sa ukáže, že ide o drobnosť — napríklad treba len zdvihnúť vypadnutú poistku — nič navyše neúčtujeme. Zaplatíte výjazd a hotovo.</p>
+      <p style="margin:0">Pri klimatizáciách je obhliadka a cenová ponuka <strong style="color:#0D1215">v Bratislave zdarma</strong>. Mimo Bratislavy je od 80 € — a ak si montáž objednáte, túto sumu vám odpočítame z ceny, takže vás obhliadka nestojí nič.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(64px,8vw,104px) clamp(20px,5vw,64px);max-width:1100px;margin:0 auto">
+  <div class="panel" style={`border-left:3px solid ${BRAND};padding:clamp(32px,4vw,52px);display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between`}>
+    <div>
+      <h2 style="margin:0;font-weight:600;font-size:clamp(24px,3vw,36px);letter-spacing:-0.02em;line-height:1.12">Neviete si rady? Poradíme.</h2>
+      <p style="margin:14px 0 0;font-size:15px;line-height:1.7;color:rgba(238,240,243,0.7);max-width:520px">Nemusíte vedieť, ako sa to volá ani do ktorej položky to patrí. Napíšte nám, o čo ide, prípadne pošlite fotku — často vieme cenu povedať ešte pred výjazdom.</p>
+    </div>
+    <a href="/kontakt" class="btn" style={`min-height:54px;padding:0 30px;background:${BRAND};color:#0D1215;font-weight:700;font-size:14px;letter-spacing:0.06em`}>Opýtať sa na cenu <Fragment set:html={arrow} /></a>
+  </div>
+</section>
+
+</SubLayout>
+
+<style is:global>
+  .p-sub { display: block; font-size: 12px; color: rgba(238,240,243,0.5); margin-top: 2px; }
+  .show-net .p-vat, .show-vat .p-net { display: none; }
+</style>
+
+<script>
+  const box = document.getElementById('prices')!;
+  document.querySelectorAll<HTMLButtonElement>('.vat-mode').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const vat = btn.dataset.mode === 'vat';
+      box.classList.toggle('show-vat', vat);
+      box.classList.toggle('show-net', !vat);
+      document.querySelectorAll('.vat-mode').forEach((b) => {
+        b.classList.toggle('on', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+    });
+  });
+</script>
