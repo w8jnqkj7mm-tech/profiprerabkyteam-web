@@ -119,3 +119,4 @@ body { margin: 0; background: #101c24; }
 .doc a { color: #51AE4B; }
 .doc .todo { color: #FFC65C; }
 .job-item { display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5; }
+.home h1, .home h2 { overflow-wrap: break-word; hyphens: auto; }
