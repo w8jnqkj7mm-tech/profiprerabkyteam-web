@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/site.css';
 import { BRAND, TRADES, CREW, STEPS, JOBS, PRICES, SLIDES, CHIPS } from '../data/home';
 
 const title = 'Profi Prerábky Team – Kompletné rekonštrukcie s vlastnými remeselníkmi';
@@ -66,7 +67,7 @@ const marquee = Array.from({ length: 4 });
       <a href="#remesla">Remeslá</a>
       <a href="/cennik">Cenník</a>
       <a href="#postup">Postup</a>
-      <a href="#realizacie">Realizácie</a>
+      <a href="/realizacie">Realizácie</a>
       <a href="#dopyt">Kontakt</a>
     </nav>
   </header>
@@ -230,10 +231,11 @@ const marquee = Array.from({ length: 4 });
 
       <div id="realizacie" style="display:flex;flex-direction:column;gap:14px">
         <div class="panel" style="position:relative;flex:1;min-height:440px;overflow:hidden;background:#1a1918">
-          <div aria-hidden="true" style="position:absolute;inset:0;background:repeating-linear-gradient(135deg, #2c2b29 0 2px, #232220 2px 14px), linear-gradient(180deg, #3a3835, #1e1d1b)"></div>
-          <div aria-hidden="true" class="ba-tag" style="left:20px">PRED · [FOTO]</div>
-          <div aria-hidden="true" id="ba-after" style={`position:absolute;inset:0;clip-path:inset(0 0 0 50%);background:${t0.afterBg}`}>
-            <div class="ba-tag" style="right:20px">PO · [FOTO]</div>
+          <img id="ba-before" src={t0.before} alt="" aria-hidden="true" class="ba-img" />
+          <div aria-hidden="true" class="ba-tag" style="left:20px">PRED</div>
+          <div aria-hidden="true" id="ba-after" style="position:absolute;inset:0;clip-path:inset(0 0 0 50%)">
+            <img id="ba-after-img" src={t0.after} alt="" class="ba-img" />
+            <div class="ba-tag" style="right:20px">PO</div>
           </div>
           <div aria-hidden="true" id="ba-handle" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#EEF0F3;transform:translateX(-1px);pointer-events:none">
             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:#EEF0F3;color:#0D1215;display:flex;align-items:center;justify-content:center">
@@ -244,7 +246,7 @@ const marquee = Array.from({ length: 4 });
           <input id="ba" class="range" type="range" min="0" max="100" value="50" />
         </div>
         <div style="display:flex;justify-content:space-between;gap:12px;font-size:13px;color:rgba(238,240,243,0.6)">
-          <span id="trade-case">{t0.caseLabel}</span><span>[LOKALITA · TRVANIE]</span>
+          <span id="trade-case">{t0.caseLabel}</span><span id="trade-place">{t0.place}</span>
         </div>
       </div>
     </div>
@@ -497,105 +499,6 @@ const marquee = Array.from({ length: 4 });
 </div>
 </BaseLayout>
 
-<style is:global>
-  body { margin: 0; background: #101c24; }
-  [hidden] { display: none !important; }
-  .home { font-family: Montserrat, sans-serif; color: #EEF0F3; background: linear-gradient(180deg, #22343f 0%, #1a2a34 18%, #121d25 46%, #0F1920 100%); width: 100%; overflow: hidden; }
-  .home a { color: inherit; text-decoration: none; }
-  .home a:hover { color: #fff; }
-  .home * { box-sizing: border-box; }
-  .home button { font-family: Montserrat, sans-serif; }
-  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-
-  #intro { position: fixed; inset: 0; z-index: 100; background: #0D1215; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  #intro video { width: 100%; height: 100%; object-fit: cover; }
-
-  .hero { position: relative; height: min(100vh, 920px); min-height: 680px; display: flex; flex-direction: column; overflow: hidden; }
-  .glow { position: absolute; pointer-events: none; border-radius: 50%; filter: blur(90px); }
-  .dline { font-family: Spectral, Georgia, serif; font-weight: 300; font-style: italic; letter-spacing: -0.005em; }
-  .line { display: block; overflow: hidden; }
-  .line > span { display: inline-block; transform: translateY(110%); animation: rise 1.1s cubic-bezier(.2,.7,.1,1) forwards; }
-  .l2 > span { animation-delay: .15s; } .l3 > span { animation-delay: .3s; }
-  .fade { opacity: 0; animation: fadein 1s ease forwards .7s; }
-  .fade2 { opacity: 0; animation: fadein 1s ease forwards 1s; }
-  @keyframes rise { to { transform: translateY(0); } }
-  @keyframes fadein { to { opacity: 1; } }
-  .kb { animation: kb 22s ease-in-out infinite alternate; }
-  @keyframes kb { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.14) translate(-2%,-1.5%); } }
-  .cue { animation: cue 2.2s cubic-bezier(.6,0,.3,1) infinite; transform-origin: top; }
-  @keyframes cue { 0% { transform: scaleY(0); } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
-  .track { display: flex; width: max-content; animation: marq 38s linear infinite; }
-  @keyframes marq { to { transform: translateX(-50%); } }
-  @supports (animation-timeline: view()) {
-    .rv { animation: rv linear both; animation-timeline: view(); animation-range: entry 5% cover 28%; }
-  }
-  @keyframes rv { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: none; } }
-  .swap { animation: swap .6s cubic-bezier(.2,.7,.1,1); }
-  @keyframes swap { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-
-  .btn { display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; cursor: pointer; transition: transform .25s, background .25s, color .25s, box-shadow .25s; }
-  .btn:hover { transform: translateY(-2px); }
-  .btn.ghost { background: transparent; border: 1px solid rgba(238,240,243,0.35); color: #EEF0F3; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; }
-  .tab { transition: border-color .35s, color .35s, background .35s, box-shadow .35s; border-radius: 12px; cursor: pointer; }
-  .tab:hover { color: #EEF0F3 !important; }
-  .chip { border: 1px solid rgba(238,240,243,0.18); background: transparent; color: rgba(238,240,243,0.75); }
-  .chip.on { border-color: #51AE4B; background: #51AE4B; color: #0D1215; }
-  .chip.on:hover { color: #0D1215 !important; }
-  .lead-type { border-color: rgba(238,240,243,0.22); }
-  .card { transition: box-shadow .3s, transform .3s; }
-  .card:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(228,237,241,0.26), 0 32px 70px rgba(0,0,0,0.45) !important; }
-  .panel { background: linear-gradient(180deg, #1c2c36 0%, #131e26 100%); border-radius: 14px; box-shadow: 0 0 0 1px rgba(228,237,241,0.12), 0 24px 60px rgba(0,0,0,0.38); }
-  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.24em; }
-  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.28em; }
-  .pill { font-size: 12px; padding: 6px 14px; border-radius: 999px; background: rgba(228,237,241,0.06); box-shadow: inset 0 0 0 1px rgba(238,240,243,0.16); }
-  .ulink { color: rgba(238,240,243,0.78) !important; border-bottom: 1px solid rgba(238,240,243,0.28); padding-bottom: 2px; }
-  .pillar-t { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; margin-bottom: 10px; }
-  .pillar-d { font-size: 15px; line-height: 1.65; color: rgba(238,240,243,0.68); }
-
-  .trade-tab { text-align: left; border: 1px solid rgba(238,240,243,0.12); color: rgba(238,240,243,0.62); background: transparent; padding: 22px 24px; display: flex; align-items: center; gap: 18px; min-height: 84px; }
-  .trade-tab .dot { background: rgba(238,240,243,0.2); }
-  .trade-tab.on { border-color: var(--accent); color: #EEF0F3; background: rgba(238,240,243,0.05); }
-  .trade-tab.on .dot { background: var(--accent); }
-  .task { display: flex; gap: 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid rgba(238,240,243,0.08); font-size: 15px; line-height: 1.5; }
-  .task-n { font-size: 12px; font-weight: 600; }
-  .ba-tag { position: absolute; top: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; background: rgba(13,18,21,0.7); padding: 6px 10px; }
-  .range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
-
-  .wr { display: flex; gap: 18px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid rgba(238,240,243,0.18); }
-  .wr-n { font-size: 44px; font-weight: 600; line-height: 1; flex: none; width: 72px; }
-  .wr-t { font-size: 15px; line-height: 1.6; color: rgba(238,240,243,0.85); }
-  .wr-t strong { font-weight: 600; color: #EEF0F3; }
-
-  .step { text-align: left; background: transparent; border: 0; border-right: 1px solid rgba(13,18,21,0.1); padding: 28px 24px 32px 0; cursor: pointer; color: #0D1215; transition: opacity .4s; min-height: 140px; }
-
-  .crow { min-height: 44px; display: flex; align-items: center; gap: 14px; }
-  .crow-l { font-size: 11px; letter-spacing: 0.2em; color: rgba(238,240,243,0.55); width: 90px; flex: none; }
-  .flabel { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: rgba(238,240,243,0.6); }
-  .fhint { display: block; font-size: 11px; color: rgba(238,240,243,0.45); margin-top: 6px; }
-  .home .fld { width: 100%; background: transparent; border: 0; border-bottom: 1px solid rgba(238,240,243,0.24); color: #EEF0F3; font: 500 16px Montserrat, sans-serif; padding: 12px 0; border-radius: 0; }
-  .home .fld:focus { outline: none; border-bottom-color: #51AE4B; }
-  .home select.fld option { background: #151B1F; }
-  .home .fld::placeholder { color: rgba(238,240,243,0.4); }
-
-  .fcol { display: flex; flex-direction: column; gap: 6px; }
-  .fcol-h { color: rgba(238,240,243,0.4); letter-spacing: 0.2em; font-size: 11px; }
-  .fcol a { color: rgba(238,240,243,0.7); }
-
-  .burger { display: none; }
-  .scrollcue { position: absolute; z-index: 2; right: clamp(20px,5vw,72px); bottom: 22px; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 10px; letter-spacing: .3em; color: rgba(238,240,243,.6); }
-  .navlinks { display: flex; flex-wrap: wrap; gap: 26px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; }
-  .navlinks a { color: rgba(238,240,243,0.75); }
-  @media (max-width: 1100px) { .scrollcue { display: none; } }
-  @media (max-width: 900px) {
-    .burger { display: inline-flex; }
-    .navlinks { display: none; }
-    .navlinks.open { display: flex; flex-direction: column; width: 100%; gap: 18px; padding-top: 18px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .line > span, .fade, .fade2 { animation: none; transform: none; opacity: 1; }
-    .kb, .cue, .track, .rv, .swap { animation: none; }
-  }
-</style>
 
 <script>
   import { TRADES, STEPS, JOBS, BRAND, answer } from '../data/home';
@@ -704,7 +607,9 @@ const marquee = Array.from({ length: 4 });
       link.href = t.href;
       link.style.color = t.ink;
       $('trade-case').textContent = t.caseLabel;
-      $('ba-after').style.background = t.afterBg;
+      $<HTMLImageElement>('ba-before').src = t.before;
+      $<HTMLImageElement>('ba-after-img').src = t.after;
+      $('trade-place').textContent = t.place;
       range.value = '50';
       setPos(50);
       restartSwap($('trade-body'));

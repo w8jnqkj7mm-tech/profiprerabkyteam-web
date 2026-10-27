@@ -7,8 +7,8 @@ export const TRADES = [
     tagline: 'Stavebná časť od búrania po finálne povrchy.',
     tasks: ['Búracie práce a odvoz sutiny', 'Murovanie a sadrokartón', 'Omietky, stierky a maľby', 'Obklady a dlažby', 'Podlahy a prechodové lišty'],
     guarantee: 'Za celý projekt zodpovedá jeden z dvojice Števo Fuzy alebo Jakub Kleberc — rieši poradie remesiel, materiál aj termíny.',
-    caseLabel: 'Byt · kompletná rekonštrukcia',
-    afterBg: 'linear-gradient(160deg, #e9e2d6 0%, #cfc4b2 55%, #a8987f 100%)',
+    caseLabel: 'Byt · kuchyňa a obývačka', place: 'Ružinov',
+    before: '/foto/ruzinov-kuchyna-obyvacka/02.jpg', after: '/foto/ruzinov-kuchyna-obyvacka/01.jpg',
   },
   {
     name: 'Elektrikár', brand: 'Pán Elektrikár', accent: '#E51E25', ink: '#FF6B70',
@@ -16,8 +16,8 @@ export const TRADES = [
     tagline: 'Nové rozvody, rozvádzače a svetlo, ktoré dáva zmysel.',
     tasks: ['Kompletné rozvody a výmena hliníka', 'Rozvádzače a istenie', 'Osvetlenie a ovládanie', 'Montáž a predaj klimatizácií', 'Odborná prehliadka a skúška'],
     guarantee: 'Rozvody fotografujeme pred zakrytím, aby ste vedeli, kde čo vedie. Na požiadanie dodáme odbornú prehliadku a skúšku (revíziu).',
-    caseLabel: 'Kancelária · nové rozvody a osvetlenie',
-    afterBg: 'radial-gradient(ellipse at 50% 20%, #fff3cf 0%, #d9c08a 35%, #5a4a2c 100%)',
+    caseLabel: 'Kúpeľňa · nové rozvody a osvetlenie', place: 'Robotnícka',
+    before: '/foto/robotnicka-elektro/02.jpg', after: '/foto/robotnicka-elektro/01.jpg',
   },
   {
     name: 'Vodár', brand: 'Pán Vodár', accent: '#4562AD', ink: '#8FA6E6',
@@ -25,8 +25,8 @@ export const TRADES = [
     tagline: 'Voda, odpady a kúpeľňa bez prekvapení za obkladom.',
     tasks: ['Rozvody vody a kanalizácie', 'Kúpeľne a WC na kľúč', 'Prerábka jadra a stúpačiek', 'Podlahové kúrenie', 'Napojenie spotrebičov'],
     guarantee: 'Rozvody plánujeme spolu s elektrikárom a nábytkom, aby sa nič nekrížilo.',
-    caseLabel: 'Kúpeľňa · nové rozvody a sprchový kút',
-    afterBg: 'linear-gradient(180deg, #e6ecef 0%, #b9c6cd 50%, #6f8794 100%)',
+    caseLabel: 'Kúpeľňa · nové rozvody a sprchový kút', place: 'Ružinov',
+    before: '/foto/ruzinov-kupelna/02.jpg', after: '/foto/ruzinov-kupelna/01.jpg',
   },
   {
     name: 'Stolárstvo', brand: 'Stolárstvo Pressburg', accent: '#E9E3D8', ink: '#E9E3D8',
@@ -34,8 +34,8 @@ export const TRADES = [
     tagline: 'Nábytok vyrobený na rozmery vašej hotovej stavby.',
     tasks: ['Kuchyne na mieru', 'Vstavané a šatníkové skrine', 'Obklady stien a niky', 'Kancelársky nábytok', 'Montáž a doladenie na mieste'],
     guarantee: 'Predbežnú cenu pripravíme aj podľa približných rozmerov. Finálne zameriavame až po dokončení podláh, stien a stropov — výška sa počas stavby mení o 1–2 cm.',
-    caseLabel: 'Kuchyňa · dyha a lak',
-    afterBg: 'repeating-linear-gradient(90deg, #c9a27a 0 3px, #d8b48c 3px 9px, #bf966c 9px 13px)',
+    caseLabel: 'Kuchyňa · nová linka na mieru', place: 'Robotnícka',
+    before: '/foto/robotnicka-kuchyna/02.jpg', after: '/foto/robotnicka-kuchyna/01.jpg',
   },
 ];
 
@@ -95,9 +95,9 @@ export const PRICES = [
 
 export const SLIDES = [
   { bg: 'url(/media/hero-poster.webp) center / cover', tag: '' },
-  { bg: 'linear-gradient(140deg, #2b2f33 0%, #171b1e 60%, #0f1316 100%)', tag: '[FOTO REALIZÁCIE · KÚPEĽŇA]' },
-  { bg: 'linear-gradient(140deg, #3a3835 0%, #24231f 55%, #141312 100%)', tag: '[FOTO REALIZÁCIE · KUCHYŇA]' },
-  { bg: 'linear-gradient(140deg, #2f3a40 0%, #1d2529 55%, #10171a 100%)', tag: '[FOTO REALIZÁCIE · KANCELÁRIA]' },
+  { bg: 'url(/foto/hero/01.jpg) center / cover', tag: 'KÚPEĽŇA · BRATISLAVA' },
+  { bg: 'url(/foto/hero/02.jpg) center / cover', tag: 'KUCHYŇA · PALISÁDY' },
+  { bg: 'url(/foto/hero/03.jpg) center / cover', tag: 'SHOWROOM · COMFORA' },
 ];
 
 export const CHIPS = ['Koľko stojí prerábka kúpeľne?', 'Potrebujem elektrikára', 'Montáž klimatizácie', 'Kedy máte voľný termín?'];

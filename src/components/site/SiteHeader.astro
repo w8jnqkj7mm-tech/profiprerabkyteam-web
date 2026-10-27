@@ -1,0 +1,19 @@
+---
+interface Props { current?: string }
+const { current } = Astro.props;
+const links = [
+  { href: '/male-prace', label: 'Malé práce' },
+  { href: '/rekonstrukcie', label: 'Rekonštrukcie' },
+  { href: '/#remesla', label: 'Remeslá' },
+  { href: '/cennik', label: 'Cenník' },
+  { href: '/realizacie', label: 'Realizácie' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+---
+<header class="sub-header">
+  <a href="/" aria-label="Profi Prerábky team – domov" style="display:flex;align-items:center"><img src="/logos/profi-prerabky-team-negativ.svg" alt="Profi Prerábky team" style="height:44px;width:auto" /></a>
+  <nav class="sub-nav" aria-label="Hlavná navigácia">
+    {links.map((l) => <a href={l.href} aria-current={l.href === current ? 'page' : undefined}>{l.label}</a>)}
+  </nav>
+  <a href="tel:+421948536398" class="btn" style="min-height:44px;padding:0 18px;border:1px solid rgba(238,240,243,0.3);font-size:13px;font-weight:600">+421 948 536 398</a>
+</header>
