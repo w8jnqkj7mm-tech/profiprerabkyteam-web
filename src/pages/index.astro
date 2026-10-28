@@ -150,9 +150,9 @@ const marquee = Array.from({ length: 4 });
       <button type="button" class="btn ghost" id="replay-video" style="min-height:48px;padding:0 22px"><Fragment set:html={playIcon} /> Prehrať znova</button>
     </div>
     <div class="panel" style="position:relative;overflow:hidden">
-      <video id="main-video" poster="/media/hero-poster.webp" muted playsinline preload="metadata" aria-label="3D animácia: od pôdorysu po odovzdanie na kľúč" style="width:100%;height:auto;display:block">
-        <source src="/media/hero-1080.webm" type="video/webm" />
-        <source src="/media/hero-1080.mp4" type="video/mp4" />
+      <video id="main-video" poster="/media/intro-poster.jpg" muted playsinline preload="metadata" aria-label="3D animácia: od pôdorysu po odovzdanie na kľúč" style="width:100%;height:auto;display:block">
+        <source src="/media/intro-720.mp4" type="video/mp4" media="(max-width: 900px)" />
+        <source src="/media/intro-1080.mp4" type="video/mp4" />
       </video>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;font-size:12px;letter-spacing:0.08em;color:rgba(238,240,243,0.6)">
