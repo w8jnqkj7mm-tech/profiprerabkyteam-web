@@ -21,7 +21,7 @@ body { margin: 0; background: #101c24; }
 @keyframes rise { to { transform: translateY(0); } }
 @keyframes fadein { to { opacity: 1; } }
 .kb { animation: kb 22s ease-in-out infinite alternate; }
-@keyframes kb { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.14) translate(-2%,-1.5%); } }
+@keyframes kb { from { transform: scale(1) translate(0,0); } to { transform: scale(1.05) translate(-1%,-0.8%); } }
 .cue { animation: cue 2.2s cubic-bezier(.6,0,.3,1) infinite; transform-origin: top; }
 @keyframes cue { 0% { transform: scaleY(0); } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 .track { display: flex; width: max-content; animation: marq 38s linear infinite; }

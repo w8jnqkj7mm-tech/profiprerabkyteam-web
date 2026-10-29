@@ -94,7 +94,7 @@ export const PRICES = [
 ];
 
 export const SLIDES = [
-  { bg: 'url(/media/hero-poster.webp) center / cover', tag: '' },
+  { bg: 'url(/media/hero-poster.jpg) center / cover', tag: '' },
   { bg: 'url(/foto/hero/01.jpg) center / cover', tag: 'KÚPEĽŇA · BRATISLAVA' },
   { bg: 'url(/foto/hero/02.jpg) center / cover', tag: 'KUCHYŇA · PALISÁDY' },
   { bg: 'url(/foto/hero/03.jpg) center / cover', tag: 'SHOWROOM · COMFORA' },
